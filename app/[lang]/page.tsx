@@ -41,9 +41,9 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         />
         <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/55 to-forest-950/90" />
         {/* Orbes aurora */}
-        <div className="aurora-orb h-[28rem] w-[28rem] bg-gold-500/25" style={{ top: "-8rem", left: "-6rem" }} />
-        <div className="aurora-orb h-[24rem] w-[24rem] bg-forest-600/50" style={{ bottom: "-6rem", right: "-4rem", animationDelay: "-6s" }} />
-        <div className="aurora-orb h-72 w-72 bg-gold-400/15" style={{ top: "30%", right: "18%", animationDelay: "-12s" }} />
+        <div className="aurora-orb h-[28rem] w-[28rem]" style={{ top: "-8rem", left: "-6rem", "--orb-color": "rgba(201,162,75,0.22)" } as React.CSSProperties} />
+        <div className="aurora-orb h-[24rem] w-[24rem]" style={{ bottom: "-6rem", right: "-4rem", animationDelay: "-6s", "--orb-color": "rgba(58,106,78,0.45)" } as React.CSSProperties} />
+        <div className="aurora-orb h-72 w-72" style={{ top: "30%", right: "18%", animationDelay: "-12s", "--orb-color": "rgba(217,185,111,0.14)" } as React.CSSProperties} />
 
         <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 pt-28 pb-24 text-center sm:px-6">
           <p className="hero-in inline-flex items-center gap-2.5 rounded-full border border-gold-500/30 bg-forest-900/60 px-5 py-2 text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase backdrop-blur-sm">
@@ -245,8 +245,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
       {/* ── Donación (después de mostrar impacto, se pide apoyo) ──── */}
       <section className="relative overflow-hidden bg-forest-900">
-        <div className="aurora-orb h-96 w-96 bg-gold-500/15" style={{ top: "-6rem", right: "-8rem" }} />
-        <div className="aurora-orb h-80 w-80 bg-forest-600/40" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s" }} />
+        <div className="aurora-orb h-96 w-96" style={{ top: "-6rem", right: "-8rem", "--orb-color": "rgba(201,162,75,0.14)" } as React.CSSProperties} />
+        <div className="aurora-orb h-80 w-80" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s", "--orb-color": "rgba(58,106,78,0.38)" } as React.CSSProperties} />
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:py-32">
           <Reveal>
             <p className="text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">
@@ -263,7 +263,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <Reveal delay={200}>
             {/* Beam border orbitando el widget */}
             <div className="relative rounded-[2.1rem] p-px">
-              <div className="beam-border absolute inset-0 rounded-[2.1rem]" />
+              <div className="beam-clip" />
               <div className="relative">
                 <DonationWidget dict={dict} />
               </div>

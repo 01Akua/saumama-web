@@ -51,19 +51,17 @@ body {
 /* ── Scroll reveal ────────────────────────────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(2.5rem);
-  filter: blur(6px);
+  transform: translateY(2rem);
+  /* Solo opacity + transform: composición pura, sin repintados.
+     El blur en decenas de reveals simultáneos era el mayor costo. */
   transition:
-    opacity 0.9s var(--ease-spring),
-    transform 0.9s var(--ease-spring),
-    filter 0.9s var(--ease-spring);
+    opacity 0.8s var(--ease-spring),
+    transform 0.8s var(--ease-spring);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: transform, opacity;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
 
 /* ── Entrada del hero (al cargar) ─────────────────────────────── */
@@ -71,7 +69,7 @@ body {
   from {
     opacity: 0;
     transform: translateY(2rem);
-    filter: blur(8px);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
@@ -152,11 +150,11 @@ body {
 }
 .aurora-orb {
   position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
   pointer-events: none;
+  /* Gradiente pre-suavizado en vez de filter:blur — el blur animado
+     repinta en GPU cada frame; el gradiente solo se compone (barato) */
+  background: radial-gradient(circle, var(--orb-color, rgba(201, 162, 75, 0.22)), transparent 68%);
   animation: aurora-drift 18s ease-in-out infinite;
-  will-change: transform;
 }
 
 /* ── Shimmer: brillo que barre el CTA principal ───────────────── */
@@ -214,24 +212,33 @@ body {
   opacity: 1;
 }
 
-/* ── Beam border: borde de luz que orbita el widget de donación ─ */
-@property --beam-angle {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
+/* ── Beam border: borde de luz que orbita el widget de donación ─
+   Un hijo cuadrado sobredimensionado con gradiente estático ROTA por
+   transform (composición) en vez de animar el gradiente (repintado). */
+@keyframes beam-spin {
+  to { transform: rotate(360deg); }
 }
-@keyframes beam-rotate {
-  to { --beam-angle: 360deg; }
+.beam-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
 }
-.beam-border {
-  background:
-    conic-gradient(
-      from var(--beam-angle),
-      rgba(201, 162, 75, 0.05) 0%,
-      rgba(201, 162, 75, 0.85) 12%,
-      rgba(201, 162, 75, 0.05) 26%
-    );
-  animation: beam-rotate 6s linear infinite;
+.beam-clip::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 250%;
+  aspect-ratio: 1;
+  margin: -125% 0 0 -125%;
+  background: conic-gradient(
+    rgba(201, 162, 75, 0.05) 0%,
+    rgba(201, 162, 75, 0.85) 12%,
+    rgba(201, 162, 75, 0.05) 26%,
+    rgba(201, 162, 75, 0.05) 100%
+  );
+  animation: beam-spin 6s linear infinite;
 }
 
 /* ── Accesibilidad: respetar reduced motion ───────────────────── */
@@ -245,7 +252,7 @@ body {
   .aurora-orb,
   .shimmer-btn::after,
   .scroll-hint,
-  .beam-border {
+  .beam-clip::before {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

@@ -42,7 +42,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
           <p className="mt-6 leading-relaxed text-forest-800/80">{d.historyText}</p>
         </Reveal>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={IMG.heroRiver} alt="" className="aspect-[4/3] w-full rounded-xl object-cover shadow-lg" />
+        <img loading="lazy" src={IMG.heroRiver} alt="" className="aspect-[4/3] w-full rounded-xl object-cover shadow-lg" />
       </section>
 
       {/* Misión / Visión */}
@@ -87,7 +87,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
           {d.approach.map((a, i) => (
             <Reveal key={a.title} delay={i * 120}><div className="group h-full overflow-hidden rounded-2xl border border-cream-200 bg-cream-50 shadow-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-lg">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={approachImgs[i]} alt="" className="aspect-[16/10] w-full object-cover" />
+              <img loading="lazy" src={approachImgs[i]} alt="" className="aspect-[16/10] w-full object-cover" />
               <div className="p-5">
                 <h3 className="font-semibold text-forest-900">{a.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-forest-800/70">{a.text}</p>

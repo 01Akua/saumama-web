@@ -22,7 +22,7 @@ export function DonationWidget({ dict }: { dict: Dictionary }) {
 
   return (
     /* Bisel exterior */
-    <div id="donar" className="rounded-[2rem] bg-cream-50/5 p-1.5 ring-1 ring-gold-500/25 backdrop-blur-sm">
+    <div id="donar" className="rounded-[2rem] bg-cream-50/5 p-1.5 ring-1 ring-gold-500/25">
       {/* Núcleo interior */}
       <div className="rounded-[calc(2rem-0.375rem)] bg-forest-900 p-6 text-cream-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)] sm:p-8">
         <h3 className="text-sm font-semibold tracking-[0.2em] text-gold-400 uppercase">

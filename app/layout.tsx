@@ -24,6 +24,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className={`${cormorant.variable} ${jakarta.variable} h-full antialiased`}>
+      <head>
+        {/* Acorta el handshake con el CDN de imágenes del prototipo */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+      </head>
       <body className="grain flex min-h-full flex-col">{children}</body>
     </html>
   );

@@ -41,7 +41,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             <Reveal key={p.name} delay={i * 140} className="h-full"><article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-cream-200 bg-cream-50 shadow-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-xl hover:shadow-forest-900/10">
               <div className="relative overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={projectImgs[i]} alt={p.name} className="aspect-[16/10] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105" />
+                <img loading="lazy" src={projectImgs[i]} alt={p.name} className="aspect-[16/10] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105" />
                 <span className="absolute top-3 left-3 rounded bg-forest-900/90 px-2.5 py-1 text-[10px] font-semibold tracking-widest text-gold-400 uppercase">
                   {d.status}
                 </span>
