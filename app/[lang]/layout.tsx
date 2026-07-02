@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { SmoothScroll } from "@/components/SmoothScroll";
 import { getDictionary, locales, type Locale } from "@/lib/dictionaries";
 
 export function generateStaticParams() {
@@ -33,6 +34,7 @@ export default async function LangLayout({
   const dict = getDictionary(lang);
   return (
     <>
+      <SmoothScroll />
       <Header lang={lang} dict={dict} />
       <main className="flex-1">{children}</main>
       <Footer lang={lang} dict={dict} />

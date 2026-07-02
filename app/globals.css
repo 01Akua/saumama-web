@@ -27,7 +27,9 @@ body {
   color: var(--color-forest-950);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip (no hidden): evita crear un scroll container que rompe el
+     scroll suave hacia anclas (#donar) en Chrome */
+  overflow-x: clip;
 }
 
 ::selection {
@@ -142,6 +144,96 @@ body {
   transform-origin: left;
 }
 
+/* ── Aurora: orbes de luz que derivan lentamente (hero) ───────── */
+@keyframes aurora-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8%, -6%) scale(1.15); }
+  66% { transform: translate(-6%, 5%) scale(0.95); }
+}
+.aurora-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  pointer-events: none;
+  animation: aurora-drift 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ── Shimmer: brillo que barre el CTA principal ───────────────── */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  animation: shimmer-sweep 3.2s var(--ease-spring) infinite;
+  pointer-events: none;
+}
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-120%); }
+  55%, 100% { transform: translateX(120%); }
+}
+
+/* ── Indicador de scroll del hero ─────────────────────────────── */
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.4; }
+}
+.scroll-hint {
+  animation: scroll-hint 2.2s ease-in-out infinite;
+}
+
+/* ── Spotlight card: resplandor que sigue el cursor ───────────── */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-spring);
+  background: radial-gradient(
+    480px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(201, 162, 75, 0.14),
+    transparent 65%
+  );
+  pointer-events: none;
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* ── Beam border: borde de luz que orbita el widget de donación ─ */
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes beam-rotate {
+  to { --beam-angle: 360deg; }
+}
+.beam-border {
+  background:
+    conic-gradient(
+      from var(--beam-angle),
+      rgba(201, 162, 75, 0.05) 0%,
+      rgba(201, 162, 75, 0.85) 12%,
+      rgba(201, 162, 75, 0.05) 26%
+    );
+  animation: beam-rotate 6s linear infinite;
+}
+
 /* ── Accesibilidad: respetar reduced motion ───────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -149,7 +241,11 @@ body {
   .draw-line,
   .draw-on-reveal,
   .slow-zoom,
-  .marquee-track {
+  .marquee-track,
+  .aurora-orb,
+  .shimmer-btn::after,
+  .scroll-hint,
+  .beam-border {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

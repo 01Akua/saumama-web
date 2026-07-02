@@ -70,7 +70,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               {otherLang}
             </Link>
             {/* CTA botón-en-botón */}
-            <Link
+            <a
               href={`/${lang}/#donar`}
               className="group flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 py-1.5 pr-1.5 pl-5 text-sm font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
             >
@@ -80,7 +80,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
                   <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </span>
-            </Link>
+            </a>
           </nav>
 
           <button
@@ -124,7 +124,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               {l.label}
             </Link>
           ))}
-          <Link
+          <a
             href={`/${lang}/#donar`}
             onClick={() => setOpen(false)}
             className={`mt-6 inline-flex w-max cursor-pointer items-center gap-3 rounded-full bg-gold-500 px-7 py-3.5 font-semibold text-forest-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
@@ -136,7 +136,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
               <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </Link>
+          </a>
         </nav>
       </div>
     </>

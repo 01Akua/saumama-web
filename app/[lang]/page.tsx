@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CountUp } from "@/components/CountUp";
 import { DonationWidget } from "@/components/DonationWidget";
 import { Reveal } from "@/components/Reveal";
+import { SpotlightCard } from "@/components/SpotlightCard";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { IMG } from "@/lib/images";
 
@@ -32,61 +33,69 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
   return (
     <>
-      {/* ── Hero + widget de donación ─────────────────────────────── */}
-      <section className="relative overflow-hidden bg-forest-950 text-cream-50">
+      {/* ── Hero editorial centrado (aurora + text reveal) ────────── */}
+      <section className="relative flex min-h-[100dvh] items-center overflow-hidden bg-forest-950 text-cream-50">
         <div
-          className="slow-zoom absolute inset-0 bg-cover bg-center opacity-45"
+          className="slow-zoom absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: `url(${IMG.heroRiver})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest-950/90 via-forest-950/60 to-forest-950/40" />
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pt-32 pb-20 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:pt-40 lg:pb-28">
-          <div className="max-w-xl">
-            <p className="hero-in text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">
-              {dict.hero.kicker}
-            </p>
-            <h1
-              className="hero-in mt-4 font-display text-4xl leading-tight font-semibold sm:text-5xl lg:text-6xl"
-              style={{ "--hero-delay": "120ms" } as React.CSSProperties}
-            >
-              {dict.hero.title}
-            </h1>
-            <div className="draw-line mt-5 h-0.5 w-16 bg-gold-500" />
-            <p
-              className="hero-in mt-6 text-base leading-relaxed text-cream-100/85 sm:text-lg"
-              style={{ "--hero-delay": "280ms" } as React.CSSProperties}
-            >
-              {dict.hero.subtitle}
-            </p>
-            <div
-              className="hero-in mt-8 flex flex-wrap gap-4"
-              style={{ "--hero-delay": "400ms" } as React.CSSProperties}
-            >
-              <Link
-                href={`/${lang}/nosotros/`}
-                className="group flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 py-2.5 pr-2 pl-6 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
+        <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/55 to-forest-950/90" />
+        {/* Orbes aurora */}
+        <div className="aurora-orb h-[28rem] w-[28rem] bg-gold-500/25" style={{ top: "-8rem", left: "-6rem" }} />
+        <div className="aurora-orb h-[24rem] w-[24rem] bg-forest-600/50" style={{ bottom: "-6rem", right: "-4rem", animationDelay: "-6s" }} />
+        <div className="aurora-orb h-72 w-72 bg-gold-400/15" style={{ top: "30%", right: "18%", animationDelay: "-12s" }} />
+
+        <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 pt-28 pb-24 text-center sm:px-6">
+          <p className="hero-in inline-flex items-center gap-2.5 rounded-full border border-gold-500/30 bg-forest-900/60 px-5 py-2 text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase backdrop-blur-sm">
+            <LeafIcon className="h-3.5 w-3.5 shrink-0" />
+            {dict.hero.kicker}
+          </p>
+          {/* Título con reveal palabra por palabra */}
+          <h1 className="mt-7 font-display text-4xl leading-tight font-semibold sm:text-6xl lg:text-7xl">
+            {dict.hero.title.split(" ").map((word, i) => (
+              <span
+                key={i}
+                className="hero-in inline-block"
+                style={{ "--hero-delay": `${150 + i * 70}ms` } as React.CSSProperties}
               >
-                {dict.hero.cta1}
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
-                  <ArrowIcon className="h-3.5 w-3.5" />
-                </span>
-              </Link>
-              <Link
-                href={`/${lang}/proyectos/`}
-                className="cursor-pointer rounded-full border border-cream-100/40 px-6 py-2.5 font-semibold transition-all duration-500 hover:border-gold-400 hover:text-gold-400"
-              >
-                {dict.hero.cta2}
-              </Link>
-            </div>
-            <p
-              className="hero-in mt-10 inline-flex items-center gap-2.5 rounded-full border border-gold-500/30 bg-forest-900/70 px-5 py-3 text-sm text-cream-100/80"
-              style={{ "--hero-delay": "560ms" } as React.CSSProperties}
+                {word}
+                {i < dict.hero.title.split(" ").length - 1 ? " " : ""}
+              </span>
+            ))}
+          </h1>
+          <div className="draw-line mt-7 h-0.5 w-20 bg-gold-500" />
+          <p
+            className="hero-in mt-7 max-w-2xl text-base leading-relaxed text-cream-100/85 sm:text-lg"
+            style={{ "--hero-delay": "700ms" } as React.CSSProperties}
+          >
+            {dict.hero.subtitle}
+          </p>
+          <div
+            className="hero-in mt-10 flex flex-wrap items-center justify-center gap-4"
+            style={{ "--hero-delay": "850ms" } as React.CSSProperties}
+          >
+            <a
+              href="#donar"
+              className="group shimmer-btn flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
             >
-              <LeafIcon className="h-4 w-4 shrink-0 text-gold-400" />
-              {dict.hero.badge}
-            </p>
+              {dict.nav.donate}
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
+                <ArrowIcon className="h-4 w-4" />
+              </span>
+            </a>
+            <Link
+              href={`/${lang}/proyectos/`}
+              className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-gold-400 hover:text-gold-400"
+            >
+              {dict.hero.cta2}
+            </Link>
           </div>
-          <div className="hero-in lg:pt-2" style={{ "--hero-delay": "350ms" } as React.CSSProperties}>
-            <DonationWidget dict={dict} />
+        </div>
+
+        {/* Indicador de scroll */}
+        <div className="absolute bottom-7 left-1/2 -translate-x-1/2">
+          <div className="scroll-hint flex h-10 w-6 items-start justify-center rounded-full border border-cream-100/30 pt-2">
+            <span className="h-2 w-1 rounded-full bg-gold-400" />
           </div>
         </div>
       </section>
@@ -198,11 +207,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </Reveal>
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {dict.experience.items.map((e, i) => (
-              <Reveal key={e.title} delay={i * 120}>
-                <div className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
+              <Reveal key={e.title} delay={i * 120} className="h-full">
+                <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
                   <h3 className="font-display text-xl font-semibold text-forest-900">{e.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-forest-800/75">{e.text}</p>
-                </div>
+                </SpotlightCard>
               </Reveal>
             ))}
           </div>
@@ -231,6 +240,35 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Donación (después de mostrar impacto, se pide apoyo) ──── */}
+      <section className="relative overflow-hidden bg-forest-900">
+        <div className="aurora-orb h-96 w-96 bg-gold-500/15" style={{ top: "-6rem", right: "-8rem" }} />
+        <div className="aurora-orb h-80 w-80 bg-forest-600/40" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s" }} />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:py-32">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">
+              {dict.donation.kicker}
+            </p>
+            <h2 className="mt-4 font-display text-3xl leading-tight font-semibold text-cream-50 sm:text-5xl">
+              {dict.donation.sectionTitle}
+            </h2>
+            <div className="draw-on-reveal mt-5 h-0.5 w-16 bg-gold-500" />
+            <p className="mt-6 max-w-md leading-relaxed text-cream-100/80">
+              {dict.donation.sectionText}
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            {/* Beam border orbitando el widget */}
+            <div className="relative rounded-[2.1rem] p-px">
+              <div className="beam-border absolute inset-0 rounded-[2.1rem]" />
+              <div className="relative">
+                <DonationWidget dict={dict} />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -303,7 +341,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <p className="mt-2 text-cream-100/80">{dict.cta.text}</p>
           </Reveal>
           <Reveal delay={150}>
-            <Link
+            <a
               href={`/${lang}/#donar`}
               className="group flex shrink-0 cursor-pointer items-center gap-3 rounded-full bg-gold-500 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
             >
@@ -311,7 +349,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
                 <ArrowIcon className="h-4 w-4" />
               </span>
-            </Link>
+            </a>
           </Reveal>
         </div>
       </section>

@@ -160,12 +160,12 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             >
               {d.closingCta1}
             </Link>
-            <Link
+            <a
               href={`/${lang}/#donar`}
               className="rounded-md border border-cream-100/40 px-6 py-3 font-semibold transition-colors hover:border-gold-400 hover:text-gold-400"
             >
               {d.closingCta2}
-            </Link>
+            </a>
           </div>
         </div>
       </section>

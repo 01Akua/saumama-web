@@ -94,6 +94,8 @@ const es = {
   },
   donation: {
     kicker: "Apoya nuestros proyectos",
+    sectionTitle: "Tu aporte transforma territorios",
+    sectionText: "Detrás de cada cifra hay familias, bosques y territorios que se regeneran. Dona de forma segura en tu moneda y recibe reportes verificables del impacto de tu contribución.",
     text: "Tu aporte contribuye al diseño e implementación de proyectos de alto impacto en conservación, restauración y desarrollo comunitario.",
     bullets: [
       { title: "100% seguro", text: "Plataformas de pago confiables" },
@@ -346,6 +348,8 @@ const en: Dictionary = {
   },
   donation: {
     kicker: "Support our projects",
+    sectionTitle: "Your contribution transforms territories",
+    sectionText: "Behind every number there are families, forests and territories being regenerated. Donate securely in your currency and receive verifiable reports on the impact of your contribution.",
     text: "Your contribution helps design and implement high-impact conservation, restoration and community development projects.",
     bullets: [
       { title: "100% secure", text: "Trusted payment platforms" },
