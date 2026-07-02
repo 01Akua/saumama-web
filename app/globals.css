@@ -16,7 +16,10 @@
   --color-cream-200: #e9e4d5;
 
   --font-display: var(--font-cormorant), Georgia, serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+
+  /* Curva de movimiento con física de resorte (coreografía global) */
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 body {
@@ -24,9 +27,133 @@ body {
   color: var(--color-forest-950);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 ::selection {
   background: var(--color-gold-500);
   color: var(--color-forest-950);
+}
+
+/* ── Grano de película sutil (textura editorial) ─────────────── */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── Scroll reveal ────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  filter: blur(6px);
+  transition:
+    opacity 0.9s var(--ease-spring),
+    transform 0.9s var(--ease-spring),
+    filter 0.9s var(--ease-spring);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ── Entrada del hero (al cargar) ─────────────────────────────── */
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.hero-in {
+  animation: hero-in 1s var(--ease-spring) both;
+  animation-delay: var(--hero-delay, 0ms);
+}
+
+/* Línea dorada que se dibuja */
+@keyframes draw-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.draw-line {
+  transform-origin: left;
+  animation: draw-line 1.2s var(--ease-spring) 0.6s both;
+}
+.reveal.is-visible .draw-on-reveal {
+  transform-origin: left;
+  animation: draw-line 1.2s var(--ease-spring) 0.3s both;
+}
+.draw-on-reveal {
+  transform: scaleX(0);
+}
+
+/* ── Zoom lento del fondo del hero (Ken Burns sutil) ─────────── */
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.slow-zoom {
+  animation: slow-zoom 22s ease-out both;
+}
+
+/* ── Marquee de aliados ───────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── Subrayado animado en links de navegación ─────────────────── */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: var(--color-gold-400);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-spring);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ── Accesibilidad: respetar reduced motion ───────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .hero-in,
+  .draw-line,
+  .draw-on-reveal,
+  .slow-zoom,
+  .marquee-track {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }

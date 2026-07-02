@@ -2,13 +2,29 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Dictionary, Locale } from "@/lib/dictionaries";
 import { Logo } from "./Logo";
 
 export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Bloquea el scroll del body con el menú abierto
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   const links = [
     { href: `/${lang}/`, label: dict.nav.home },
@@ -23,73 +39,106 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
   const switchHref = currentPath.replace(`/${lang}`, `/${otherLang}`) || `/${otherLang}/`;
 
   return (
-    <header className="sticky top-0 z-50 border-b border-forest-800/60 bg-forest-900/95 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href={`/${lang}/`} aria-label="SAUMAMA Foundation">
-          <Logo dark />
-        </Link>
-
-        <nav className="hidden items-center gap-7 text-sm text-cream-100/90 md:flex">
-          {links.map((l) => (
-            <Link key={l.href} href={l.href} className="transition-colors hover:text-gold-400">
-              {l.label}
-            </Link>
-          ))}
-          <Link
-            href={switchHref}
-            className="rounded-full border border-cream-100/25 px-3 py-1 text-xs tracking-widest uppercase transition-colors hover:border-gold-400 hover:text-gold-400"
-          >
-            {otherLang}
-          </Link>
-          <Link
-            href={`/${lang}/#donar`}
-            className="rounded-md bg-gold-500 px-4 py-2 text-sm font-semibold text-forest-950 transition-colors hover:bg-gold-400"
-          >
-            {dict.nav.donate}
-          </Link>
-        </nav>
-
-        <button
-          className="text-cream-50 md:hidden"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-          aria-expanded={open}
+    <>
+      {/* Nav isla flotante */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+          scrolled ? "px-3 pt-3 sm:px-6" : "px-0 pt-0"
+        }`}
+      >
+        <div
+          className={`mx-auto flex h-16 max-w-6xl items-center justify-between border-forest-100/10 px-4 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] sm:px-6 ${
+            scrolled
+              ? "rounded-2xl border bg-forest-950/85 shadow-2xl shadow-forest-950/40 backdrop-blur-xl"
+              : "border-b bg-gradient-to-b from-forest-950/70 to-transparent"
+          }`}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
-            {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
-          </svg>
-        </button>
-      </div>
+          <Link href={`/${lang}/`} aria-label="SAUMAMA Foundation" className="cursor-pointer">
+            <Logo dark />
+          </Link>
 
-      {open && (
-        <nav className="flex flex-col gap-1 border-t border-forest-800 px-4 pt-2 pb-4 md:hidden">
-          {links.map((l) => (
+          <nav className="hidden items-center gap-7 text-sm text-cream-100/90 md:flex">
+            {links.map((l) => (
+              <Link key={l.href} href={l.href} className="nav-link cursor-pointer transition-colors duration-300 hover:text-gold-400">
+                {l.label}
+              </Link>
+            ))}
+            <Link
+              href={switchHref}
+              className="cursor-pointer rounded-full border border-cream-100/25 px-3 py-1 text-xs tracking-widest uppercase transition-all duration-300 hover:border-gold-400 hover:text-gold-400"
+            >
+              {otherLang}
+            </Link>
+            {/* CTA botón-en-botón */}
+            <Link
+              href={`/${lang}/#donar`}
+              className="group flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 py-1.5 pr-1.5 pl-5 text-sm font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
+            >
+              {dict.nav.donate}
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3.5 w-3.5">
+                  <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </Link>
+          </nav>
+
+          <button
+            className="relative h-10 w-10 cursor-pointer text-cream-50 md:hidden"
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+            aria-expanded={open}
+          >
+            {/* Hamburguesa que muta a X */}
+            <span
+              className={`absolute left-2 block h-px w-6 bg-current transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                open ? "top-5 rotate-45" : "top-4"
+              }`}
+            />
+            <span
+              className={`absolute left-2 block h-px w-6 bg-current transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                open ? "top-5 -rotate-45" : "top-6"
+              }`}
+            />
+          </button>
+        </div>
+      </header>
+
+      {/* Overlay móvil a pantalla completa */}
+      <div
+        className={`fixed inset-0 z-40 flex flex-col justify-center bg-forest-950/90 px-8 backdrop-blur-2xl transition-opacity duration-500 md:hidden ${
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col gap-2">
+          {[...links, { href: switchHref, label: otherLang.toUpperCase() }].map((l, i) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="rounded px-2 py-2 text-cream-100 hover:bg-forest-800"
+              className={`cursor-pointer py-3 font-display text-4xl font-semibold text-cream-50 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:text-gold-400 ${
+                open ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              }`}
+              style={{ transitionDelay: open ? `${100 + i * 70}ms` : "0ms" }}
             >
               {l.label}
             </Link>
           ))}
-          <div className="mt-2 flex items-center gap-3 px-2">
-            <Link
-              href={switchHref}
-              className="rounded-full border border-cream-100/25 px-3 py-1 text-xs tracking-widest text-cream-100 uppercase"
-            >
-              {otherLang}
-            </Link>
-            <Link
-              href={`/${lang}/#donar`}
-              onClick={() => setOpen(false)}
-              className="rounded-md bg-gold-500 px-4 py-2 text-sm font-semibold text-forest-950"
-            >
-              {dict.nav.donate}
-            </Link>
-          </div>
+          <Link
+            href={`/${lang}/#donar`}
+            onClick={() => setOpen(false)}
+            className={`mt-6 inline-flex w-max cursor-pointer items-center gap-3 rounded-full bg-gold-500 px-7 py-3.5 font-semibold text-forest-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              open ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
+            style={{ transitionDelay: open ? "400ms" : "0ms" }}
+          >
+            {dict.nav.donate}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4">
+              <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </nav>
-      )}
-    </header>
+      </div>
+    </>
   );
 }
