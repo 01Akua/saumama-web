@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Dictionary, Locale } from "@/lib/dictionaries";
+import { LINKEDIN_URL } from "@/lib/images";
 import { Logo } from "./Logo";
 
 export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
@@ -15,7 +16,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     <footer className="bg-forest-950 text-cream-100/80">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div>
-          <Logo dark />
+          <Logo dark className="h-14 w-auto" />
           <p className="mt-4 text-sm leading-relaxed">{dict.footer.tagline}</p>
         </div>
 
@@ -31,6 +32,11 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
                 </Link>
               </li>
             ))}
+            <li>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gold-400">
+                {dict.nav.blog} (LinkedIn)
+              </a>
+            </li>
           </ul>
         </div>
 

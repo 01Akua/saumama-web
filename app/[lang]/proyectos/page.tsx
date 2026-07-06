@@ -13,19 +13,19 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
   const lang = langParam as Locale;
   const dict = getDictionary(lang);
   const d = dict.projectsPage;
-  const projectImgs = [IMG.heroRiver, IMG.forestSun, IMG.forestPath];
+  const projectImgs = IMG.proj;
 
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-forest-950 text-cream-50">
         <div
-          className="slow-zoom absolute inset-0 bg-cover bg-center opacity-40"
+          className="slow-zoom absolute inset-0 bg-cover bg-center opacity-55"
           style={{ backgroundImage: `url(${IMG.mountain})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-950/90 to-forest-950/30" />
         <div className="relative mx-auto max-w-6xl px-4 pt-40 pb-24 sm:px-6">
-          <p className="hero-in text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">{d.kicker}</p>
+          <p className="hero-in text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">{d.kicker}</p>
           <h1
             className="hero-in mt-4 max-w-2xl font-display text-4xl leading-tight font-semibold sm:text-5xl"
             style={{ "--hero-delay": "120ms" } as React.CSSProperties}
@@ -86,7 +86,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
       <section className="bg-cream-100">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <Reveal>
-            <p className="text-xs font-semibold tracking-[0.3em] text-gold-600 uppercase">
+            <p className="text-sm font-semibold tracking-[0.3em] text-forest-700 uppercase">
               {dict.services.kicker}
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
@@ -120,7 +120,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
         <div className="aurora-orb h-96 w-96" style={{ top: "-8rem", right: "-8rem", "--orb-color": "rgba(201,162,75,0.12)" } as React.CSSProperties} />
         <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <Reveal>
-            <p className="text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">
+            <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
               {d.safeguardsKicker}
             </p>
             <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold sm:text-4xl">
@@ -145,7 +145,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
       <section className="relative overflow-hidden bg-forest-900 text-cream-50">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: `url(${IMG.seedling})` }}
+          style={{ backgroundImage: `url(${IMG.donacion})` }}
         />
         <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6">
           <Reveal>

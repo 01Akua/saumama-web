@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { Dictionary, Locale } from "@/lib/dictionaries";
+import { LINKEDIN_URL } from "@/lib/images";
 import { Logo } from "./Logo";
 
 export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
@@ -54,15 +55,18 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
           }`}
         >
           <Link href={`/${lang}/`} aria-label="SAUMAMA Foundation" className="cursor-pointer">
-            <Logo dark />
+            <Logo dark className="h-11 w-auto" />
           </Link>
 
-          <nav className="hidden items-center gap-7 text-sm text-cream-100/90 md:flex">
+          <nav className="hidden items-center gap-7 text-base text-cream-100/90 md:flex">
             {links.map((l) => (
               <Link key={l.href} href={l.href} className="nav-link cursor-pointer transition-colors duration-300 hover:text-gold-400">
                 {l.label}
               </Link>
             ))}
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="nav-link cursor-pointer transition-colors duration-300 hover:text-gold-400">
+              {dict.nav.blog}
+            </a>
             <Link
               href={switchHref}
               className="cursor-pointer rounded-full border border-cream-100/25 px-3 py-1 text-xs tracking-widest uppercase transition-all duration-300 hover:border-gold-400 hover:text-gold-400"

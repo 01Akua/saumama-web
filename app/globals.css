@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Paleta SAUMAMA — verde bosque + dorado + crema (tomada de los mockups) */
-  --color-forest-950: #0d1f15;
-  --color-forest-900: #14291d;
-  --color-forest-800: #1e3a2b;
-  --color-forest-700: #2a4d39;
-  --color-forest-600: #3a6a4e;
-  --color-forest-100: #e4ece6;
-  --color-gold-600: #a8823a;
-  --color-gold-500: #c9a24b;
-  --color-gold-400: #d9b96f;
-  --color-cream-50: #faf8f2;
-  --color-cream-100: #f4f1e8;
-  --color-cream-200: #e9e4d5;
+  /* Paleta oficial SAUMAMA — manual de marca (verde bosque, verde musgo,
+     dorado tierra, terracota + neutros gris piedra / crema hueso / negro carbón) */
+  --color-forest-950: #1c2f26;
+  --color-forest-900: #2c493d; /* verde bosque (marca) */
+  --color-forest-800: #3a5747;
+  --color-forest-700: #496640; /* verde musgo (marca) */
+  --color-forest-600: #5a7a52;
+  --color-forest-100: #e6ebe2;
+  --color-gold-600: #a37f22;
+  --color-gold-500: #c39929; /* dorado tierra (marca) */
+  --color-gold-400: #d4af4e;
+  --color-terra-500: #b7542f; /* terracota (marca) */
+  --color-cream-50: #f6f2ea;
+  --color-cream-100: #f1ece3; /* crema hueso (marca) */
+  --color-cream-200: #ddd3c2;
+  --color-stone-400: #b7a797; /* gris piedra (marca) */
 
   --font-display: var(--font-cormorant), Georgia, serif;
-  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
 
   /* Curva de movimiento con física de resorte (coreografía global) */
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);

@@ -32,12 +32,12 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       {/* Hero */}
       <section className="relative overflow-hidden bg-forest-950 text-cream-50">
         <div
-          className="slow-zoom absolute inset-0 bg-cover bg-center opacity-40"
+          className="slow-zoom absolute inset-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: `url(${IMG.heroValley})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-forest-950/90 to-forest-950/30" />
         <div className="relative mx-auto max-w-6xl px-4 pt-40 pb-24 sm:px-6">
-          <p className="hero-in text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">{d.kicker}</p>
+          <p className="hero-in text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">{d.kicker}</p>
           <h1
             className="hero-in mt-4 max-w-3xl font-display text-3xl leading-tight font-semibold sm:text-5xl"
             style={{ "--hero-delay": "120ms" } as React.CSSProperties}
@@ -57,7 +57,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       {/* Historia */}
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 md:grid-cols-2">
         <Reveal>
-          <p className="text-xs font-semibold tracking-[0.3em] text-gold-600 uppercase">{d.historyKicker}</p>
+          <p className="text-sm font-semibold tracking-[0.3em] text-forest-700 uppercase">{d.historyKicker}</p>
           <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
             {d.historyTitle}
           </h2>
@@ -68,7 +68,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
           <div className="overflow-hidden rounded-2xl shadow-lg">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={IMG.heroRiver}
+              src={IMG.historia}
               alt=""
               loading="lazy"
               className="aspect-[4/3] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-105"
@@ -97,7 +97,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       <section className="bg-cream-100">
         <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <Reveal className="text-center">
-            <p className="text-xs font-semibold tracking-[0.3em] text-gold-600 uppercase">{d.teamKicker}</p>
+            <p className="text-sm font-semibold tracking-[0.3em] text-forest-700 uppercase">{d.teamKicker}</p>
             <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
               {d.teamTitle}
             </h2>
@@ -114,7 +114,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                       <p className="mt-1 text-xs font-semibold tracking-wide text-gold-600 uppercase">{m.role}</p>
                     </div>
                   </div>
-                  <p className="mt-5 text-sm leading-relaxed text-forest-800/75">{m.bio}</p>
+                  <p className="mt-5 text-base leading-relaxed text-forest-800/80">{m.bio}</p>
                 </SpotlightCard>
               </Reveal>
             ))}
@@ -126,12 +126,12 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       <section className="relative overflow-hidden bg-forest-950 text-cream-50">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: `url(${IMG.forestSun})` }}
+          style={{ backgroundImage: `url(${IMG.samauma})` }}
         />
         <div className="aurora-orb h-96 w-96" style={{ top: "-8rem", left: "-8rem", "--orb-color": "rgba(201,162,75,0.15)" } as React.CSSProperties} />
         <div className="relative mx-auto max-w-3xl px-4 py-28 text-center sm:px-6">
           <Reveal>
-            <p className="text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">{d.logoKicker}</p>
+            <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">{d.logoKicker}</p>
             <h2 className="mt-4 font-display text-3xl leading-snug font-semibold sm:text-4xl">
               {d.logoTitle}
             </h2>

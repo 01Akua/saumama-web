@@ -9,6 +9,7 @@ const es = {
     home: "Inicio",
     about: "Nosotros",
     projects: "Proyectos y servicios",
+    blog: "Blog",
     donate: "Dona ahora",
   },
   hero: {
@@ -134,6 +135,12 @@ const es = {
     redirect: "Serás redirigido a nuestra página segura de donaciones.",
     demoNote: "Prototipo — la pasarela de pago se conecta en la siguiente fase.",
     amounts: "Monto sugerido",
+  },
+  blog: {
+    kicker: "Blog y actualidad",
+    title: "Historias desde el territorio",
+    text: "Publicamos avances de nuestros proyectos, aprendizajes y noticias en LinkedIn.",
+    button: "Síguenos en LinkedIn",
   },
   cta: {
     title: "Sé parte del movimiento",
@@ -263,6 +270,7 @@ const en: Dictionary = {
     home: "Home",
     about: "About us",
     projects: "Projects & services",
+    blog: "Blog",
     donate: "Donate now",
   },
   hero: {
@@ -388,6 +396,12 @@ const en: Dictionary = {
     redirect: "You will be redirected to our secure donations page.",
     demoNote: "Prototype — the payment gateway is connected in the next phase.",
     amounts: "Suggested amount",
+  },
+  blog: {
+    kicker: "Blog & updates",
+    title: "Stories from the territory",
+    text: "We share project updates, lessons learned and news on LinkedIn.",
+    button: "Follow us on LinkedIn",
   },
   cta: {
     title: "Be part of the movement",
