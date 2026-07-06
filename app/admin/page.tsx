@@ -134,33 +134,30 @@ export default function AdminDemo() {
 
   // Traduce todos los campos de la sección activa al otro idioma con IA
   const translateSection = async () => {
-    if (!apiKey) {
-      setToast("Configura tu clave de API de Anthropic abajo a la izquierda.");
-      setTimeout(() => setToast(""), 4000);
-      return;
-    }
     const target: Locale = lang === "es" ? "en" : "es";
     const fields = Object.fromEntries(active.fields.map((f) => [f.path, val(f.path)]));
     setTranslating(true);
     try {
-      const translated = await translateFields(fields, lang, target, apiKey);
+      const result = await translateFields(fields, lang, target, apiKey || undefined);
       setOverrides((o) => {
         const next = { ...o };
-        for (const [path, text] of Object.entries(translated)) {
+        for (const [path, text] of Object.entries(result.fields)) {
           next[`${target}.${path}`] = text;
         }
         return next;
       });
       setDirty(true);
-      setToast(`Sección traducida al ${target === "en" ? "inglés" : "español"} — revisa y guarda.`);
+      setToast(
+        `Sección traducida al ${target === "en" ? "inglés" : "español"} con el traductor ${result.method} — revisa y guarda.`
+      );
     } catch (e) {
       const msg = e instanceof Error && e.message.includes("401")
-        ? "Clave de API inválida — revísala en Ajustes."
-        : "No se pudo traducir. Revisa tu conexión y tu clave.";
+        ? "Clave de API inválida — revísala o bórrala para usar el traductor gratuito."
+        : "No se pudo traducir. Revisa tu conexión.";
       setToast(msg);
     } finally {
       setTranslating(false);
-      setTimeout(() => setToast(""), 5000);
+      setTimeout(() => setToast(""), 6000);
     }
   };
 
@@ -245,7 +242,7 @@ export default function AdminDemo() {
         <div className="space-y-3 border-t border-cream-100/10 p-4 text-xs">
           <div>
             <p className="mb-1 font-semibold tracking-wider text-cream-100/60 uppercase">
-              Traducción con IA
+              Traducción
             </p>
             <div className="flex gap-1.5">
               <input
@@ -255,7 +252,7 @@ export default function AdminDemo() {
                   setApiKey(e.target.value);
                   setStoredApiKey(e.target.value.trim());
                 }}
-                placeholder="Clave API de Anthropic"
+                placeholder="Clave IA (opcional)"
                 className="w-full rounded-md border border-cream-100/20 bg-forest-950 px-2 py-1.5 text-[11px] text-cream-50 outline-none focus:border-cream-100/50"
               />
               <button
@@ -267,7 +264,8 @@ export default function AdminDemo() {
               </button>
             </div>
             <p className="mt-1 text-[10px] leading-snug text-cream-100/40">
-              Se guarda solo en este navegador. En producción vivirá en el servidor del CMS.
+              Sin clave usa el traductor gratuito del navegador. Con clave de
+              Anthropic (opcional) traduce con IA de mayor calidad.
             </p>
           </div>
           <a href="../es/" className="block cursor-pointer text-cream-100/70 transition-colors hover:text-cream-100">
