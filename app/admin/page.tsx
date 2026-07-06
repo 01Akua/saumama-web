@@ -9,6 +9,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
+import { getStoredApiKey, setStoredApiKey, translateFields } from "@/lib/translate";
 
 type Overrides = Record<string, string>;
 const STORAGE_KEY = "saumama-cms-demo";
@@ -94,6 +95,9 @@ export default function AdminDemo() {
   const [overrides, setOverrides] = useState<Overrides>({});
   const [dirty, setDirty] = useState(false);
   const [toast, setToast] = useState("");
+  const [apiKey, setApiKey] = useState("");
+  const [showKey, setShowKey] = useState(false);
+  const [translating, setTranslating] = useState(false);
 
   const dict = useMemo(() => getDictionary(lang), [lang]);
   const active = SECTIONS.find((s) => s.id === section)!;
@@ -103,6 +107,7 @@ export default function AdminDemo() {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) setOverrides(JSON.parse(raw));
     } catch {}
+    setApiKey(getStoredApiKey());
   }, []);
 
   const val = (path: string) => overrides[`${lang}.${path}`] ?? getPath(dict, path);
@@ -125,6 +130,38 @@ export default function AdminDemo() {
     setDirty(false);
     setToast("Contenido restaurado al original.");
     setTimeout(() => setToast(""), 3000);
+  };
+
+  // Traduce todos los campos de la sección activa al otro idioma con IA
+  const translateSection = async () => {
+    if (!apiKey) {
+      setToast("Configura tu clave de API de Anthropic abajo a la izquierda.");
+      setTimeout(() => setToast(""), 4000);
+      return;
+    }
+    const target: Locale = lang === "es" ? "en" : "es";
+    const fields = Object.fromEntries(active.fields.map((f) => [f.path, val(f.path)]));
+    setTranslating(true);
+    try {
+      const translated = await translateFields(fields, lang, target, apiKey);
+      setOverrides((o) => {
+        const next = { ...o };
+        for (const [path, text] of Object.entries(translated)) {
+          next[`${target}.${path}`] = text;
+        }
+        return next;
+      });
+      setDirty(true);
+      setToast(`Sección traducida al ${target === "en" ? "inglés" : "español"} — revisa y guarda.`);
+    } catch (e) {
+      const msg = e instanceof Error && e.message.includes("401")
+        ? "Clave de API inválida — revísala en Ajustes."
+        : "No se pudo traducir. Revisa tu conexión y tu clave.";
+      setToast(msg);
+    } finally {
+      setTranslating(false);
+      setTimeout(() => setToast(""), 5000);
+    }
   };
 
   // ── Login demo ───────────────────────────────────────────────────
@@ -205,7 +242,34 @@ export default function AdminDemo() {
             </button>
           ))}
         </nav>
-        <div className="space-y-2 border-t border-cream-100/10 p-4 text-xs">
+        <div className="space-y-3 border-t border-cream-100/10 p-4 text-xs">
+          <div>
+            <p className="mb-1 font-semibold tracking-wider text-cream-100/60 uppercase">
+              Traducción con IA
+            </p>
+            <div className="flex gap-1.5">
+              <input
+                type={showKey ? "text" : "password"}
+                value={apiKey}
+                onChange={(e) => {
+                  setApiKey(e.target.value);
+                  setStoredApiKey(e.target.value.trim());
+                }}
+                placeholder="Clave API de Anthropic"
+                className="w-full rounded-md border border-cream-100/20 bg-forest-950 px-2 py-1.5 text-[11px] text-cream-50 outline-none focus:border-cream-100/50"
+              />
+              <button
+                onClick={() => setShowKey(!showKey)}
+                className="cursor-pointer rounded-md border border-cream-100/20 px-2 text-cream-100/60 hover:text-cream-100"
+                title={showKey ? "Ocultar" : "Mostrar"}
+              >
+                {showKey ? "○" : "●"}
+              </button>
+            </div>
+            <p className="mt-1 text-[10px] leading-snug text-cream-100/40">
+              Se guarda solo en este navegador. En producción vivirá en el servidor del CMS.
+            </p>
+          </div>
           <a href="../es/" className="block cursor-pointer text-cream-100/70 transition-colors hover:text-cream-100">
             ← Ver sitio publicado
           </a>
@@ -238,6 +302,19 @@ export default function AdminDemo() {
                 </button>
               ))}
             </div>
+            <button
+              onClick={translateSection}
+              disabled={translating}
+              className={`cursor-pointer rounded-lg border px-3.5 py-2 text-xs font-semibold transition-colors ${
+                translating
+                  ? "cursor-wait border-cream-200 text-forest-800/40"
+                  : "border-forest-700/40 text-forest-800 hover:border-forest-800"
+              }`}
+            >
+              {translating
+                ? "Traduciendo…"
+                : `✦ Traducir a ${lang === "es" ? "EN" : "ES"} con IA`}
+            </button>
             <button
               onClick={reset}
               className="cursor-pointer rounded-lg border border-cream-200 px-3.5 py-2 text-xs font-semibold text-forest-800 transition-colors hover:border-forest-800"
