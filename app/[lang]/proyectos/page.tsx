@@ -32,7 +32,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
           >
             {d.title}
           </h1>
-          <div className="draw-line mt-6 h-0.5 w-16 bg-gold-500" />
+          <div className="draw-line mt-6 h-0.5 w-16 bg-cream-50" />
           <p
             className="hero-in mt-6 max-w-xl leading-relaxed text-cream-100/85"
             style={{ "--hero-delay": "280ms" } as React.CSSProperties}
@@ -41,7 +41,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
           </p>
           <a
             href="#destacados"
-            className="hero-in mt-8 inline-block cursor-pointer rounded-full bg-gold-500 px-7 py-3 font-semibold text-forest-950 transition-all duration-500 hover:bg-gold-400 active:scale-[0.98]"
+            className="hero-in mt-8 inline-block cursor-pointer rounded-full bg-cream-50 px-7 py-3 font-semibold text-forest-950 transition-all duration-500 hover:bg-white active:scale-[0.98]"
             style={{ "--hero-delay": "420ms" } as React.CSSProperties}
           >
             {d.cta} →
@@ -53,7 +53,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
       <section id="destacados" className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
         <Reveal>
           <h2 className="text-sm font-semibold tracking-[0.3em] text-forest-800 uppercase">{d.featured}</h2>
-          <div className="draw-on-reveal mt-3 h-0.5 w-12 bg-gold-500" />
+          <div className="draw-on-reveal mt-3 h-0.5 w-12 bg-forest-700" />
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {d.projects.map((p, i) => (
@@ -67,13 +67,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
                     loading="lazy"
                     className="aspect-[16/10] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
                   />
-                  <span className="absolute top-3 left-3 rounded bg-forest-900/90 px-2.5 py-1 text-[10px] font-semibold tracking-widest text-gold-400 uppercase">
+                  <span className="absolute top-3 left-3 rounded bg-forest-900/90 px-2.5 py-1 text-[10px] font-semibold tracking-widest text-cream-100 uppercase">
                     {d.status}
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-display text-2xl font-semibold text-forest-900">{p.name}</h3>
-                  <p className="mt-1 text-xs font-semibold tracking-wide text-gold-600 uppercase">{p.category}</p>
+                  <p className="mt-1 text-xs font-semibold tracking-wide text-forest-700 uppercase">{p.category}</p>
                   <p className="mt-3 flex-1 text-sm leading-relaxed text-forest-800/75">{p.text}</p>
                 </div>
               </article>
@@ -92,13 +92,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
               {dict.services.title}
             </h2>
-            <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-gold-500" />
+            <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-forest-700" />
           </Reveal>
           <div className="mt-12 space-y-4">
             {dict.services.items.map((s, i) => (
               <Reveal key={s.title} delay={i * 90}>
-                <SpotlightCard className="grid gap-4 rounded-2xl border border-cream-200 bg-cream-50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-gold-500/40 hover:shadow-md md:grid-cols-[3.5rem_1fr_16rem] md:items-center">
-                  <span className="font-display text-3xl font-semibold text-gold-500/50">
+                <SpotlightCard className="grid gap-4 rounded-2xl border border-cream-200 bg-cream-50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-cream-100/40 hover:shadow-md md:grid-cols-[3.5rem_1fr_16rem] md:items-center">
+                  <span className="font-display text-3xl font-semibold text-forest-700/40">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
@@ -117,7 +117,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
 
       {/* Salvaguardas */}
       <section className="relative overflow-hidden bg-forest-950 text-cream-50">
-        <div className="aurora-orb h-96 w-96" style={{ top: "-8rem", right: "-8rem", "--orb-color": "rgba(201,162,75,0.12)" } as React.CSSProperties} />
+        <div className="aurora-orb h-96 w-96" style={{ top: "-8rem", right: "-8rem", "--orb-color": "rgba(246,242,234,0.12)" } as React.CSSProperties} />
         <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
           <Reveal>
             <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
@@ -126,13 +126,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             <h2 className="mt-3 max-w-xl font-display text-3xl font-semibold sm:text-4xl">
               {d.safeguardsTitle}
             </h2>
-            <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-gold-500" />
+            <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-cream-50" />
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {d.safeguards.map((s, i) => (
               <Reveal key={s.title} delay={(i % 2) * 130} className="h-full">
-                <div className="h-full rounded-2xl border border-cream-100/10 bg-forest-900 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40">
-                  <h3 className="font-display text-xl font-semibold text-gold-400">{s.title}</h3>
+                <div className="h-full rounded-2xl border border-cream-100/10 bg-forest-900 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/40">
+                  <h3 className="font-display text-xl font-semibold text-cream-100">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-cream-100/80">{s.text}</p>
                 </div>
               </Reveal>
@@ -153,13 +153,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             <div className="mt-9 flex flex-wrap justify-center gap-4">
               <Link
                 href={`/${lang}/nosotros/`}
-                className="cursor-pointer rounded-full bg-gold-500 px-7 py-3 font-semibold text-forest-950 transition-all duration-500 hover:bg-gold-400 active:scale-[0.98]"
+                className="cursor-pointer rounded-full bg-cream-50 px-7 py-3 font-semibold text-forest-950 transition-all duration-500 hover:bg-white active:scale-[0.98]"
               >
                 {d.closingCta1}
               </Link>
               <a
                 href={`/${lang}/#donar`}
-                className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-gold-400 hover:text-gold-400"
+                className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-cream-50 hover:text-cream-100"
               >
                 {d.closingCta2}
               </a>

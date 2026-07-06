@@ -16,7 +16,7 @@ function Initials({ name }: { name: string }) {
     .slice(0, 2)
     .join("");
   return (
-    <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-gold-500/40 bg-forest-800 font-display text-2xl font-semibold text-gold-400">
+    <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-cream-100/40 bg-forest-800 font-display text-2xl font-semibold text-cream-100">
       {initials}
     </span>
   );
@@ -44,7 +44,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
           >
             {d.title}
           </h1>
-          <div className="draw-line mt-6 h-0.5 w-16 bg-gold-500" />
+          <div className="draw-line mt-6 h-0.5 w-16 bg-cream-50" />
           <p
             className="hero-in mt-6 max-w-xl leading-relaxed text-cream-100/85"
             style={{ "--hero-delay": "280ms" } as React.CSSProperties}
@@ -81,13 +81,13 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-24 sm:px-6 md:grid-cols-2">
         <Reveal className="h-full">
           <div className="h-full rounded-2xl bg-forest-900 p-8 text-cream-50">
-            <h3 className="text-sm font-semibold tracking-[0.25em] text-gold-400 uppercase">{d.mission.title}</h3>
+            <h3 className="text-sm font-semibold tracking-[0.25em] text-cream-100 uppercase">{d.mission.title}</h3>
             <p className="mt-4 leading-relaxed text-cream-100/90">{d.mission.text}</p>
           </div>
         </Reveal>
         <Reveal delay={150} className="h-full">
           <div className="h-full rounded-2xl border border-cream-200 bg-cream-100 p-8">
-            <h3 className="text-sm font-semibold tracking-[0.25em] text-gold-600 uppercase">{d.vision.title}</h3>
+            <h3 className="text-sm font-semibold tracking-[0.25em] text-forest-700 uppercase">{d.vision.title}</h3>
             <p className="mt-4 leading-relaxed text-forest-800/85">{d.vision.text}</p>
           </div>
         </Reveal>
@@ -101,17 +101,17 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
               {d.teamTitle}
             </h2>
-            <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-gold-500" />
+            <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-forest-700" />
           </Reveal>
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {d.team.map((m, i) => (
               <Reveal key={m.name} delay={(i % 2) * 130} className="h-full">
-                <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
+                <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/40 hover:shadow-lg hover:shadow-forest-900/5">
                   <div className="flex items-start gap-4">
                     <Initials name={m.name} />
                     <div>
                       <h3 className="font-display text-2xl font-semibold text-forest-900">{m.name}</h3>
-                      <p className="mt-1 text-xs font-semibold tracking-wide text-gold-600 uppercase">{m.role}</p>
+                      <p className="mt-1 text-xs font-semibold tracking-wide text-forest-700 uppercase">{m.role}</p>
                     </div>
                   </div>
                   <p className="mt-5 text-base leading-relaxed text-forest-800/80">{m.bio}</p>
@@ -128,14 +128,14 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{ backgroundImage: `url(${IMG.samauma})` }}
         />
-        <div className="aurora-orb h-96 w-96" style={{ top: "-8rem", left: "-8rem", "--orb-color": "rgba(201,162,75,0.15)" } as React.CSSProperties} />
+        <div className="aurora-orb h-96 w-96" style={{ top: "-8rem", left: "-8rem", "--orb-color": "rgba(246,242,234,0.15)" } as React.CSSProperties} />
         <div className="relative mx-auto max-w-3xl px-4 py-28 text-center sm:px-6">
           <Reveal>
             <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">{d.logoKicker}</p>
             <h2 className="mt-4 font-display text-3xl leading-snug font-semibold sm:text-4xl">
               {d.logoTitle}
             </h2>
-            <div className="draw-on-reveal mx-auto mt-6 h-0.5 w-16 bg-gold-500" />
+            <div className="draw-on-reveal mx-auto mt-6 h-0.5 w-16 bg-cream-50" />
             <p className="mt-6 text-lg leading-relaxed text-cream-100/85">{d.logoText}</p>
           </Reveal>
         </div>
@@ -149,7 +149,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
           </p>
           <Link
             href={`/${lang}/proyectos/`}
-            className="mt-10 inline-block cursor-pointer rounded-full bg-gold-500 px-8 py-3.5 font-semibold text-forest-950 transition-all duration-500 hover:bg-gold-400 active:scale-[0.98]"
+            className="mt-10 inline-block cursor-pointer rounded-full bg-cream-50 px-8 py-3.5 font-semibold text-forest-950 transition-all duration-500 hover:bg-white active:scale-[0.98]"
           >
             {getDictionary(lang).hero.cta2} →
           </Link>

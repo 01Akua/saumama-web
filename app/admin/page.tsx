@@ -131,11 +131,11 @@ export default function AdminDemo() {
   if (!logged) {
     return (
       <div className="flex min-h-[100dvh] items-center justify-center bg-forest-950 px-4">
-        <div className="w-full max-w-sm rounded-2xl border border-gold-500/25 bg-forest-900 p-8 shadow-2xl">
+        <div className="w-full max-w-sm rounded-2xl border border-cream-100/25 bg-forest-900 p-8 shadow-2xl">
           <p className="text-center font-display text-2xl font-semibold tracking-[0.15em] text-cream-50">
             SAUMAMA
           </p>
-          <p className="mt-1 text-center text-[10px] tracking-[0.4em] text-gold-400 uppercase">
+          <p className="mt-1 text-center text-[10px] tracking-[0.4em] text-cream-100 uppercase">
             Panel administrativo
           </p>
           <form
@@ -153,7 +153,7 @@ export default function AdminDemo() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@saumama.org"
-                className="mt-1 w-full rounded-lg border border-cream-100/20 bg-forest-950 px-3 py-2.5 text-sm text-cream-50 outline-none focus:border-gold-500"
+                className="mt-1 w-full rounded-lg border border-cream-100/20 bg-forest-950 px-3 py-2.5 text-sm text-cream-50 outline-none focus:border-cream-50"
               />
             </label>
             <label className="block">
@@ -162,17 +162,17 @@ export default function AdminDemo() {
                 type="password"
                 required
                 placeholder="••••••••"
-                className="mt-1 w-full rounded-lg border border-cream-100/20 bg-forest-950 px-3 py-2.5 text-sm text-cream-50 outline-none focus:border-gold-500"
+                className="mt-1 w-full rounded-lg border border-cream-100/20 bg-forest-950 px-3 py-2.5 text-sm text-cream-50 outline-none focus:border-cream-50"
               />
             </label>
             <button
               type="submit"
-              className="w-full cursor-pointer rounded-lg bg-gold-500 py-3 font-semibold text-forest-950 transition-colors hover:bg-gold-400"
+              className="w-full cursor-pointer rounded-lg bg-cream-50 py-3 font-semibold text-forest-950 transition-colors hover:bg-white"
             >
               Ingresar
             </button>
           </form>
-          <p className="mt-5 rounded-lg border border-gold-500/20 bg-gold-500/5 p-3 text-center text-xs text-cream-100/60">
+          <p className="mt-5 rounded-lg border border-cream-50/20 bg-cream-50/5 p-3 text-center text-xs text-cream-100/60">
             Demo provisional — cualquier correo y contraseña funcionan.
           </p>
         </div>
@@ -187,7 +187,7 @@ export default function AdminDemo() {
       <aside className="hidden w-60 shrink-0 flex-col bg-forest-950 text-cream-100 sm:flex">
         <div className="border-b border-cream-100/10 p-5">
           <p className="font-display text-lg font-semibold tracking-[0.15em]">SAUMAMA</p>
-          <p className="text-[9px] tracking-[0.35em] text-gold-400 uppercase">Administración</p>
+          <p className="text-[9px] tracking-[0.35em] text-cream-100 uppercase">Administración</p>
         </div>
         <nav className="flex-1 space-y-1 p-3">
           {SECTIONS.map((s) => (
@@ -195,7 +195,7 @@ export default function AdminDemo() {
               key={s.id}
               onClick={() => setSection(s.id)}
               className={`flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
-                section === s.id ? "bg-gold-500 font-semibold text-forest-950" : "hover:bg-forest-800"
+                section === s.id ? "bg-cream-50 font-semibold text-forest-950" : "hover:bg-forest-800"
               }`}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-4 w-4 shrink-0">
@@ -206,7 +206,7 @@ export default function AdminDemo() {
           ))}
         </nav>
         <div className="space-y-2 border-t border-cream-100/10 p-4 text-xs">
-          <a href="../es/" className="block cursor-pointer text-cream-100/70 transition-colors hover:text-gold-400">
+          <a href="../es/" className="block cursor-pointer text-cream-100/70 transition-colors hover:text-cream-100">
             ← Ver sitio publicado
           </a>
           <button onClick={() => setLogged(false)} className="cursor-pointer text-cream-100/50 hover:text-cream-100">
@@ -249,7 +249,7 @@ export default function AdminDemo() {
               disabled={!dirty}
               className={`cursor-pointer rounded-lg px-5 py-2 text-sm font-semibold transition-all ${
                 dirty
-                  ? "bg-gold-500 text-forest-950 hover:bg-gold-400"
+                  ? "bg-cream-50 text-forest-950 hover:bg-white"
                   : "cursor-default bg-cream-200 text-forest-800/40"
               }`}
             >
@@ -259,7 +259,7 @@ export default function AdminDemo() {
         </header>
 
         {/* Aviso demo */}
-        <div className="border-b border-gold-500/30 bg-gold-500/10 px-5 py-2 text-xs text-forest-800">
+        <div className="border-b border-cream-100/30 bg-cream-50/10 px-5 py-2 text-xs text-forest-800">
           <strong>Demo provisional:</strong> los cambios se guardan solo en este navegador. En la versión final,
           guardar publica los cambios en el sitio real automáticamente.
         </div>
@@ -277,14 +277,14 @@ export default function AdminDemo() {
                     rows={3}
                     value={val(f.path)}
                     onChange={(e) => setVal(f.path, e.target.value)}
-                    className="mt-1.5 w-full rounded-lg border border-cream-200 bg-cream-50 px-3 py-2.5 text-sm text-forest-950 outline-none focus:border-gold-500"
+                    className="mt-1.5 w-full rounded-lg border border-cream-200 bg-cream-50 px-3 py-2.5 text-sm text-forest-950 outline-none focus:border-cream-50"
                   />
                 ) : (
                   <input
                     type="text"
                     value={val(f.path)}
                     onChange={(e) => setVal(f.path, e.target.value)}
-                    className="mt-1.5 w-full rounded-lg border border-cream-200 bg-cream-50 px-3 py-2.5 text-sm text-forest-950 outline-none focus:border-gold-500"
+                    className="mt-1.5 w-full rounded-lg border border-cream-200 bg-cream-50 px-3 py-2.5 text-sm text-forest-950 outline-none focus:border-cream-50"
                   />
                 )}
               </label>
@@ -292,7 +292,7 @@ export default function AdminDemo() {
             {/* Slot de imagen (demo) */}
             <div>
               <span className="text-xs font-semibold tracking-wider text-forest-800/70 uppercase">Imagen</span>
-              <button className="mt-1.5 flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border-2 border-dashed border-cream-200 py-8 text-forest-800/50 transition-colors hover:border-gold-500/60 hover:text-forest-800">
+              <button className="mt-1.5 flex w-full cursor-pointer flex-col items-center gap-1 rounded-lg border-2 border-dashed border-cream-200 py-8 text-forest-800/50 transition-colors hover:border-cream-100/60 hover:text-forest-800">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-6 w-6">
                   <path d="M12 16V8m0 0l-3 3m3-3l3 3M4 20h16" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
@@ -309,11 +309,11 @@ export default function AdminDemo() {
             <div className="overflow-hidden rounded-xl border border-cream-200 shadow-lg">
               {section === "hero" && (
                 <div className="bg-forest-950 px-6 py-12 text-center text-cream-50">
-                  <p className="text-[10px] font-semibold tracking-[0.3em] text-gold-400 uppercase">
+                  <p className="text-[10px] font-semibold tracking-[0.3em] text-cream-100 uppercase">
                     {val("hero.kicker")}
                   </p>
                   <h2 className="mt-3 font-display text-3xl leading-tight font-semibold">{val("hero.title")}</h2>
-                  <div className="mx-auto mt-4 h-0.5 w-14 bg-gold-500" />
+                  <div className="mx-auto mt-4 h-0.5 w-14 bg-cream-50" />
                   <p className="mx-auto mt-4 max-w-sm text-sm text-cream-100/80">{val("hero.subtitle")}</p>
                 </div>
               )}
@@ -321,7 +321,7 @@ export default function AdminDemo() {
                 <div className="grid grid-cols-2 gap-6 bg-forest-900 px-6 py-10 text-center text-cream-50">
                   {[0, 1, 2, 3].map((i) => (
                     <div key={i}>
-                      <p className="font-display text-3xl font-semibold text-gold-400">{val(`stats.${i}.value`)}</p>
+                      <p className="font-display text-3xl font-semibold text-cream-100">{val(`stats.${i}.value`)}</p>
                       <p className="mt-1 text-xs text-cream-100/75">{val(`stats.${i}.label`)}</p>
                     </div>
                   ))}
@@ -338,7 +338,7 @@ export default function AdminDemo() {
                 <div className="bg-forest-900 px-6 py-10 text-cream-50">
                   <h2 className="font-display text-2xl font-semibold">{val("donation.sectionTitle")}</h2>
                   <p className="mt-3 text-sm text-cream-100/80">{val("donation.sectionText")}</p>
-                  <span className="mt-5 inline-block rounded-full bg-gold-500 px-6 py-2.5 text-sm font-semibold text-forest-950">
+                  <span className="mt-5 inline-block rounded-full bg-cream-50 px-6 py-2.5 text-sm font-semibold text-forest-950">
                     {val("donation.button")} · $25 ↗
                   </span>
                 </div>

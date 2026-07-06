@@ -36,8 +36,8 @@ body {
 }
 
 ::selection {
-  background: var(--color-gold-500);
-  color: var(--color-forest-950);
+  background: var(--color-forest-700);
+  color: var(--color-cream-50);
 }
 
 /* ── Grano de película sutil (textura editorial) ─────────────── */
@@ -135,7 +135,7 @@ body {
   bottom: -4px;
   height: 1px;
   width: 100%;
-  background: var(--color-gold-400);
+  background: var(--color-cream-100);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.45s var(--ease-spring);
@@ -156,7 +156,7 @@ body {
   pointer-events: none;
   /* Gradiente pre-suavizado en vez de filter:blur — el blur animado
      repinta en GPU cada frame; el gradiente solo se compone (barato) */
-  background: radial-gradient(circle, var(--orb-color, rgba(201, 162, 75, 0.22)), transparent 68%);
+  background: radial-gradient(circle, var(--orb-color, rgba(246, 242, 234, 0.16)), transparent 68%);
   animation: aurora-drift 18s ease-in-out infinite;
 }
 
@@ -206,7 +206,7 @@ body {
   transition: opacity 0.5s var(--ease-spring);
   background: radial-gradient(
     480px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(201, 162, 75, 0.14),
+    rgba(73, 102, 64, 0.12),
     transparent 65%
   );
   pointer-events: none;
@@ -236,10 +236,10 @@ body {
   aspect-ratio: 1;
   margin: -125% 0 0 -125%;
   background: conic-gradient(
-    rgba(201, 162, 75, 0.05) 0%,
-    rgba(201, 162, 75, 0.85) 12%,
-    rgba(201, 162, 75, 0.05) 26%,
-    rgba(201, 162, 75, 0.05) 100%
+    rgba(246, 242, 234, 0.04) 0%,
+    rgba(246, 242, 234, 0.9) 12%,
+    rgba(246, 242, 234, 0.04) 26%,
+    rgba(246, 242, 234, 0.04) 100%
   );
   animation: beam-spin 6s linear infinite;
 }

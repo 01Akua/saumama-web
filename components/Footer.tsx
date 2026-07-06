@@ -21,19 +21,19 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         </div>
 
         <div>
-          <h3 className="mb-3 text-xs font-semibold tracking-[0.2em] text-gold-400 uppercase">
+          <h3 className="mb-3 text-xs font-semibold tracking-[0.2em] text-cream-100 uppercase">
             {dict.footer.navTitle}
           </h3>
           <ul className="space-y-2 text-sm">
             {nav.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition-colors hover:text-gold-400">
+                <Link href={l.href} className="transition-colors hover:text-cream-100">
                   {l.label}
                 </Link>
               </li>
             ))}
             <li>
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-gold-400">
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-cream-100">
                 {dict.nav.blog} (LinkedIn)
               </a>
             </li>
@@ -41,7 +41,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         </div>
 
         <div>
-          <h3 className="mb-3 text-xs font-semibold tracking-[0.2em] text-gold-400 uppercase">
+          <h3 className="mb-3 text-xs font-semibold tracking-[0.2em] text-cream-100 uppercase">
             {dict.footer.resourcesTitle}
           </h3>
           <ul className="space-y-2 text-sm">
@@ -54,7 +54,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
         </div>
 
         <div>
-          <h3 className="mb-3 text-xs font-semibold tracking-[0.2em] text-gold-400 uppercase">
+          <h3 className="mb-3 text-xs font-semibold tracking-[0.2em] text-cream-100 uppercase">
             {dict.footer.newsletterTitle}
           </h3>
           <p className="text-sm">{dict.footer.newsletterText}</p>
@@ -64,7 +64,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               placeholder={dict.footer.newsletterPlaceholder}
               className="w-full bg-transparent px-3 py-2 text-sm outline-none placeholder:text-cream-100/40"
             />
-            <button type="button" className="bg-gold-500 px-4 text-forest-950" aria-label="OK">
+            <button type="button" className="bg-cream-50 px-4 text-forest-950" aria-label="OK">
               →
             </button>
           </form>
@@ -78,7 +78,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
 
       <div className="border-t border-cream-100/10 py-5 text-center text-xs text-cream-100/50">
         © {year} SAUMAMA Foundation. {dict.footer.rights}{" "}
-        <span className="text-gold-400/70">{dict.footer.prototype}</span>
+        <span className="text-cream-100/70">{dict.footer.prototype}</span>
       </div>
     </footer>
   );

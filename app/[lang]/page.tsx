@@ -54,12 +54,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           style={{ backgroundImage: `url(${IMG.heroRiver})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-forest-950/60 via-forest-950/35 to-forest-950/85" />
-        <div className="aurora-orb h-[28rem] w-[28rem]" style={{ top: "-8rem", left: "-6rem", "--orb-color": "rgba(201,162,75,0.22)" } as React.CSSProperties} />
+        <div className="aurora-orb h-[28rem] w-[28rem]" style={{ top: "-8rem", left: "-6rem", "--orb-color": "rgba(246,242,234,0.22)" } as React.CSSProperties} />
         <div className="aurora-orb h-[24rem] w-[24rem]" style={{ bottom: "-6rem", right: "-4rem", animationDelay: "-6s", "--orb-color": "rgba(58,106,78,0.45)" } as React.CSSProperties} />
-        <div className="aurora-orb h-72 w-72" style={{ top: "30%", right: "18%", animationDelay: "-12s", "--orb-color": "rgba(217,185,111,0.14)" } as React.CSSProperties} />
+        <div className="aurora-orb h-72 w-72" style={{ top: "30%", right: "18%", animationDelay: "-12s", "--orb-color": "rgba(246,242,234,0.14)" } as React.CSSProperties} />
 
         <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 pt-28 pb-24 text-center sm:px-6">
-          <p className="hero-in inline-flex items-center gap-2.5 rounded-full border border-gold-500/30 bg-forest-900/60 px-5 py-2 text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase backdrop-blur-sm">
+          <p className="hero-in inline-flex items-center gap-2.5 rounded-full border border-cream-100/30 bg-forest-900/60 px-5 py-2 text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase backdrop-blur-sm">
             <LeafIcon className="h-3.5 w-3.5 shrink-0" />
             {dict.hero.kicker}
           </p>
@@ -75,7 +75,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               </React.Fragment>
             ))}
           </h1>
-          <div className="draw-line mt-7 h-0.5 w-20 bg-gold-500" />
+          <div className="draw-line mt-7 h-0.5 w-20 bg-cream-50" />
           <p
             className="hero-in mt-7 max-w-2xl text-lg leading-relaxed text-cream-100/95 sm:text-xl"
             style={{ "--hero-delay": "800ms" } as React.CSSProperties}
@@ -88,7 +88,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           >
             <a
               href="#donar"
-              className="group shimmer-btn flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
+              className="group shimmer-btn flex cursor-pointer items-center gap-2 rounded-full bg-cream-50 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
             >
               {dict.nav.donate}
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
@@ -97,7 +97,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </a>
             <Link
               href={`/${lang}/proyectos/`}
-              className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-gold-400 hover:text-gold-400"
+              className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-cream-50 hover:text-cream-100"
             >
               {dict.hero.cta2}
             </Link>
@@ -106,7 +106,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
         <div className="absolute bottom-7 left-1/2 -translate-x-1/2">
           <div className="scroll-hint flex h-10 w-6 items-start justify-center rounded-full border border-cream-100/30 pt-2">
-            <span className="h-2 w-1 rounded-full bg-gold-400" />
+            <span className="h-2 w-1 rounded-full bg-cream-100" />
           </div>
         </div>
       </section>
@@ -119,7 +119,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               <p className="font-display text-4xl font-semibold text-cream-50 sm:text-5xl">
                 <CountUp value={s.value} />
               </p>
-              <div className="draw-on-reveal mx-auto mt-2 h-px w-8 bg-gold-500/60" />
+              <div className="draw-on-reveal mx-auto mt-2 h-px w-8 bg-cream-50/60" />
               <p className="mt-2 text-base text-cream-100/85">{s.label}</p>
             </Reveal>
           ))}
@@ -129,12 +129,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       {/* ── Manifiesto (cita en cascada) ───────────────────────────── */}
       <section className="mx-auto max-w-4xl px-4 py-28 text-center sm:px-6">
         <Reveal>
-          <span className="font-display text-6xl leading-none text-gold-500">“</span>
+          <span className="font-display text-6xl leading-none text-forest-700">“</span>
           <p className="mt-2 font-display text-2xl leading-snug font-medium text-forest-900 sm:text-4xl">
             <Words text={dict.manifesto.quote} />
           </p>
-          <div className="draw-on-reveal mx-auto mt-8 h-0.5 w-16 bg-gold-500" />
-          <p className="mt-6 text-sm font-semibold tracking-[0.2em] text-gold-600 uppercase">
+          <div className="draw-on-reveal mx-auto mt-8 h-0.5 w-16 bg-forest-700" />
+          <p className="mt-6 text-sm font-semibold tracking-[0.2em] text-forest-700 uppercase">
             {dict.manifesto.line}
           </p>
         </Reveal>
@@ -155,7 +155,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <p className="mt-4 leading-relaxed text-forest-800/80">{dict.about.p3}</p>
             <Link
               href={`/${lang}/nosotros/`}
-              className="group mt-6 inline-flex cursor-pointer items-center gap-2 font-semibold text-forest-700 underline decoration-gold-500 decoration-2 underline-offset-4 transition-colors hover:text-forest-900"
+              className="group mt-6 inline-flex cursor-pointer items-center gap-2 font-semibold text-forest-700 underline decoration-forest-700 decoration-2 underline-offset-4 transition-colors hover:text-forest-900"
             >
               {dict.about.link}
               <ArrowIcon className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
@@ -184,12 +184,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <h2 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
             {dict.whatWeDo.title}
           </h2>
-          <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-gold-500" />
+          <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-forest-700" />
         </Reveal>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {dict.whatWeDo.items.map((item, i) => (
             <Reveal key={item.title} delay={i * 120} className="h-full">
-              <SpotlightCard className="group h-full overflow-hidden rounded-2xl border border-cream-200 bg-cream-50 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
+              <SpotlightCard className="group h-full overflow-hidden rounded-2xl border border-cream-200 bg-cream-50 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/40 hover:shadow-lg hover:shadow-forest-900/5">
                 <div className="overflow-hidden">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -231,7 +231,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       {/* ── Líneas de negocio ──────────────────────────────────────── */}
       <section className="bg-forest-950 text-cream-50">
         <div className="relative mx-auto max-w-6xl overflow-hidden px-4 py-24 sm:px-6">
-          <div className="aurora-orb h-96 w-96" style={{ top: "-10rem", right: "-10rem", "--orb-color": "rgba(201,162,75,0.12)" } as React.CSSProperties} />
+          <div className="aurora-orb h-96 w-96" style={{ top: "-10rem", right: "-10rem", "--orb-color": "rgba(246,242,234,0.12)" } as React.CSSProperties} />
           <Reveal>
             <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
               {dict.businessLines.kicker}
@@ -239,20 +239,20 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
               {dict.businessLines.title}
             </h2>
-            <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-gold-500" />
+            <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-cream-50" />
           </Reveal>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {dict.businessLines.items.map((line, i) => (
               <Reveal key={line.title} delay={i * 140} className="h-full">
-                <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-900 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40">
-                  <span className="font-display text-4xl font-semibold text-gold-500/40 transition-colors duration-500 group-hover:text-gold-400">
+                <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-900 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/40">
+                  <span className="font-display text-4xl font-semibold text-cream-100/40 transition-colors duration-500 group-hover:text-cream-100">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-3 font-display text-2xl leading-snug font-semibold">{line.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-cream-100/75">{line.text}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {line.tags.map((t) => (
-                      <span key={t} className="rounded-full border border-gold-500/30 px-3 py-1 text-[11px] text-gold-400">
+                      <span key={t} className="rounded-full border border-cream-100/30 px-3 py-1 text-[11px] text-cream-100">
                         {t}
                       </span>
                     ))}
@@ -284,7 +284,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
       {/* ── Donación ───────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-forest-950">
-        <div className="aurora-orb h-96 w-96" style={{ top: "-6rem", right: "-8rem", "--orb-color": "rgba(201,162,75,0.14)" } as React.CSSProperties} />
+        <div className="aurora-orb h-96 w-96" style={{ top: "-6rem", right: "-8rem", "--orb-color": "rgba(246,242,234,0.14)" } as React.CSSProperties} />
         <div className="aurora-orb h-80 w-80" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s", "--orb-color": "rgba(58,106,78,0.38)" } as React.CSSProperties} />
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:py-32">
           <Reveal>
@@ -294,7 +294,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <h2 className="mt-4 font-display text-3xl leading-tight font-semibold text-cream-50 sm:text-5xl">
               {dict.donation.sectionTitle}
             </h2>
-            <div className="draw-on-reveal mt-5 h-0.5 w-16 bg-gold-500" />
+            <div className="draw-on-reveal mt-5 h-0.5 w-16 bg-cream-50" />
             <p className="mt-6 max-w-md leading-relaxed text-cream-100/80">
               {dict.donation.sectionText}
             </p>
@@ -372,7 +372,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <Reveal delay={150}>
             <a
               href="#donar"
-              className="group flex shrink-0 cursor-pointer items-center gap-3 rounded-full bg-gold-500 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
+              className="group flex shrink-0 cursor-pointer items-center gap-3 rounded-full bg-cream-50 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
             >
               {dict.cta.button}
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">

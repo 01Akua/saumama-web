@@ -60,23 +60,23 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
 
           <nav className="hidden items-center gap-7 text-base text-cream-100/90 md:flex">
             {links.map((l) => (
-              <Link key={l.href} href={l.href} className="nav-link cursor-pointer transition-colors duration-300 hover:text-gold-400">
+              <Link key={l.href} href={l.href} className="nav-link cursor-pointer transition-colors duration-300 hover:text-cream-100">
                 {l.label}
               </Link>
             ))}
-            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="nav-link cursor-pointer transition-colors duration-300 hover:text-gold-400">
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="nav-link cursor-pointer transition-colors duration-300 hover:text-cream-100">
               {dict.nav.blog}
             </a>
             <Link
               href={switchHref}
-              className="cursor-pointer rounded-full border border-cream-100/25 px-3 py-1 text-xs tracking-widest uppercase transition-all duration-300 hover:border-gold-400 hover:text-gold-400"
+              className="cursor-pointer rounded-full border border-cream-100/25 px-3 py-1 text-xs tracking-widest uppercase transition-all duration-300 hover:border-cream-50 hover:text-cream-100"
             >
               {otherLang}
             </Link>
             {/* CTA botón-en-botón */}
             <a
               href={`/${lang}/#donar`}
-              className="group flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 py-1.5 pr-1.5 pl-5 text-sm font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
+              className="group flex cursor-pointer items-center gap-2 rounded-full bg-cream-50 py-1.5 pr-1.5 pl-5 text-sm font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
             >
               {dict.nav.donate}
               <span className="flex h-7 w-7 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
@@ -120,7 +120,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className={`cursor-pointer py-3 font-display text-4xl font-semibold text-cream-50 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:text-gold-400 ${
+              className={`cursor-pointer py-3 font-display text-4xl font-semibold text-cream-50 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:text-cream-100 ${
                 open ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
               }`}
               style={{ transitionDelay: open ? `${100 + i * 70}ms` : "0ms" }}
@@ -131,7 +131,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
           <a
             href={`/${lang}/#donar`}
             onClick={() => setOpen(false)}
-            className={`mt-6 inline-flex w-max cursor-pointer items-center gap-3 rounded-full bg-gold-500 px-7 py-3.5 font-semibold text-forest-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+            className={`mt-6 inline-flex w-max cursor-pointer items-center gap-3 rounded-full bg-cream-50 px-7 py-3.5 font-semibold text-forest-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
               open ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
             }`}
             style={{ transitionDelay: open ? "400ms" : "0ms" }}
