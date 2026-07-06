@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { Dictionary } from "@/lib/dictionaries";
+import { DonationModal } from "./DonationModal";
 
 const CURRENCIES = {
   USD: { symbol: "$", amounts: [10, 25, 50, 100] },
@@ -15,7 +16,7 @@ type Currency = keyof typeof CURRENCIES;
 export function DonationWidget({ dict }: { dict: Dictionary }) {
   const [currency, setCurrency] = useState<Currency>("USD");
   const [amount, setAmount] = useState<number>(CURRENCIES.USD.amounts[1]);
-  const [donated, setDonated] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const fmt = (n: number) =>
     `${CURRENCIES[currency].symbol}${n.toLocaleString(currency === "USD" || currency === "EUR" ? "en-US" : "es-CO")}`;
@@ -37,7 +38,6 @@ export function DonationWidget({ dict }: { dict: Dictionary }) {
               onClick={() => {
                 setCurrency(c);
                 setAmount(CURRENCIES[c].amounts[1]);
-                setDonated(false);
               }}
               className={`cursor-pointer py-2.5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                 currency === c ? "bg-cream-50 text-forest-950" : "hover:bg-forest-800"
@@ -86,7 +86,7 @@ export function DonationWidget({ dict }: { dict: Dictionary }) {
 
         {/* CTA botón-en-botón */}
         <button
-          onClick={() => setDonated(true)}
+          onClick={() => setOpen(true)}
           className="group mt-6 flex w-full cursor-pointer items-center justify-center gap-3 rounded-full bg-cream-50 py-3 pr-2 pl-4 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
         >
           {dict.donation.button} · {fmt(amount)}
@@ -97,9 +97,15 @@ export function DonationWidget({ dict }: { dict: Dictionary }) {
           </span>
         </button>
 
-        <p className="mt-3 text-center text-xs text-cream-100/60">
-          {donated ? dict.donation.demoNote : dict.donation.redirect}
-        </p>
+        <p className="mt-3 text-center text-xs text-cream-100/60">{dict.donation.redirect}</p>
+
+        {open && (
+          <DonationModal
+            dict={dict}
+            amountLabel={`${fmt(amount)} ${currency}`}
+            onClose={() => setOpen(false)}
+          />
+        )}
       </div>
     </div>
   );
