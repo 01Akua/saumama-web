@@ -48,6 +48,7 @@ const SECTIONS = [
       { path: "about.title", label: "Título", type: "text" },
       { path: "about.p1", label: "Párrafo 1", type: "textarea" },
       { path: "about.p2", label: "Párrafo 2", type: "textarea" },
+      { path: "about.p3", label: "Párrafo 3", type: "textarea" },
     ],
   },
   {
@@ -61,16 +62,16 @@ const SECTIONS = [
     ],
   },
   {
-    id: "news",
-    label: "Noticias",
+    id: "projects",
+    label: "Proyectos",
     icon: "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2zM15 4v6h6",
     fields: [
-      { path: "news.items.0.title", label: "Noticia 1 — título", type: "text" },
-      { path: "news.items.0.text", label: "Noticia 1 — resumen", type: "textarea" },
-      { path: "news.items.1.title", label: "Noticia 2 — título", type: "text" },
-      { path: "news.items.1.text", label: "Noticia 2 — resumen", type: "textarea" },
-      { path: "news.items.2.title", label: "Noticia 3 — título", type: "text" },
-      { path: "news.items.2.text", label: "Noticia 3 — resumen", type: "textarea" },
+      { path: "projectsPage.projects.0.name", label: "Proyecto 1 — nombre", type: "text" },
+      { path: "projectsPage.projects.0.text", label: "Proyecto 1 — descripción", type: "textarea" },
+      { path: "projectsPage.projects.1.name", label: "Proyecto 2 — nombre", type: "text" },
+      { path: "projectsPage.projects.1.text", label: "Proyecto 2 — descripción", type: "textarea" },
+      { path: "projectsPage.projects.2.name", label: "Proyecto 3 — nombre", type: "text" },
+      { path: "projectsPage.projects.2.text", label: "Proyecto 3 — descripción", type: "textarea" },
     ],
   },
 ] as const;
@@ -342,14 +343,14 @@ export default function AdminDemo() {
                   </span>
                 </div>
               )}
-              {section === "news" && (
+              {section === "projects" && (
                 <div className="space-y-4 bg-cream-50 px-6 py-8">
                   {[0, 1, 2].map((i) => (
                     <article key={i} className="rounded-lg border border-cream-200 p-4">
                       <h3 className="font-display text-lg font-semibold text-forest-900">
-                        {val(`news.items.${i}.title`)}
+                        {val(`projectsPage.projects.${i}.name`)}
                       </h3>
-                      <p className="mt-1 text-xs text-forest-800/70">{val(`news.items.${i}.text`)}</p>
+                      <p className="mt-1 text-xs text-forest-800/70">{val(`projectsPage.projects.${i}.text`)}</p>
                     </article>
                   ))}
                 </div>

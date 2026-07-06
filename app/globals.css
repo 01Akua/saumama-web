@@ -241,6 +241,21 @@ body {
   animation: beam-spin 6s linear infinite;
 }
 
+/* ── Word stagger: palabras que entran en cascada dentro de un Reveal ─ */
+.word-stagger .w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  transition:
+    opacity 0.7s var(--ease-spring),
+    transform 0.7s var(--ease-spring);
+  transition-delay: calc(var(--i) * 45ms);
+}
+.reveal.is-visible .word-stagger .w {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ── Accesibilidad: respetar reduced motion ───────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -252,7 +267,8 @@ body {
   .aurora-orb,
   .shimmer-btn::after,
   .scroll-hint,
-  .beam-clip::before {
+  .beam-clip::before,
+  .word-stagger .w {
     animation: none !important;
     transition: none !important;
     opacity: 1 !important;

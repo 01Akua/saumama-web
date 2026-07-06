@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import { CountUp } from "@/components/CountUp";
 import { DonationWidget } from "@/components/DonationWidget";
@@ -5,12 +6,6 @@ import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { IMG } from "@/lib/images";
-
-const PILLAR_ICONS: Record<string, React.ReactNode> = {
-  book: <path d="M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5v-15zM20 18v3" strokeLinecap="round" strokeLinejoin="round" />,
-  hands: <path d="M12 21c-4-2.5-8-5.5-8-10a4 4 0 017-2.6A4 4 0 0118 11c0 4.5-4 7.5-6 10z" strokeLinecap="round" strokeLinejoin="round" />,
-  leaf: <path d="M5 19c0-8 5-13 14-14-.5 9-5 14-12 14M5 19c2-4 5-7 9-9" strokeLinecap="round" strokeLinejoin="round" />,
-};
 
 const LeafIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className={className}>
@@ -24,23 +19,41 @@ const ArrowIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
   </svg>
 );
 
+const WHAT_ICONS = [
+  <path key="0" d="M4 7h16M4 12h10M4 17h7" strokeLinecap="round" />,
+  <path key="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0" strokeLinecap="round" strokeLinejoin="round" />,
+  <path key="2" d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" />,
+  <path key="3" d="M12 3v18m0-18c-2 2-5 3-8 3 0 7 3 11 8 15 5-4 8-8 8-15-3 0-6-1-8-3z" strokeLinecap="round" strokeLinejoin="round" />,
+];
+
+// Divide un texto en <span>s para el efecto de cascada palabra por palabra
+function Words({ text }: { text: string }) {
+  return (
+    <span className="word-stagger">
+      {text.split(" ").map((w, i) => (
+        <React.Fragment key={i}>
+          <span className="w" style={{ "--i": i } as React.CSSProperties}>{w}</span>{" "}
+        </React.Fragment>
+      ))}
+    </span>
+  );
+}
+
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang: langParam } = await params;
   const lang = langParam as Locale;
   const dict = getDictionary(lang);
   const gallery = [IMG.forestPath, IMG.leaves, IMG.hills, IMG.lake, IMG.field];
-  const allies = ["Gold Standard", "Verra", "PwC", "Conservation Intl.", "The Nature Conservancy", "UNDP"];
 
   return (
     <>
-      {/* ── Hero editorial centrado (aurora + text reveal) ────────── */}
+      {/* ── Hero editorial (aurora + text reveal) ─────────────────── */}
       <section className="relative flex min-h-[100dvh] items-center overflow-hidden bg-forest-950 text-cream-50">
         <div
           className="slow-zoom absolute inset-0 bg-cover bg-center opacity-40"
           style={{ backgroundImage: `url(${IMG.heroRiver})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-forest-950/80 via-forest-950/55 to-forest-950/90" />
-        {/* Orbes aurora */}
         <div className="aurora-orb h-[28rem] w-[28rem]" style={{ top: "-8rem", left: "-6rem", "--orb-color": "rgba(201,162,75,0.22)" } as React.CSSProperties} />
         <div className="aurora-orb h-[24rem] w-[24rem]" style={{ bottom: "-6rem", right: "-4rem", animationDelay: "-6s", "--orb-color": "rgba(58,106,78,0.45)" } as React.CSSProperties} />
         <div className="aurora-orb h-72 w-72" style={{ top: "30%", right: "18%", animationDelay: "-12s", "--orb-color": "rgba(217,185,111,0.14)" } as React.CSSProperties} />
@@ -50,29 +63,28 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <LeafIcon className="h-3.5 w-3.5 shrink-0" />
             {dict.hero.kicker}
           </p>
-          {/* Título con reveal palabra por palabra */}
-          <h1 className="mt-7 font-display text-4xl leading-tight font-semibold sm:text-6xl lg:text-7xl">
+          <h1 className="mt-7 font-display text-4xl leading-tight font-semibold sm:text-6xl lg:text-[4.2rem]">
             {dict.hero.title.split(" ").map((word, i) => (
-              <span
-                key={i}
-                className="hero-in inline-block"
-                style={{ "--hero-delay": `${150 + i * 70}ms` } as React.CSSProperties}
-              >
-                {word}
-                {i < dict.hero.title.split(" ").length - 1 ? " " : ""}
-              </span>
+              <React.Fragment key={i}>
+                <span
+                  className="hero-in inline-block"
+                  style={{ "--hero-delay": `${150 + i * 60}ms` } as React.CSSProperties}
+                >
+                  {word}
+                </span>{" "}
+              </React.Fragment>
             ))}
           </h1>
           <div className="draw-line mt-7 h-0.5 w-20 bg-gold-500" />
           <p
             className="hero-in mt-7 max-w-2xl text-base leading-relaxed text-cream-100/85 sm:text-lg"
-            style={{ "--hero-delay": "700ms" } as React.CSSProperties}
+            style={{ "--hero-delay": "800ms" } as React.CSSProperties}
           >
             {dict.hero.subtitle}
           </p>
           <div
             className="hero-in mt-10 flex flex-wrap items-center justify-center gap-4"
-            style={{ "--hero-delay": "850ms" } as React.CSSProperties}
+            style={{ "--hero-delay": "950ms" } as React.CSSProperties}
           >
             <a
               href="#donar"
@@ -92,7 +104,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </div>
         </div>
 
-        {/* Indicador de scroll */}
         <div className="absolute bottom-7 left-1/2 -translate-x-1/2">
           <div className="scroll-hint flex h-10 w-6 items-start justify-center rounded-full border border-cream-100/30 pt-2">
             <span className="h-2 w-1 rounded-full bg-gold-400" />
@@ -100,7 +111,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      {/* ── Barra de stats (contadores animados — firma visual) ───── */}
+      {/* ── Cifras (contadores — firma visual) ────────────────────── */}
       <section className="bg-forest-900 text-cream-50">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-4 py-12 sm:px-6 md:grid-cols-4">
           {dict.stats.map((s, i) => (
@@ -115,71 +126,86 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      {/* ── Quiénes somos ─────────────────────────────────────────── */}
-      <section className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 md:grid-cols-2">
+      {/* ── Manifiesto (cita en cascada) ───────────────────────────── */}
+      <section className="mx-auto max-w-4xl px-4 py-28 text-center sm:px-6">
         <Reveal>
-          <p className="text-xs font-semibold tracking-[0.3em] text-gold-600 uppercase">
-            {dict.about.kicker}
+          <span className="font-display text-6xl leading-none text-gold-500">“</span>
+          <p className="mt-2 font-display text-2xl leading-snug font-medium text-forest-900 sm:text-4xl">
+            <Words text={dict.manifesto.quote} />
           </p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
-            {dict.about.title}
-          </h2>
-          <p className="mt-6 leading-relaxed text-forest-800/80">{dict.about.p1}</p>
-          <p className="mt-4 leading-relaxed text-forest-800/80">{dict.about.p2}</p>
-          <Link
-            href={`/${lang}/nosotros/`}
-            className="group mt-6 inline-flex cursor-pointer items-center gap-2 font-semibold text-forest-700 underline decoration-gold-500 decoration-2 underline-offset-4 transition-colors hover:text-forest-900"
-          >
-            {dict.about.link}
-            <ArrowIcon className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
-          </Link>
-        </Reveal>
-        <Reveal delay={150}>
-          <div className="overflow-hidden rounded-2xl shadow-lg">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={IMG.forestSun}
-              alt="Bosque — SAUMAMA Foundation"
-              className="aspect-[4/3] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-105"
-            />
-          </div>
+          <div className="draw-on-reveal mx-auto mt-8 h-0.5 w-16 bg-gold-500" />
+          <p className="mt-6 text-sm font-semibold tracking-[0.2em] text-gold-600 uppercase">
+            {dict.manifesto.line}
+          </p>
         </Reveal>
       </section>
 
-      {/* ── Pilares ───────────────────────────────────────────────── */}
+      {/* ── Propósito ──────────────────────────────────────────────── */}
       <section className="bg-cream-100">
-        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 py-24 sm:px-6 md:grid-cols-2">
           <Reveal>
-            <h2 className="text-center text-sm font-semibold tracking-[0.3em] text-forest-800 uppercase">
-              {dict.pillars.title}
+            <p className="text-xs font-semibold tracking-[0.3em] text-gold-600 uppercase">
+              {dict.about.kicker}
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
+              {dict.about.title}
             </h2>
-            <div className="draw-on-reveal mx-auto mt-3 h-0.5 w-12 bg-gold-500" />
+            <p className="mt-6 leading-relaxed text-forest-800/80">{dict.about.p1}</p>
+            <p className="mt-4 leading-relaxed text-forest-800/80">{dict.about.p2}</p>
+            <p className="mt-4 leading-relaxed text-forest-800/80">{dict.about.p3}</p>
+            <Link
+              href={`/${lang}/nosotros/`}
+              className="group mt-6 inline-flex cursor-pointer items-center gap-2 font-semibold text-forest-700 underline decoration-gold-500 decoration-2 underline-offset-4 transition-colors hover:text-forest-900"
+            >
+              {dict.about.link}
+              <ArrowIcon className="h-4 w-4 transition-transform duration-500 group-hover:translate-x-1" />
+            </Link>
           </Reveal>
-          <div className="mt-14 grid gap-10 md:grid-cols-3">
-            {dict.pillars.items.map((p, i) => (
-              <Reveal key={p.title} delay={i * 150} className="group text-center">
-                <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-forest-800 text-gold-400 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:-translate-y-1">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-7 w-7">
-                    {PILLAR_ICONS[p.icon]}
-                  </svg>
-                </span>
-                <h3 className="mt-5 font-display text-2xl font-semibold text-forest-900">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-forest-800/75">{p.text}</p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={150}>
+            <div className="overflow-hidden rounded-2xl shadow-lg">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={IMG.forestSun}
+                alt="Bosque — Fundación Saumama"
+                loading="lazy"
+                className="aspect-[4/3] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-105"
+              />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* ── Galería ───────────────────────────────────────────────── */}
+      {/* ── Qué hacemos ────────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-        <Reveal>
-          <h2 className="text-center text-sm font-semibold tracking-[0.3em] text-forest-800 uppercase">
-            {lang === "es" ? "Nuestra galería" : "Our gallery"}
+        <Reveal className="text-center">
+          <p className="text-xs font-semibold tracking-[0.3em] text-gold-600 uppercase">
+            {dict.whatWeDo.kicker}
+          </p>
+          <h2 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
+            {dict.whatWeDo.title}
           </h2>
-          <div className="draw-on-reveal mx-auto mt-3 h-0.5 w-12 bg-gold-500" />
+          <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-gold-500" />
         </Reveal>
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {dict.whatWeDo.items.map((item, i) => (
+            <Reveal key={item.title} delay={i * 120} className="h-full">
+              <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-forest-800 text-gold-400">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
+                    {WHAT_ICONS[i]}
+                  </svg>
+                </span>
+                <h3 className="mt-4 font-display text-xl font-semibold text-forest-900">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-forest-800/75">{item.text}</p>
+              </SpotlightCard>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Galería ────────────────────────────────────────────────── */}
+      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
           {gallery.map((src, i) => (
             <Reveal key={i} delay={i * 90}>
               <div className="overflow-hidden rounded-xl">
@@ -196,55 +222,62 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      {/* ── Experiencia ───────────────────────────────────────────── */}
-      <section className="bg-cream-100">
-        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+      {/* ── Líneas de negocio ──────────────────────────────────────── */}
+      <section className="bg-forest-950 text-cream-50">
+        <div className="relative mx-auto max-w-6xl overflow-hidden px-4 py-24 sm:px-6">
+          <div className="aurora-orb h-96 w-96" style={{ top: "-10rem", right: "-10rem", "--orb-color": "rgba(201,162,75,0.12)" } as React.CSSProperties} />
           <Reveal>
-            <h2 className="text-center text-sm font-semibold tracking-[0.3em] text-forest-800 uppercase">
-              {dict.experience.title}
+            <p className="text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">
+              {dict.businessLines.kicker}
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
+              {dict.businessLines.title}
             </h2>
-            <div className="draw-on-reveal mx-auto mt-3 h-0.5 w-12 bg-gold-500" />
+            <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-gold-500" />
           </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {dict.experience.items.map((e, i) => (
-              <Reveal key={e.title} delay={i * 120} className="h-full">
-                <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
-                  <h3 className="font-display text-xl font-semibold text-forest-900">{e.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-forest-800/75">{e.text}</p>
-                </SpotlightCard>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {dict.businessLines.items.map((line, i) => (
+              <Reveal key={line.title} delay={i * 140} className="h-full">
+                <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-900 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40">
+                  <span className="font-display text-4xl font-semibold text-gold-500/40 transition-colors duration-500 group-hover:text-gold-400">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 font-display text-2xl leading-snug font-semibold">{line.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-cream-100/75">{line.text}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {line.tags.map((t) => (
+                      <span key={t} className="rounded-full border border-gold-500/30 px-3 py-1 text-[11px] text-gold-400">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── Impacto (contadores — firma visual) ───────────────────── */}
-      <section className="relative overflow-hidden bg-forest-950 text-cream-50">
+      {/* ── Enfoque (cita de impacto) ──────────────────────────────── */}
+      <section className="relative overflow-hidden bg-forest-900 text-cream-50">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
+          className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{ backgroundImage: `url(${IMG.mountain})` }}
         />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-24 sm:px-6 lg:grid-cols-[1fr_2fr]">
+        <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6">
           <Reveal>
-            <h2 className="font-display text-3xl font-semibold text-gold-400">{dict.impact.kicker}</h2>
-            <div className="draw-on-reveal mt-3 h-0.5 w-12 bg-gold-500" />
-            <p className="mt-4 text-sm leading-relaxed text-cream-100/80">{dict.impact.text}</p>
+            <p className="text-xs font-semibold tracking-[0.3em] text-gold-400 uppercase">
+              {dict.impact.kicker}
+            </p>
+            <p className="mt-6 font-display text-2xl leading-relaxed font-medium sm:text-3xl">
+              <Words text={dict.impact.text} />
+            </p>
           </Reveal>
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            {dict.impact.items.map((s, i) => (
-              <Reveal key={s.label} delay={i * 120} className="text-center">
-                <p className="font-display text-3xl font-semibold">
-                  <CountUp value={s.value} />
-                </p>
-                <p className="mt-1 text-xs text-cream-100/70">{s.label}</p>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ── Donación (después de mostrar impacto, se pide apoyo) ──── */}
-      <section className="relative overflow-hidden bg-forest-900">
+      {/* ── Donación ───────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-forest-950">
         <div className="aurora-orb h-96 w-96" style={{ top: "-6rem", right: "-8rem", "--orb-color": "rgba(201,162,75,0.14)" } as React.CSSProperties} />
         <div className="aurora-orb h-80 w-80" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s", "--orb-color": "rgba(58,106,78,0.38)" } as React.CSSProperties} />
         <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:py-32">
@@ -261,7 +294,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </p>
           </Reveal>
           <Reveal delay={200}>
-            {/* Beam border orbitando el widget */}
             <div className="relative rounded-[2.1rem] p-px">
               <div className="beam-clip" />
               <div className="relative">
@@ -272,64 +304,25 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      {/* ── Aliados (marquee) ─────────────────────────────────────── */}
+      {/* ── Estándares (marquee) ───────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6">
         <Reveal>
           <h2 className="text-sm font-semibold tracking-[0.3em] text-forest-800 uppercase">
-            {dict.allies.title}
+            {dict.standards.title}
           </h2>
         </Reveal>
         <div className="marquee mt-10 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-          <div className="marquee-track flex w-max items-center gap-16">
-            {[...allies, ...allies].map((a, i) => (
-              <span key={i} className="font-display text-xl font-semibold whitespace-nowrap text-forest-800/50">
-                {a}
+          <div className="marquee-track flex w-max items-center gap-20">
+            {[...dict.standards.items, ...dict.standards.items, ...dict.standards.items].map((s, i) => (
+              <span key={i} className="font-display text-2xl font-semibold whitespace-nowrap text-forest-800/50">
+                {s}
               </span>
             ))}
           </div>
         </div>
-        <p className="mt-6 text-xs text-forest-800/50 italic">{dict.allies.note}</p>
       </section>
 
-      {/* ── Noticias ──────────────────────────────────────────────── */}
-      <section className="bg-cream-100">
-        <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
-          <Reveal>
-            <h2 className="text-sm font-semibold tracking-[0.3em] text-forest-800 uppercase">
-              {dict.news.kicker}
-            </h2>
-            <div className="draw-on-reveal mt-3 h-0.5 w-12 bg-gold-500" />
-          </Reveal>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {dict.news.items.map((n, i) => (
-              <Reveal key={n.title} delay={i * 130}>
-                <article className="group h-full cursor-pointer overflow-hidden rounded-2xl border border-cream-200 bg-cream-50 shadow-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-xl hover:shadow-forest-900/10">
-                  <div className="overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={gallery[i]}
-                      alt=""
-                      loading="lazy"
-                      className="aspect-[16/9] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <span className="text-xs font-semibold tracking-widest text-gold-600 uppercase">{n.tag}</span>
-                    <h3 className="mt-2 font-display text-xl font-semibold text-forest-900">{n.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-forest-800/75">{n.text}</p>
-                    <p className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-gold-600">
-                      {dict.news.readMore}
-                      <ArrowIcon className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-1" />
-                    </p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA final ─────────────────────────────────────────────── */}
+      {/* ── CTA final ──────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-forest-950 text-cream-50">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
@@ -338,11 +331,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6 md:flex-row md:justify-between md:text-left">
           <Reveal>
             <h2 className="font-display text-3xl font-semibold">{dict.cta.title}</h2>
-            <p className="mt-2 text-cream-100/80">{dict.cta.text}</p>
+            <p className="mt-2 max-w-xl text-cream-100/80">{dict.cta.text}</p>
           </Reveal>
           <Reveal delay={150}>
             <a
-              href={`/${lang}/#donar`}
+              href="#donar"
               className="group flex shrink-0 cursor-pointer items-center gap-3 rounded-full bg-gold-500 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
             >
               {dict.cta.button}
