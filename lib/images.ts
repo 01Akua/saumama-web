@@ -21,6 +21,12 @@ export const IMG = {
   proj: [p("proj-1.jpg"), p("proj-2.jpg"), p("proj-3.jpg")],
   // Qué hacemos
   que: [p("que-1.jpg"), p("que-2.jpg"), p("que-3.jpg"), p("que-4.jpg")],
+  // Blog
+  blogGal: [
+    p("blog-g1.jpg"), p("blog-g2.jpg"), p("blog-g3.jpg"), p("blog-g4.jpg"),
+    p("blog-g5.jpg"), p("blog-g6.jpg"), p("blog-g7.jpg"), p("blog-g8.jpg"),
+  ],
+  blogPosts: [p("historia.jpg"), p("cta.jpg"), p("samauma.jpg")],
   // Logo oficial
   logoWhite: p("logo-white.png"),
   logoGreen: p("logo-green.png"),

@@ -139,8 +139,42 @@ const es = {
   blog: {
     kicker: "Blog y actualidad",
     title: "Historias desde el territorio",
-    text: "Publicamos avances de nuestros proyectos, aprendizajes y noticias en LinkedIn.",
-    button: "Síguenos en LinkedIn",
+    text: "Avances de nuestros proyectos, aprendizajes y noticias desde las comunidades.",
+    button: "Visita nuestro blog",
+  },
+  blogPage: {
+    kicker: "Blog",
+    title: "Historias desde el territorio",
+    subtitle:
+      "Crónicas, avances y aprendizajes de los proyectos que construimos junto a las comunidades. Cada publicación completa vive en nuestro LinkedIn.",
+    readOn: "Leer en LinkedIn",
+    follow: "Síguenos en LinkedIn",
+    followText: "Publicamos cada avance, convocatoria y aprendizaje primero en LinkedIn.",
+    posts: [
+      {
+        tag: "Territorio",
+        date: "Junio 2026",
+        title: "Nabusimake: escuchar antes de estructurar",
+        excerpt:
+          "Visitamos la capital espiritual del pueblo Arhuaco en la Sierra Nevada. Antes de hablar de carbono o certificaciones, los proyectos empiezan caminando el territorio y escuchando a sus autoridades.",
+      },
+      {
+        tag: "Comunidades",
+        date: "Junio 2026",
+        title: "Consejos juveniles: la próxima generación de guardianes",
+        excerpt:
+          "Acompañamos los espacios donde los jóvenes de las comunidades deciden cómo quieren cuidar su territorio. La gobernanza no se hereda sola: se construye.",
+      },
+      {
+        tag: "Proyectos",
+        date: "Mayo 2026",
+        title: "La Samauma: el árbol que nos dio nombre",
+        excerpt:
+          "La ceiba gigante del Amazonas es símbolo de expansión, conexión y arraigo. Así inspira la forma en que estructuramos cada proyecto: raíces profundas, ramas hacia el mundo.",
+      },
+    ],
+    galleryTitle: "Galería del territorio",
+    galleryText: "Momentos reales de nuestro trabajo con las comunidades en la Sierra Nevada y más allá.",
   },
   cta: {
     title: "Sé parte del movimiento",
@@ -400,8 +434,42 @@ const en: Dictionary = {
   blog: {
     kicker: "Blog & updates",
     title: "Stories from the territory",
-    text: "We share project updates, lessons learned and news on LinkedIn.",
-    button: "Follow us on LinkedIn",
+    text: "Project updates, lessons learned and news from the communities.",
+    button: "Visit our blog",
+  },
+  blogPage: {
+    kicker: "Blog",
+    title: "Stories from the territory",
+    subtitle:
+      "Chronicles, progress and lessons from the projects we build together with communities. Every full post lives on our LinkedIn.",
+    readOn: "Read on LinkedIn",
+    follow: "Follow us on LinkedIn",
+    followText: "We publish every update, call and lesson first on LinkedIn.",
+    posts: [
+      {
+        tag: "Territory",
+        date: "June 2026",
+        title: "Nabusimake: listening before structuring",
+        excerpt:
+          "We visited the spiritual capital of the Arhuaco people in the Sierra Nevada. Before talking about carbon or certifications, projects begin by walking the territory and listening to its authorities.",
+      },
+      {
+        tag: "Communities",
+        date: "June 2026",
+        title: "Youth councils: the next generation of guardians",
+        excerpt:
+          "We accompany the spaces where young people from the communities decide how they want to care for their territory. Governance is not inherited: it is built.",
+      },
+      {
+        tag: "Projects",
+        date: "May 2026",
+        title: "The Samauma: the tree that gave us our name",
+        excerpt:
+          "The giant kapok of the Amazon symbolizes expansion, connection and rootedness. It inspires how we structure every project: deep roots, branches reaching the world.",
+      },
+    ],
+    galleryTitle: "Territory gallery",
+    galleryText: "Real moments from our work with communities in the Sierra Nevada and beyond.",
   },
   cta: {
     title: "Be part of the movement",

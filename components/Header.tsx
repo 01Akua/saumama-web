@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import type { Dictionary, Locale } from "@/lib/dictionaries";
-import { LINKEDIN_URL } from "@/lib/images";
 import { Logo } from "./Logo";
 
 export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
@@ -31,6 +30,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     { href: `/${lang}/`, label: dict.nav.home },
     { href: `/${lang}/nosotros/`, label: dict.nav.about },
     { href: `/${lang}/proyectos/`, label: dict.nav.projects },
+    { href: `/${lang}/blog/`, label: dict.nav.blog },
   ];
 
   // Cambia /es/... por /en/... conservando la ruta actual
@@ -64,9 +64,6 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
                 {l.label}
               </Link>
             ))}
-            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="nav-link cursor-pointer transition-colors duration-300 hover:text-cream-100">
-              {dict.nav.blog}
-            </a>
             <Link
               href={switchHref}
               className="cursor-pointer rounded-full border border-cream-100/25 px-3 py-1 text-xs tracking-widest uppercase transition-all duration-300 hover:border-cream-50 hover:text-cream-100"

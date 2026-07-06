@@ -9,6 +9,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     { href: `/${lang}/`, label: dict.nav.home },
     { href: `/${lang}/nosotros/`, label: dict.nav.about },
     { href: `/${lang}/proyectos/`, label: dict.nav.projects },
+    { href: `/${lang}/blog/`, label: dict.nav.blog },
     { href: `/${lang}/#donar`, label: dict.nav.donate },
   ];
 
@@ -34,7 +35,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             ))}
             <li>
               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-cream-100">
-                {dict.nav.blog} (LinkedIn)
+                LinkedIn
               </a>
             </li>
           </ul>
