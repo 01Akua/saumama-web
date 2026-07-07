@@ -236,10 +236,10 @@ body {
   aspect-ratio: 1;
   margin: -125% 0 0 -125%;
   background: conic-gradient(
-    rgba(246, 242, 234, 0.04) 0%,
-    rgba(246, 242, 234, 0.9) 12%,
-    rgba(246, 242, 234, 0.04) 26%,
-    rgba(246, 242, 234, 0.04) 100%
+    rgba(195, 153, 41, 0.05) 0%,
+    rgba(195, 153, 41, 0.9) 12%,
+    rgba(195, 153, 41, 0.05) 26%,
+    rgba(195, 153, 41, 0.05) 100%
   );
   animation: beam-spin 6s linear infinite;
 }

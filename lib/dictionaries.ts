@@ -14,7 +14,7 @@ const es = {
   },
   hero: {
     kicker: "Invertir en la naturaleza",
-    title: "Cuidamos el territorio. Y hacemos que ese cuidado valga para todos.",
+    title: "Conectamos naturaleza, comunidades e inversión sostenible",
     subtitle:
       "Proyectos con impacto real y beneficios duraderos para la sociedad, las comunidades, la naturaleza y las empresas.",
     cta2: "Nuestros proyectos",
@@ -33,8 +33,8 @@ const es = {
   about: {
     kicker: "Propósito",
     title: "¿Por qué existimos?",
-    p1: "Somos una fundación dedicada al desarrollo, evaluación y mejora de proyectos de alto impacto alineados con los ODS, para generar beneficios sociales, ambientales, económicos y culturales tangibles.",
-    p2: "Impulsamos soluciones basadas en la naturaleza para la adaptación y mitigación climática, la conservación de la biodiversidad y el desarrollo resiliente, articulando comunidades, empresas, inversionistas, financiadores e instituciones.",
+    p1: "En Saumama desarrollamos soluciones basadas en la naturaleza que generan beneficios ambientales, sociales y económicos duraderos.",
+    p2: "Trabajamos junto a comunidades, empresas e instituciones para estructurar proyectos transparentes, medibles y alineados con los estándares internacionales.",
     p3: "Incorporamos sistemas propios de monitoreo y trazabilidad que garantizan transparencia, confianza y verificación de impactos en cada fase del proyecto.",
     link: "Conoce nuestra historia y equipo",
   },
@@ -44,19 +44,19 @@ const es = {
     items: [
       {
         title: "Estructuramos y evaluamos",
-        text: "Fortalecemos iniciativas sostenibles de empresas, comunidades, organizaciones e inversionistas, transformando ideas y oportunidades en proyectos viables, escalables y con impacto medible.",
+        text: "De la idea al proyecto viable, escalable y medible.",
       },
       {
         title: "Integramos salvaguardas",
-        text: "Promovemos una participación comunitaria efectiva: diálogo, construcción de confianza y modelos de distribución de beneficios acordes con las necesidades y cosmovisión de cada territorio.",
+        text: "Participación comunitaria real y beneficios compartidos.",
       },
       {
         title: "Alineamos con estándares",
-        text: "Acompañamos los proyectos en su alineación con certificaciones internacionales, fortaleciendo su credibilidad y reconocimiento ante aliados, financiadores, compradores e inversionistas.",
+        text: "Certificaciones internacionales que dan credibilidad.",
       },
       {
         title: "Facilitamos financiamiento",
-        text: "Abrimos acceso a mercados ambientales — carbono, biodiversidad y otros esquemas de compensación — maximizando los beneficios para todos los actores y los ODS.",
+        text: "Acceso a mercados de carbono y biodiversidad.",
       },
     ],
   },
@@ -84,6 +84,7 @@ const es = {
   services: {
     kicker: "Servicios",
     title: "Cómo generamos valor",
+    intro: "Acompañamos el desarrollo e implementación de proyectos de alto impacto, conectando conocimiento técnico, participación comunitaria y financiamiento estratégico — con salvaguardas, monitoreo verificable y beneficios duraderos para los territorios.",
     items: [
       {
         title: "Evaluación y mejora de proyectos climáticos",
@@ -322,32 +323,18 @@ const es = {
     },
     teamKicker: "Equipo",
     teamTitle: "Las personas detrás de Saumama",
+    teamIntro:
+      "Nuestro equipo multidisciplinario integra experiencia en gobernanza, ecología, derecho e implementación de proyectos para desarrollar soluciones basadas en la naturaleza con altos estándares de integridad en diferentes regiones de Colombia.",
+    alliesLine: "Aliados: construimos impacto duradero a través de la colaboración.",
     team: [
-      {
-        name: "Abraham Korman",
-        role: "Cofundador — Director de Estrategia Climática y Soluciones Basadas en Naturaleza",
-        bio: "Ha estado en todos los frentes de la transición energética y ambiental de Colombia: estructuró los primeros PPAs del país en los años 90, lideró la masificación del gas natural para el Gobierno colombiano y construyó marcos ESG en grandes proyectos mineros cuando ese lenguaje aún no existía en la región. En Conservación Internacional Colombia su visión encontró forma — y Saumama comenzó a gestarse.",
-      },
-      {
-        name: "Armando Sarmiento",
-        role: "Economía Territorial · Geoinformática · Ordenamiento del Paisaje",
-        bio: "Economista y Magíster en Hidrosistemas de la Javeriana. Dirigió desde 1992 el Departamento de Ecología y Territorio de esa universidad y ha liderado su Centro de Investigaciones en Geoinformática. Más de treinta años estudiando las transformaciones del uso del suelo. En Saumama lidera el análisis económico territorial y el modelamiento espacial.",
-      },
-      {
-        name: "Andrés Etter",
-        role: "Ecología del Paisaje · SIG · Ecosistemas Críticos",
-        bio: "Doctor en Ecología (U. de Queensland), pionero en Colombia del uso de SIG, sensores remotos y Big Data para la conservación. Más de 80 publicaciones científicas y décadas de campo en la Amazonía y los Llanos. Premio Nacional Alejandro Ángel Escobar 2004 en Medio Ambiente. En Saumama lidera el marco de gestión del conocimiento con enfoque de paisaje.",
-      },
-      {
-        name: "Laura Tibavisco",
-        role: "Ecología · Restauración de Ecosistemas · Finanzas para la Biodiversidad",
-        bio: "Ecóloga de la Javeriana con estudios en desarrollo sostenible en Linköping University (Suecia). En Conservation International Colombia analizó estándares de créditos de biodiversidad y construyó criterios sociales para su implementación. Aporta la pregunta que el equipo necesita: ¿cómo hacemos que esto funcione para las próximas décadas?",
-      },
-      {
-        name: "Adriana Gutiérrez",
-        role: "Equipo Saumama",
-        bio: "Parte del equipo fundador que hace posible la articulación de los proyectos de Saumama en territorio.",
-      },
+      { name: "Alexis Leroy", role: "Director de Proyectos y Liderazgo Estratégico", bio: "Desarrollo de proyectos y alianzas estratégicas." },
+      { name: "Abraham Korman", role: "Asesor Senior — Social y Gobernanza", bio: "Gobernanza social y relacionamiento comunitario." },
+      { name: "Adriana Gutiérrez", role: "Experta Legal — Regulación de Carbono y Tenencia de la Tierra", bio: "Regulación de carbono y cumplimiento ambiental." },
+      { name: "Andrés Etter", role: "Experto en Ecosistemas y Ecología del Paisaje", bio: "Mapeo de ecosistemas críticos con enfoque de paisaje." },
+      { name: "Andrés Herkrath", role: "Estructurador Financiero de Proyectos", bio: "Estrategias de inversión para proyectos ambientales." },
+      { name: "Armando Sarmiento", role: "Gerente de Proyectos", bio: "Implementación de proyectos y gestión operativa." },
+      { name: "Sandra Montenegro", role: "Experta Legal — Tenencia de la Tierra", bio: "Seguridad jurídica de la tierra para las comunidades." },
+      { name: "Laura Tibavizco", role: "Consultora", bio: "Restauración, biodiversidad y criterios sociales." },
     ],
     logoKicker: "Inspiración",
     logoTitle: "La Samauma: la ceiba gigante del Amazonas",
@@ -363,6 +350,18 @@ const es = {
     cta: "Explorar proyectos",
     featured: "Proyectos de alta calidad en curso",
     status: "En curso",
+    featuredProject: {
+      name: "El ancestro que seremos",
+      category: "Restauración ecológica y agroforestal · ARR de alta integridad",
+      stage: "En etapa de PDD",
+      text: "Proyecto de restauración ecológica y agroforestal en la Sierra Nevada de Santa Marta que integra restauración, conservación de la biodiversidad y soluciones climáticas de largo plazo. Se desarrolla junto a cuatro comunidades indígenas en nueve cuencas, articulando el conocimiento ancestral con la restauración del territorio.",
+      facts: [
+        { label: "Ubicación", value: "Sierra Nevada de Santa Marta — La Guajira, Cesar y Magdalena" },
+        { label: "Área potencial", value: "5.000 hectáreas" },
+        { label: "Ecosistemas", value: "Del nivel del mar a los 5.776 msnm: bosques tropicales y cuencas estratégicas" },
+        { label: "Comunidades", value: "Pueblos Kogui, Wiwa y Arhuaco — 4 comunidades, 9 cuencas" },
+      ],
+    },
     projects: [
       {
         name: "Matavén / Mediamos",
@@ -429,7 +428,7 @@ const en: Dictionary = {
   },
   hero: {
     kicker: "Investing in nature",
-    title: "We care for the territory. And we make that care count for everyone.",
+    title: "Connecting nature, communities and sustainable investment",
     subtitle:
       "Projects with real impact and lasting benefits for society, communities, nature and business.",
     cta2: "Our projects",
@@ -448,8 +447,8 @@ const en: Dictionary = {
   about: {
     kicker: "Purpose",
     title: "Why we exist",
-    p1: "We are a foundation dedicated to developing, evaluating and improving high-impact projects aligned with the SDGs, generating tangible social, environmental, economic and cultural benefits.",
-    p2: "We drive nature-based solutions for climate adaptation and mitigation, biodiversity conservation and resilient development, connecting communities, companies, investors, funders and institutions.",
+    p1: "At Saumama, we develop nature-based solutions that generate long-term environmental, social and economic benefits.",
+    p2: "We work alongside communities, companies and institutions to structure transparent, measurable projects aligned with international standards.",
     p3: "We deploy our own monitoring and traceability systems that guarantee transparency, trust and impact verification at every phase of the project.",
     link: "Discover our story and team",
   },
@@ -459,19 +458,19 @@ const en: Dictionary = {
     items: [
       {
         title: "We structure and assess",
-        text: "We strengthen sustainable initiatives from companies, communities, organizations and investors, turning ideas and opportunities into viable, scalable projects with measurable impact.",
+        text: "From idea to viable, scalable, measurable project.",
       },
       {
         title: "We integrate safeguards",
-        text: "We foster effective community participation: dialogue, trust-building and benefit-sharing models aligned with the needs and worldview of each territory.",
+        text: "Real community participation and shared benefits.",
       },
       {
         title: "We align with standards",
-        text: "We guide projects towards international certifications, strengthening their credibility and recognition among partners, funders, buyers and investors.",
+        text: "International certifications that build credibility.",
       },
       {
         title: "We unlock financing",
-        text: "We open access to environmental markets — carbon, biodiversity and other offset schemes — maximizing benefits for all stakeholders and the SDGs.",
+        text: "Access to carbon and biodiversity markets.",
       },
     ],
   },
@@ -499,6 +498,7 @@ const en: Dictionary = {
   services: {
     kicker: "Services",
     title: "How we create value",
+    intro: "We support the development and implementation of high-impact projects by connecting technical expertise, community engagement and strategic finance — with safeguards, verifiable monitoring and long-term territorial benefits.",
     items: [
       {
         title: "Climate project evaluation and improvement",
@@ -737,32 +737,18 @@ const en: Dictionary = {
     },
     teamKicker: "Team",
     teamTitle: "The people behind Saumama",
+    teamIntro:
+      "Our multidisciplinary team combines expertise in governance, ecology, law and project implementation to develop high-integrity nature-based solutions across Colombia.",
+    alliesLine: "Partners: building long-lasting impact through collaboration.",
     team: [
-      {
-        name: "Abraham Korman",
-        role: "Co-founder — Director of Climate Strategy & Nature-Based Solutions",
-        bio: "He has been on every front of Colombia's energy and environmental transition: structured the country's first PPAs in the 90s, led the national rollout of natural gas for the Colombian Government and built ESG frameworks in major mining projects before that language existed in the region. At Conservation International Colombia his vision took shape — and Saumama began to emerge.",
-      },
-      {
-        name: "Armando Sarmiento",
-        role: "Territorial Economics · Geoinformatics · Landscape Planning",
-        bio: "Economist with a Master's in Hydrosystems from Javeriana University. He led its Department of Ecology and Territory since 1992 and its Geoinformatics Research Centre. Over thirty years studying land-use transformations. At Saumama he leads territorial economic analysis and spatial modelling.",
-      },
-      {
-        name: "Andrés Etter",
-        role: "Landscape Ecology · GIS · Critical Ecosystems",
-        bio: "PhD in Ecology (University of Queensland), a pioneer in Colombia of GIS, remote sensing and Big Data for conservation. Over 80 scientific publications and decades of fieldwork in the Amazon and the Llanos. 2004 Alejandro Ángel Escobar National Award in Environment. At Saumama he leads the landscape-approach knowledge framework.",
-      },
-      {
-        name: "Laura Tibavisco",
-        role: "Ecology · Ecosystem Restoration · Biodiversity Finance",
-        bio: "Ecologist from Javeriana with sustainable development studies at Linköping University (Sweden). At Conservation International Colombia she analyzed biodiversity credit standards and built social criteria for their implementation. She brings the question the team needs: how do we make this work for decades to come?",
-      },
-      {
-        name: "Adriana Gutiérrez",
-        role: "Saumama Team",
-        bio: "Part of the founding team that makes the articulation of Saumama's projects on the ground possible.",
-      },
+      { name: "Alexis Leroy", role: "Project Director & Engagement Leader", bio: "Project development and strategic partnerships." },
+      { name: "Abraham Korman", role: "Senior Advisor — Social & Governance", bio: "Social governance and community engagement." },
+      { name: "Adriana Gutiérrez", role: "Legal Expert — Carbon Regulation & Land Tenure", bio: "Carbon regulation and environmental compliance." },
+      { name: "Andrés Etter", role: "Ecosystem & Landscape Ecology Expert", bio: "Critical-ecosystem mapping with a landscape approach." },
+      { name: "Andrés Herkrath", role: "Financial Project Structurer", bio: "Investment strategies for environmental projects." },
+      { name: "Armando Sarmiento", role: "Project Manager", bio: "Project implementation and operations." },
+      { name: "Sandra Montenegro", role: "Legal Expert — Land Tenure", bio: "Legal certainty of land for communities." },
+      { name: "Laura Tibavizco", role: "Consultant", bio: "Restoration, biodiversity and social criteria." },
     ],
     logoKicker: "Inspiration",
     logoTitle: "The Samauma: the giant kapok tree of the Amazon",
@@ -778,6 +764,18 @@ const en: Dictionary = {
     cta: "Explore projects",
     featured: "High-quality projects underway",
     status: "Underway",
+    featuredProject: {
+      name: "The Ancestor We Will Become",
+      category: "Ecological restoration & agroforestry · High-integrity ARR",
+      stage: "At PDD stage",
+      text: "An ecological restoration and agroforestry project in the Sierra Nevada de Santa Marta integrating restoration, biodiversity conservation and long-term climate solutions. Developed in partnership with four Indigenous communities across nine watersheds, combining ancestral knowledge with landscape restoration.",
+      facts: [
+        { label: "Location", value: "Sierra Nevada de Santa Marta — La Guajira, Cesar and Magdalena" },
+        { label: "Potential area", value: "5,000 hectares" },
+        { label: "Ecosystems", value: "From sea level to 5,776 masl: tropical forests and strategic watersheds" },
+        { label: "Communities", value: "Kogui, Wiwa and Arhuaco peoples — 4 communities, 9 watersheds" },
+      ],
+    },
     projects: [
       {
         name: "Matavén / Mediamos",

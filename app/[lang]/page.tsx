@@ -114,7 +114,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             </Link>
             <a
               href="#donar"
-              className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-cream-50 hover:text-cream-100"
+              className="cursor-pointer rounded-full bg-gold-500 px-7 py-3 font-semibold text-forest-950 transition-all duration-500 hover:bg-gold-400 active:scale-[0.98]"
             >
               {dict.nav.donate}
             </a>
@@ -146,7 +146,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
       {/* ── Manifiesto (cita en cascada) ───────────────────────────── */}
       <section className="mx-auto max-w-4xl px-4 py-28 text-center sm:px-6">
         <Reveal>
-          <span className="font-display text-6xl leading-none text-forest-700">“</span>
+          <span className="font-display text-6xl leading-none text-gold-500">“</span>
           <p className="mt-2 font-display text-2xl leading-snug font-medium text-forest-900 sm:text-4xl">
             <Words text={dict.manifesto.quote} />
           </p>
@@ -215,21 +215,25 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </Link>
         </Reveal>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {dict.projectsPage.projects.map((p, i) => (
+          {[
+            { name: dict.projectsPage.featuredProject.name, category: dict.projectsPage.featuredProject.category, text: dict.projectsPage.featuredProject.text, img: IMG.heroValley, badge: dict.projectsPage.featuredProject.stage },
+            { ...dict.projectsPage.projects[0], img: IMG.proj[0], badge: dict.projectsPage.status },
+            { ...dict.projectsPage.projects[2], img: IMG.proj[2], badge: dict.projectsPage.status },
+          ].map((p, i) => (
             <Reveal key={p.name} delay={i * 130} className="h-full">
               <Link href={`/${lang}/proyectos/`} className="block h-full cursor-pointer">
                 <article className="group relative h-full min-h-[380px] overflow-hidden rounded-3xl shadow-md transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-2xl hover:shadow-forest-900/20">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={IMG.proj[i]}
+                    src={p.img}
                     alt={p.name}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest-950/95 via-forest-950/40 to-forest-950/10" />
                   <div className="absolute inset-x-0 bottom-0 p-6">
-                    <span className="rounded-full bg-cream-50/90 px-3 py-1 text-[10px] font-bold tracking-widest text-forest-950 uppercase">
-                      {dict.projectsPage.status}
+                    <span className="rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold tracking-widest text-forest-950 uppercase">
+                      {p.badge}
                     </span>
                     <h3 className="mt-3 font-display text-2xl font-semibold text-cream-50">{p.name}</h3>
                     <p className="mt-1 text-xs font-semibold tracking-wide text-cream-100/85 uppercase">
@@ -241,6 +245,34 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               </Link>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      {/* ── Donación ───────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden bg-forest-950">
+        <div className="aurora-orb h-96 w-96" style={{ top: "-6rem", right: "-8rem", "--orb-color": "rgba(246,242,234,0.14)" } as React.CSSProperties} />
+        <div className="aurora-orb h-80 w-80" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s", "--orb-color": "rgba(58,106,78,0.38)" } as React.CSSProperties} />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:py-32">
+          <Reveal>
+            <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
+              {dict.donation.kicker}
+            </p>
+            <h2 className="mt-4 font-display text-3xl leading-tight font-semibold text-cream-50 sm:text-5xl">
+              {dict.donation.sectionTitle}
+            </h2>
+            <div className="draw-on-reveal mt-5 h-0.5 w-16 bg-cream-50" />
+            <p className="mt-6 max-w-md leading-relaxed text-cream-100/80">
+              {dict.donation.sectionText}
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="relative rounded-[2.1rem] p-px">
+              <div className="beam-clip" />
+              <div className="relative">
+                <DonationWidget dict={dict} />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -299,8 +331,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="font-display text-2xl font-semibold text-forest-900">{item.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-forest-800/80">{item.text}</p>
+                  <h3 className="font-display text-2xl leading-snug font-semibold text-forest-900">{item.title}</h3>
+                  <p className="mt-2 text-base font-medium text-forest-700">{item.text}</p>
                 </div>
               </SpotlightCard>
             </Reveal>
@@ -354,24 +386,34 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-cream-50" />
           </Reveal>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {dict.businessLines.items.map((line, i) => (
+            {dict.businessLines.items.map((line, i) => {
+              const acc = [
+                { n: "text-gold-400", tag: "border-gold-500/40 text-gold-400", hover: "hover:border-gold-500/50", bar: "bg-gold-500" },
+                { n: "text-terra-500", tag: "border-terra-500/50 text-terra-500", hover: "hover:border-terra-500/60", bar: "bg-terra-500" },
+                { n: "text-cream-100", tag: "border-cream-100/40 text-cream-100", hover: "hover:border-cream-100/50", bar: "bg-cream-100" },
+              ][i];
+              return (
               <Reveal key={line.title} delay={i * 140} className="h-full">
-                <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-900 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/40">
-                  <span className="font-display text-4xl font-semibold text-cream-100/40 transition-colors duration-500 group-hover:text-cream-100">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                <div className={`group h-full rounded-2xl border border-cream-100/10 bg-forest-900 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 ${acc.hover}`}>
+                  <div className="flex items-center justify-between">
+                    <span className={`font-display text-4xl font-semibold ${acc.n}`}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className={`h-1 w-10 rounded-full ${acc.bar}`} />
+                  </div>
                   <h3 className="mt-3 font-display text-2xl leading-snug font-semibold">{line.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-cream-100/75">{line.text}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {line.tags.map((t) => (
-                      <span key={t} className="rounded-full border border-cream-100/30 px-3 py-1 text-[11px] text-cream-100">
+                      <span key={t} className={`rounded-full border px-3 py-1 text-[11px] ${acc.tag}`}>
                         {t}
                       </span>
                     ))}
                   </div>
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -427,34 +469,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               </figure>
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* ── Donación ───────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-forest-950">
-        <div className="aurora-orb h-96 w-96" style={{ top: "-6rem", right: "-8rem", "--orb-color": "rgba(246,242,234,0.14)" } as React.CSSProperties} />
-        <div className="aurora-orb h-80 w-80" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s", "--orb-color": "rgba(58,106,78,0.38)" } as React.CSSProperties} />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:py-32">
-          <Reveal>
-            <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
-              {dict.donation.kicker}
-            </p>
-            <h2 className="mt-4 font-display text-3xl leading-tight font-semibold text-cream-50 sm:text-5xl">
-              {dict.donation.sectionTitle}
-            </h2>
-            <div className="draw-on-reveal mt-5 h-0.5 w-16 bg-cream-50" />
-            <p className="mt-6 max-w-md leading-relaxed text-cream-100/80">
-              {dict.donation.sectionText}
-            </p>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="relative rounded-[2.1rem] p-px">
-              <div className="beam-clip" />
-              <div className="relative">
-                <DonationWidget dict={dict} />
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 

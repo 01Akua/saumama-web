@@ -101,24 +101,30 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
               {d.teamTitle}
             </h2>
-            <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-forest-700" />
+            <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-forest-800/80">
+              {d.teamIntro}
+            </p>
+            <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-gold-500" />
           </Reveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {d.team.map((m, i) => (
-              <Reveal key={m.name} delay={(i % 2) * 130} className="h-full">
-                <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-7 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/40 hover:shadow-lg hover:shadow-forest-900/5">
-                  <div className="flex items-start gap-4">
-                    <Initials name={m.name} />
-                    <div>
-                      <h3 className="font-display text-2xl font-semibold text-forest-900">{m.name}</h3>
-                      <p className="mt-1 text-xs font-semibold tracking-wide text-forest-700 uppercase">{m.role}</p>
-                    </div>
-                  </div>
-                  <p className="mt-5 text-base leading-relaxed text-forest-800/80">{m.bio}</p>
+              <Reveal key={m.name} delay={(i % 4) * 100} className="h-full">
+                <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-6 text-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
+                  <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-gold-500/40 bg-forest-800 font-display text-2xl font-semibold text-gold-400">
+                    {m.name.split(" ").map((x) => x[0]).slice(0, 2).join("")}
+                  </span>
+                  <h3 className="mt-4 font-display text-xl leading-snug font-semibold text-forest-900">{m.name}</h3>
+                  <p className="mt-1 text-[11px] font-semibold tracking-wide text-gold-600 uppercase">{m.role}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-forest-800/75">{m.bio}</p>
                 </SpotlightCard>
               </Reveal>
             ))}
           </div>
+          <Reveal>
+            <p className="mx-auto mt-10 max-w-xl rounded-full border border-gold-500/30 bg-cream-50 px-6 py-3 text-center text-sm font-semibold text-forest-800">
+              🤝 {d.alliesLine}
+            </p>
+          </Reveal>
         </div>
       </section>
 

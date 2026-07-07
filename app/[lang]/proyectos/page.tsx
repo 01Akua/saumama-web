@@ -49,8 +49,45 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
         </div>
       </section>
 
-      {/* Proyectos destacados */}
+      {/* Proyecto insignia: El ancestro que seremos */}
       <section id="destacados" className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+        <Reveal>
+          <div className="grid overflow-hidden rounded-3xl bg-forest-900 text-cream-50 shadow-xl lg:grid-cols-2">
+            <div className="relative min-h-[320px]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={IMG.heroValley}
+                alt={d.featuredProject.name}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-forest-900/40" />
+            </div>
+            <div className="p-8 lg:p-10">
+              <span className="rounded-full bg-gold-500 px-3 py-1 text-[10px] font-bold tracking-widest text-forest-950 uppercase">
+                {d.featuredProject.stage}
+              </span>
+              <h2 className="mt-4 font-display text-3xl leading-snug font-semibold sm:text-4xl">
+                {d.featuredProject.name}
+              </h2>
+              <p className="mt-1 text-xs font-semibold tracking-wide text-gold-400 uppercase">
+                {d.featuredProject.category}
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-cream-100/85">{d.featuredProject.text}</p>
+              <dl className="mt-6 grid gap-4 sm:grid-cols-2">
+                {d.featuredProject.facts.map((f) => (
+                  <div key={f.label} className="rounded-xl border border-cream-100/15 bg-forest-950/50 p-4">
+                    <dt className="text-[10px] font-bold tracking-widest text-gold-400 uppercase">{f.label}</dt>
+                    <dd className="mt-1 text-sm leading-snug text-cream-100/90">{f.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* Otros proyectos */}
+      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
         <Reveal>
           <h2 className="text-sm font-semibold tracking-[0.3em] text-forest-800 uppercase">{d.featured}</h2>
           <div className="draw-on-reveal mt-3 h-0.5 w-12 bg-forest-700" />
@@ -92,6 +129,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
               {dict.services.title}
             </h2>
+            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-forest-800/80">{dict.services.intro}</p>
             <div className="draw-on-reveal mt-5 h-0.5 w-12 bg-forest-700" />
           </Reveal>
           <div className="mt-12 space-y-4">
