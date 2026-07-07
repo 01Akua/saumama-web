@@ -181,10 +181,8 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
 
       {/* Cierre */}
       <section className="relative overflow-hidden bg-forest-900 text-cream-50">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: `url(${IMG.donacion})` }}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.donacion} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" />
         <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6">
           <Reveal>
             <h2 className="font-display text-3xl leading-snug font-semibold sm:text-4xl">“{d.closing}”</h2>

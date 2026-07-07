@@ -5,28 +5,28 @@ const p = (f: string) => `${isProd ? "/saumama-web" : ""}/img/${f}`;
 
 export const IMG = {
   // Héroes
-  heroRiver: p("hero.jpg"), // aldea Nabusimake — luminosa (feedback del cliente)
-  heroValley: p("hero-nosotros.jpg"), // Sierra Nevada de Santa Marta
-  mountain: p("hero-proyectos.jpg"), // bosque nublado
+  heroRiver: p("hero.webp"), // aldea Nabusimake — luminosa (feedback del cliente)
+  heroValley: p("hero-nosotros.webp"), // Sierra Nevada de Santa Marta
+  mountain: p("hero-proyectos.webp"), // bosque nublado
   // Secciones
-  samauma: p("samauma.jpg"), // la ceiba gigante real
-  forestSun: p("proposito.jpg"), // ceiba desde abajo
-  historia: p("historia.jpg"), // calle empedrada de Nabusimake
-  enfoque: p("enfoque.jpg"), // hoja con gotas
-  donacion: p("donacion.jpg"), // bosque en niebla
-  seedling: p("cta.jpg"), // reunión comunitaria en la maloca
+  samauma: p("samauma.webp"), // la ceiba gigante real
+  forestSun: p("proposito.webp"), // ceiba desde abajo
+  historia: p("historia.webp"), // calle empedrada de Nabusimake
+  enfoque: p("enfoque.webp"), // hoja con gotas
+  donacion: p("donacion.webp"), // bosque en niebla
+  seedling: p("cta.webp"), // reunión comunitaria en la maloca
   // Galería
-  gal: [p("gal-1.jpg"), p("gal-2.jpg"), p("gal-3.jpg"), p("gal-4.jpg"), p("gal-5.jpg")],
+  gal: [p("gal-1.webp"), p("gal-2.webp"), p("gal-3.webp"), p("gal-4.webp"), p("gal-5.webp")],
   // Proyectos
-  proj: [p("proj-1.jpg"), p("proj-2.jpg"), p("proj-3.jpg")],
+  proj: [p("proj-1.webp"), p("proj-2.webp"), p("proj-3.webp")],
   // Qué hacemos
-  que: [p("que-1.jpg"), p("que-2.jpg"), p("que-3.jpg"), p("que-4.jpg")],
+  que: [p("que-1.webp"), p("que-2.webp"), p("que-3.webp"), p("que-4.webp")],
   // Blog
   blogGal: [
-    p("blog-g1.jpg"), p("blog-g2.jpg"), p("blog-g3.jpg"), p("blog-g4.jpg"),
-    p("blog-g5.jpg"), p("blog-g6.jpg"), p("blog-g7.jpg"), p("blog-g8.jpg"),
+    p("blog-g1.webp"), p("blog-g2.webp"), p("blog-g3.webp"), p("blog-g4.webp"),
+    p("blog-g5.webp"), p("blog-g6.webp"), p("blog-g7.webp"), p("blog-g8.webp"),
   ],
-  blogPosts: [p("historia.jpg"), p("cta.jpg"), p("samauma.jpg")],
+  blogPosts: [p("historia.webp"), p("cta.webp"), p("samauma.webp")],
   // Logo oficial
   logoWhite: p("logo-white.png"),
   logoGreen: p("logo-green.png"),

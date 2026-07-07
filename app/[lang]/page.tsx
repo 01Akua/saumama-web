@@ -65,6 +65,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <>
       {/* ── Hero editorial (aurora + text reveal) ─────────────────── */}
+      {/* React 19 eleva este link al <head>: el hero llega antes */}
+      <link rel="preload" as="image" href={IMG.heroRiver} fetchPriority="high" />
       <section className="relative flex min-h-[100dvh] items-center overflow-hidden bg-forest-950 text-cream-50">
         <div
           className="slow-zoom absolute inset-0 bg-cover bg-center opacity-70"
@@ -420,10 +422,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
       {/* ── Enfoque (cita de impacto) ──────────────────────────────── */}
       <section className="relative overflow-hidden bg-forest-900 text-cream-50">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: `url(${IMG.enfoque})` }}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.enfoque} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-20" />
         <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6">
           <Reveal>
             <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
@@ -520,10 +520,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
 
       {/* ── CTA final ──────────────────────────────────────────────── */}
       <section className="relative overflow-hidden bg-forest-950 text-cream-50">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: `url(${IMG.seedling})` }}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.seedling} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6 md:flex-row md:justify-between md:text-left">
           <Reveal>
             <h2 className="font-display text-3xl font-semibold">{dict.cta.title}</h2>

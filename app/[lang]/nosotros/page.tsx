@@ -130,10 +130,8 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
 
       {/* Inspiración del logo — la Samauma */}
       <section className="relative overflow-hidden bg-forest-950 text-cream-50">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: `url(${IMG.samauma})` }}
-        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={IMG.samauma} alt="" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-25" />
         <div className="aurora-orb h-96 w-96" style={{ top: "-8rem", left: "-8rem", "--orb-color": "rgba(246,242,234,0.15)" } as React.CSSProperties} />
         <div className="relative mx-auto max-w-3xl px-4 py-28 text-center sm:px-6">
           <Reveal>
