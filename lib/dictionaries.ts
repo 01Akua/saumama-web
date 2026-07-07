@@ -116,6 +116,48 @@ const es = {
     kicker: "Nuestro enfoque",
     text: "La sostenibilidad no se mide únicamente en toneladas de carbono o árboles plantados, sino en la capacidad de las comunidades para liderar, decidir y mantener los proyectos a lo largo de generaciones.",
   },
+  causes: {
+    kicker: "Causas",
+    title: "Los frentes en los que trabajamos",
+    text: "Nuestras causas son los temas que defendemos; los proyectos son las iniciativas concretas que las hacen realidad en cada territorio.",
+    items: [
+      { title: "Restauración ecológica", text: "Recuperamos bosques y áreas estratégicas para devolverle vida al territorio." },
+      { title: "Biodiversidad y fauna", text: "Protegemos especies y ecosistemas críticos con ciencia y saber local." },
+      { title: "Carbono y clima", text: "Reducimos emisiones y conectamos el cuidado del bosque con los mercados de carbono." },
+      { title: "Agroforestería y suelos", text: "Sistemas productivos que regeneran el suelo en lugar de agotarlo." },
+      { title: "Cacao sostenible", text: "Cadenas de valor justas que premian el cacao que conserva el bosque." },
+      { title: "Café sostenible", text: "Café de origen que sostiene a las familias y a la montaña que lo produce." },
+    ],
+  },
+  projectsHome: {
+    kicker: "Proyectos",
+    title: "Iniciativas reales, en territorio",
+    text: "Cada proyecto lleva nuestras causas al terreno, de la mano de las comunidades.",
+    button: "Ver todos los proyectos",
+  },
+  regions: {
+    kicker: "Dónde trabajamos",
+    title: "Territorios que nos guían",
+    text: "Cada territorio es único; cada proyecto se diseña a la medida de sus necesidades y sueños.",
+    items: [
+      { name: "Sierra Nevada de Santa Marta", note: "Pueblos Arhuaco y Kogui" },
+      { name: "Vichada", note: "Matavén y la Orinoquía" },
+      { name: "Amazonía colombiana", note: "Bosque en pie" },
+      { name: "Guainía", note: "Selvas y ríos del oriente" },
+      { name: "Caquetá", note: "Piedemonte amazónico" },
+    ],
+  },
+  galleryHome: {
+    kicker: "Trabajo en campo",
+    title: "Así se ve nuestro trabajo",
+    captions: [
+      "Calles de Nabusimake, Sierra Nevada",
+      "Autoridad arhuaca, guardián del territorio",
+      "Encuentro comunitario en la maloca",
+      "Ríos que nacen en la Sierra",
+      "La ceiba, hermana de la Samauma",
+    ],
+  },
   standards: {
     title: "Estándares y metodologías internacionales",
     items: ["VCS", "Gold Standard", "ICVCM", "CCB", "REDD+", "ODS"],
@@ -257,6 +299,7 @@ const es = {
     title: "Sé parte del movimiento",
     text: "Saumama es movimiento, no discurso. Comparte tu talento, amplifica nuestra voz o súmate a iniciativas que generan impacto duradero.",
     button: "Colabora con Saumama",
+    contact: "Contactar a la fundación",
   },
   aboutPage: {
     kicker: "Nosotros",
@@ -488,6 +531,48 @@ const en: Dictionary = {
     kicker: "Our approach",
     text: "Sustainability is not measured only in tonnes of carbon or trees planted, but in the capacity of communities to lead, decide and sustain projects across generations.",
   },
+  causes: {
+    kicker: "Causes",
+    title: "The fronts we work on",
+    text: "Our causes are the themes we stand for; our projects are the concrete initiatives that make them real in each territory.",
+    items: [
+      { title: "Ecological restoration", text: "We recover forests and strategic areas to bring the territory back to life." },
+      { title: "Biodiversity & wildlife", text: "We protect species and critical ecosystems with science and local knowledge." },
+      { title: "Carbon & climate", text: "We reduce emissions and connect forest care with carbon markets." },
+      { title: "Agroforestry & soils", text: "Productive systems that regenerate the soil instead of depleting it." },
+      { title: "Sustainable cocoa", text: "Fair value chains that reward cocoa that keeps the forest standing." },
+      { title: "Sustainable coffee", text: "Origin coffee that sustains the families and the mountain that grows it." },
+    ],
+  },
+  projectsHome: {
+    kicker: "Projects",
+    title: "Real initiatives, on the ground",
+    text: "Every project takes our causes to the territory, hand in hand with communities.",
+    button: "See all projects",
+  },
+  regions: {
+    kicker: "Where we work",
+    title: "Territories that guide us",
+    text: "Every territory is unique; every project is designed to fit its needs and dreams.",
+    items: [
+      { name: "Sierra Nevada de Santa Marta", note: "Arhuaco and Kogui peoples" },
+      { name: "Vichada", note: "Matavén and the Orinoquía" },
+      { name: "Colombian Amazon", note: "Standing forest" },
+      { name: "Guainía", note: "Eastern jungles and rivers" },
+      { name: "Caquetá", note: "Amazon foothills" },
+    ],
+  },
+  galleryHome: {
+    kicker: "Field work",
+    title: "This is what our work looks like",
+    captions: [
+      "Streets of Nabusimake, Sierra Nevada",
+      "Arhuaco authority, guardian of the territory",
+      "Community gathering at the maloca",
+      "Rivers born in the Sierra",
+      "The kapok, sister of the Samauma",
+    ],
+  },
   standards: {
     title: "International standards and methodologies",
     items: ["VCS", "Gold Standard", "ICVCM", "CCB", "REDD+", "SDGs"],
@@ -629,6 +714,7 @@ const en: Dictionary = {
     title: "Be part of the movement",
     text: "Saumama is movement, not rhetoric. Share your talent, amplify our voice or join initiatives that create lasting impact.",
     button: "Partner with Saumama",
+    contact: "Contact the foundation",
   },
   aboutPage: {
     kicker: "About us",

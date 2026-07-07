@@ -19,6 +19,22 @@ const ArrowIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
   </svg>
 );
 
+// Iconos específicos por causa (feedback: iconografía con significado)
+const CAUSE_ICONS: React.ReactNode[] = [
+  // Restauración: árbol renaciendo
+  <path key="c0" d="M12 22v-8m0 0c-3.5-.5-6-3-6-6.5 0-1 .2-2 .6-2.9C8.5 6 10 7.5 12 7.5S15.5 6 17.4 4.6c.4.9.6 1.9.6 2.9 0 3.5-2.5 6-6 6.5zM7 22h10" strokeLinecap="round" strokeLinejoin="round" />,
+  // Biodiversidad: colibrí
+  <path key="c1" d="M4 8c3-4 8-4 10 0l6-2-4 5c1 4-2 8-7 8-2 0-3.5-.8-4.5-2L3 19l2.5-4C4 13 3.5 10 4 8zm9 3h.01" strokeLinecap="round" strokeLinejoin="round" />,
+  // Carbono: nube CO2
+  <path key="c2" d="M7 18a4 4 0 01-.9-7.9 5.5 5.5 0 0110.7-1.2A4.5 4.5 0 0116.5 18H7zm3-6.5c-.8 0-1.5.7-1.5 1.7s.7 1.8 1.5 1.8m3.5-3.5c-.8 0-1.5.7-1.5 1.7s.7 1.8 1.5 1.8 1.5-.8 1.5-1.8-.7-1.7-1.5-1.7z" strokeLinecap="round" strokeLinejoin="round" />,
+  // Agroforestería: surcos con brotes
+  <path key="c3" d="M3 20h18M6 20v-4m0 0c-1.5-.5-2.5-2-2.2-3.6C5.4 12.5 6.6 13 6 16zm0 0c1.5-.5 2.5-2 2.2-3.6C6.6 12.5 5.4 13 6 16zm6 4v-6m0 0c-2-.7-3.2-2.7-2.8-4.8C11.2 9.5 12.8 10.2 12 14zm0 0c2-.7 3.2-2.7 2.8-4.8C12.8 9.5 11.2 10.2 12 14zm6 6v-4m0 0c-1.5-.5-2.5-2-2.2-3.6C17.4 12.5 18.6 13 18 16zm0 0c1.5-.5 2.5-2 2.2-3.6C18.6 12.5 17.4 13 18 16z" strokeLinecap="round" strokeLinejoin="round" />,
+  // Cacao: mazorca
+  <path key="c4" d="M12 3c3.5 0 5.5 3.5 5.5 8s-2 10-5.5 10-5.5-5.5-5.5-10S8.5 3 12 3zm0 0c0 2-1 3-3 3m3 1v11" strokeLinecap="round" strokeLinejoin="round" />,
+  // Café: grano
+  <path key="c5" d="M12 4c4 0 7 3.6 7 8s-3 8-7 8-7-3.6-7-8 3-8 7-8zm0 0c2 3 2 5-.5 8s-2.5 5-.5 8" strokeLinecap="round" strokeLinejoin="round" />,
+];
+
 const WHAT_ICONS = [
   <path key="0" d="M4 7h16M4 12h10M4 17h7" strokeLinecap="round" />,
   <path key="1" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM5 21a7 7 0 0114 0" strokeLinecap="round" strokeLinejoin="round" />,
@@ -44,6 +60,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   const lang = langParam as Locale;
   const dict = getDictionary(lang);
   const gallery = IMG.gal;
+  const REGION_IMGS = [IMG.heroValley, IMG.proj[0], IMG.mountain, IMG.donacion, IMG.que[3]];
 
   return (
     <>
@@ -86,21 +103,21 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             className="hero-in mt-10 flex flex-wrap items-center justify-center gap-4"
             style={{ "--hero-delay": "950ms" } as React.CSSProperties}
           >
-            <a
-              href="#donar"
+            <Link
+              href={`/${lang}/proyectos/`}
               className="group shimmer-btn flex cursor-pointer items-center gap-2 rounded-full bg-cream-50 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
             >
-              {dict.nav.donate}
+              {dict.hero.cta2}
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
                 <ArrowIcon className="h-4 w-4" />
               </span>
-            </a>
-            <Link
-              href={`/${lang}/proyectos/`}
+            </Link>
+            <a
+              href="#donar"
               className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-cream-50 hover:text-cream-100"
             >
-              {dict.hero.cta2}
-            </Link>
+              {dict.nav.donate}
+            </a>
           </div>
         </div>
 
@@ -175,6 +192,88 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
+      {/* ── Proyectos destacados (protagonismo — feedback cliente) ── */}
+      <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+        <Reveal className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.3em] text-forest-700 uppercase">
+              {dict.projectsHome.kicker}
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
+              {dict.projectsHome.title}
+            </h2>
+            <p className="mt-3 max-w-md text-lg text-forest-800/80">{dict.projectsHome.text}</p>
+          </div>
+          <Link
+            href={`/${lang}/proyectos/`}
+            className="group flex shrink-0 cursor-pointer items-center gap-2 rounded-full bg-forest-900 py-2.5 pr-2 pl-6 text-sm font-semibold text-cream-50 transition-all duration-500 hover:bg-forest-800"
+          >
+            {dict.projectsHome.button}
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-cream-50/10 transition-transform duration-500 group-hover:translate-x-0.5">
+              <ArrowIcon className="h-3.5 w-3.5" />
+            </span>
+          </Link>
+        </Reveal>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {dict.projectsPage.projects.map((p, i) => (
+            <Reveal key={p.name} delay={i * 130} className="h-full">
+              <Link href={`/${lang}/proyectos/`} className="block h-full cursor-pointer">
+                <article className="group relative h-full min-h-[380px] overflow-hidden rounded-3xl shadow-md transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:shadow-2xl hover:shadow-forest-900/20">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={IMG.proj[i]}
+                    alt={p.name}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-950/95 via-forest-950/40 to-forest-950/10" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <span className="rounded-full bg-cream-50/90 px-3 py-1 text-[10px] font-bold tracking-widest text-forest-950 uppercase">
+                      {dict.projectsPage.status}
+                    </span>
+                    <h3 className="mt-3 font-display text-2xl font-semibold text-cream-50">{p.name}</h3>
+                    <p className="mt-1 text-xs font-semibold tracking-wide text-cream-100/85 uppercase">
+                      {p.category}
+                    </p>
+                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-cream-100/80">{p.text}</p>
+                  </div>
+                </article>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Causas (diferenciadas de Proyectos — feedback cliente) ── */}
+      <section className="bg-forest-900 text-cream-50">
+        <div className="relative mx-auto max-w-6xl overflow-hidden px-4 py-24 sm:px-6">
+          <div className="aurora-orb h-80 w-80" style={{ top: "-8rem", left: "-8rem", "--orb-color": "rgba(246,242,234,0.10)" } as React.CSSProperties} />
+          <Reveal className="text-center">
+            <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
+              {dict.causes.kicker}
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">{dict.causes.title}</h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-cream-100/85">{dict.causes.text}</p>
+            <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-cream-50" />
+          </Reveal>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {dict.causes.items.map((c, i) => (
+              <Reveal key={c.title} delay={(i % 3) * 120} className="h-full">
+                <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-950/50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/30">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cream-50 text-forest-900 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-6 w-6">
+                      {CAUSE_ICONS[i]}
+                    </svg>
+                  </span>
+                  <h3 className="mt-4 font-display text-xl font-semibold">{c.title}</h3>
+                  <p className="mt-2 text-base leading-relaxed text-cream-100/80">{c.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Qué hacemos ────────────────────────────────────────────── */}
       <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
         <Reveal className="text-center">
@@ -209,20 +308,33 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      {/* ── Galería ────────────────────────────────────────────────── */}
+      {/* ── Galería: trabajo en campo con leyendas ─────────────────── */}
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+        <Reveal className="text-center">
+          <p className="text-sm font-semibold tracking-[0.3em] text-forest-700 uppercase">
+            {dict.galleryHome.kicker}
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
+            {dict.galleryHome.title}
+          </h2>
+          <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-forest-700" />
+        </Reveal>
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
           {gallery.map((src, i) => (
-            <Reveal key={i} delay={i * 90}>
-              <div className="overflow-hidden rounded-xl">
+            <Reveal key={i} delay={i * 90} className={i === 0 ? "col-span-2 row-span-2" : ""}>
+              <figure className="group relative h-full overflow-hidden rounded-2xl">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={src}
-                  alt=""
+                  alt={dict.galleryHome.captions[i]}
                   loading="lazy"
-                  className="aspect-[3/4] w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-110"
+                  className={`w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105 ${i === 0 ? "h-full min-h-[420px]" : "aspect-square"}`}
                 />
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/80 via-transparent to-transparent" />
+                <figcaption className={`absolute inset-x-0 bottom-0 p-4 font-semibold text-cream-50 ${i === 0 ? "text-lg" : "text-xs"}`}>
+                  {dict.galleryHome.captions[i]}
+                </figcaption>
+              </figure>
             </Reveal>
           ))}
         </div>
@@ -279,6 +391,42 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               <Words text={dict.impact.text} />
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ── Regiones: dónde trabajamos (soporte visual) ────────────── */}
+      <section className="mx-auto max-w-6xl px-4 py-24 sm:px-6">
+        <Reveal>
+          <p className="text-sm font-semibold tracking-[0.3em] text-forest-700 uppercase">
+            {dict.regions.kicker}
+          </p>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-forest-900 sm:text-4xl">
+            {dict.regions.title}
+          </h2>
+          <p className="mt-3 max-w-md text-lg text-forest-800/80">{dict.regions.text}</p>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-5">
+          {dict.regions.items.map((r, i) => (
+            <Reveal key={r.name} delay={i * 100} className={i === 0 ? "col-span-2 md:col-span-1" : ""}>
+              <figure className="group relative h-56 overflow-hidden rounded-2xl md:h-72">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={REGION_IMGS[i]}
+                  alt={r.name}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.2s] ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/20 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4 text-cream-50">
+                    <path d="M12 21s-7-5.1-7-11a7 7 0 1114 0c0 5.9-7 11-7 11z" /><circle cx="12" cy="10" r="2.5" />
+                  </svg>
+                  <p className="mt-1.5 font-display text-base leading-tight font-semibold text-cream-50">{r.name}</p>
+                  <p className="text-[11px] text-cream-100/75">{r.note}</p>
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -368,15 +516,23 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             <p className="mt-2 max-w-xl text-cream-100/80">{dict.cta.text}</p>
           </Reveal>
           <Reveal delay={150}>
-            <a
-              href="#donar"
-              className="group flex shrink-0 cursor-pointer items-center gap-3 rounded-full bg-cream-50 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
-            >
-              {dict.cta.button}
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
-                <ArrowIcon className="h-4 w-4" />
-              </span>
-            </a>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <a
+                href="#donar"
+                className="group flex shrink-0 cursor-pointer items-center gap-3 rounded-full bg-cream-50 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
+              >
+                {dict.cta.button}
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-forest-950/10 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:scale-105">
+                  <ArrowIcon className="h-4 w-4" />
+                </span>
+              </a>
+              <a
+                href="mailto:info@saumamafoundation.org"
+                className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-cream-50 hover:text-white"
+              >
+                {dict.cta.contact}
+              </a>
+            </div>
           </Reveal>
         </div>
       </section>
