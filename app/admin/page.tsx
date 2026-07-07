@@ -12,6 +12,7 @@ import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { IMG } from "@/lib/images";
 import { Logo } from "@/components/Logo";
 import { getStoredApiKey, setStoredApiKey, translateFields } from "@/lib/translate";
+import { readComments, writeComments, MEMBERS_KEY, type Comment } from "@/components/Community";
 
 type Overrides = Record<string, string>;
 const STORAGE_KEY = "saumama-cms-demo";
@@ -192,6 +193,8 @@ const IC = {
   upload: "M12 21V9m0 0l-4 4m4-4l4 4M4 3h16",
   warn: "M12 9v4m0 4h.01M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z",
   globe: "M12 21a9 9 0 100-18 9 9 0 000 18zm-9-9h18M12 3a15 15 0 010 18",
+  users: "M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87m6-8.13a4 4 0 11-8 0 4 4 0 018 0zm8 4a3 3 0 11-6 0 3 3 0 016 0z",
+  trash: "M3 6h18M8 6V4h8v2m-9 0l1 14h8l1-14",
 };
 
 // Miniaturas para la sección Galería
@@ -223,6 +226,8 @@ export default function AdminDemo() {
   const [showKey, setShowKey] = useState(false);
   const [translating, setTranslating] = useState(false);
   const [savedAt, setSavedAt] = useState<string>("");
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [membersCount, setMembersCount] = useState(0);
 
   const dict = useMemo(() => getDictionary(lang), [lang]);
   const active = SECTIONS.find((s) => s.id === view);
@@ -235,6 +240,10 @@ export default function AdminDemo() {
       if (at) setSavedAt(at);
     } catch {}
     setApiKey(getStoredApiKey());
+    setComments(readComments());
+    try {
+      setMembersCount((JSON.parse(localStorage.getItem(MEMBERS_KEY) ?? "[]") as string[]).length);
+    } catch {}
   }, []);
 
   const val = (path: string) =>
@@ -290,6 +299,19 @@ export default function AdminDemo() {
     };
     reader.readAsText(file);
   };
+
+  const moderate = (id: string, action: "approve" | "delete") => {
+    const all = readComments();
+    const next =
+      action === "delete"
+        ? all.filter((c) => c.id !== id)
+        : all.map((c) => (c.id === id ? { ...c, status: "approved" as const } : c));
+    writeComments(next);
+    setComments(next);
+    notify(action === "approve" ? "Comentario aprobado — ya es visible en el blog." : "Comentario eliminado.");
+  };
+
+  const pendingCount = comments.filter((c) => c.status === "pending").length;
 
   // Campos (hojas string) de la sección activa
   const activeFields = useMemo(() => {
@@ -425,6 +447,7 @@ export default function AdminDemo() {
           {SECTIONS.map((s) => (
             <NavItem key={s.id} id={s.id} label={s.label} icon={s.icon} badge={editedCount(s, lang) || undefined} />
           ))}
+          <NavItem id="comunidad" label="Comunidad" icon={IC.users} badge={pendingCount || undefined} />
           <p className="px-3 pt-4 pb-1 text-[10px] font-bold tracking-[0.2em] text-cream-100/40 uppercase">
             Sistema
           </p>
@@ -452,10 +475,10 @@ export default function AdminDemo() {
         <header className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 border-b border-cream-200 bg-cream-50/95 px-6 py-3.5 backdrop-blur">
           <div>
             <p className="text-[11px] font-semibold tracking-widest text-forest-700 uppercase">
-              {active ? active.page : view === "media" ? "Recursos" : view === "ajustes" ? "Configuración" : "Resumen"}
+              {active ? active.page : view === "media" ? "Recursos" : view === "ajustes" ? "Configuración" : view === "comunidad" ? "Blog · Moderación" : "Resumen"}
             </p>
             <h1 className="font-display text-2xl font-semibold text-forest-950">
-              {active ? active.label : view === "media" ? "Galería de medios" : view === "ajustes" ? "Ajustes" : "Hola, bienvenido 👋"}
+              {active ? active.label : view === "media" ? "Galería de medios" : view === "ajustes" ? "Ajustes" : view === "comunidad" ? "Comunidad" : "Hola, bienvenido 👋"}
             </h1>
           </div>
           <div className="flex items-center gap-2.5">
@@ -569,10 +592,10 @@ export default function AdminDemo() {
                       <p className="text-xs font-semibold tracking-widest text-forest-700 uppercase">Sitio publicado</p>
                       <div className="mt-2 flex flex-col gap-1.5 text-sm">
                         <a href="../es/" target="_blank" className="flex cursor-pointer items-center gap-1.5 font-semibold text-forest-900 hover:underline">
-                          <Icon d={IC.eye} className="h-3.5 w-3.5" /> Versión clásica
+                          <Icon d={IC.eye} className="h-3.5 w-3.5" /> Página principal
                         </a>
                         <a href="../es/blog/" target="_blank" className="flex cursor-pointer items-center gap-1.5 font-semibold text-forest-900 hover:underline">
-                          <Icon d={IC.eye} className="h-3.5 w-3.5" /> Versión blog
+                          <Icon d={IC.eye} className="h-3.5 w-3.5" /> Blog y comunidad
                         </a>
                       </div>
                     </div>
@@ -637,6 +660,92 @@ export default function AdminDemo() {
                   </div>
                 )
               )}
+            </div>
+          )}
+
+          {/* ── Vista: Comunidad (moderación) ────────────────────── */}
+          {view === "comunidad" && (
+            <div className="mx-auto max-w-4xl space-y-6">
+              <div className="grid gap-4 sm:grid-cols-3">
+                {[
+                  { n: membersCount + 127, t: "Miembros de la comunidad" },
+                  { n: comments.length, t: "Comentarios totales" },
+                  { n: pendingCount, t: "Pendientes de aprobación" },
+                ].map((c) => (
+                  <div key={c.t} className="rounded-2xl border border-cream-200 bg-cream-50 p-5 shadow-sm">
+                    <p className="font-display text-3xl font-semibold text-forest-950">{c.n}</p>
+                    <p className="text-xs text-forest-800/70">{c.t}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-2xl border border-cream-200 bg-cream-50 p-6 shadow-sm">
+                <h2 className="flex items-center gap-2 font-display text-lg font-semibold text-forest-950">
+                  <Icon d={IC.users} /> Moderación de comentarios
+                </h2>
+                <p className="mt-1 text-sm text-forest-800/70">
+                  Los comentarios del blog quedan aquí hasta que los apruebes. Solo los aprobados
+                  son visibles para los visitantes.
+                </p>
+                <div className="mt-5 space-y-3">
+                  {comments.length === 0 && (
+                    <p className="rounded-xl border border-dashed border-cream-200 p-6 text-center text-sm text-forest-800/50">
+                      Aún no hay comentarios. Cuando alguien comente en el blog, aparecerá aquí.
+                    </p>
+                  )}
+                  {comments.map((c) => (
+                    <div key={c.id} className="flex flex-wrap items-start gap-3 rounded-xl border border-cream-200 bg-white p-4">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest-900 text-xs font-bold text-cream-50">
+                        {c.name.slice(0, 1).toUpperCase()}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-forest-950">
+                          {c.name}
+                          <span className="ml-2 text-xs font-normal text-forest-800/50">{c.date}</span>
+                          <span
+                            className={`ml-2 rounded-full px-2 py-0.5 text-[10px] font-bold tracking-wide uppercase ${
+                              c.status === "approved"
+                                ? "bg-forest-100 text-forest-800"
+                                : "bg-amber-100 text-amber-800"
+                            }`}
+                          >
+                            {c.status === "approved" ? "Aprobado" : "Pendiente"}
+                          </span>
+                        </p>
+                        <p className="mt-1 text-sm leading-relaxed text-forest-800/85">{c.text}</p>
+                        <p className="mt-1 text-[11px] text-forest-800/50">En: {c.slug}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        {c.status === "pending" && (
+                          <button
+                            onClick={() => moderate(c.id, "approve")}
+                            className="flex cursor-pointer items-center gap-1 rounded-lg bg-forest-900 px-3 py-1.5 text-xs font-semibold text-cream-50 transition-colors hover:bg-forest-800"
+                          >
+                            <Icon d={IC.check} className="h-3.5 w-3.5" /> Aprobar
+                          </button>
+                        )}
+                        <button
+                          onClick={() => moderate(c.id, "delete")}
+                          className="flex cursor-pointer items-center gap-1 rounded-lg border border-red-200 bg-white px-3 py-1.5 text-xs font-semibold text-red-700 transition-colors hover:bg-red-50"
+                        >
+                          <Icon d={IC.trash} className="h-3.5 w-3.5" /> Eliminar
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-cream-200 bg-cream-50 p-6 shadow-sm">
+                <h2 className="font-display text-lg font-semibold text-forest-950">
+                  ¿Cómo funcionará el registro en la versión real?
+                </h2>
+                <ul className="mt-3 space-y-2 text-sm leading-relaxed text-forest-800/80">
+                  <li>• <strong>Publicar entradas:</strong> solo el equipo, desde este panel (con usuarios y contraseñas reales).</li>
+                  <li>• <strong>Comentar:</strong> visitantes con nombre + correo verificado; todo pasa por esta moderación antes de publicarse.</li>
+                  <li>• <strong>Comunidad:</strong> el registro por correo alimenta el boletín y las convocatorias.</li>
+                </ul>
+              </div>
             </div>
           )}
 
