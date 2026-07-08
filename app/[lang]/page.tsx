@@ -19,49 +19,134 @@ const ArrowIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
   </svg>
 );
 
-// Iconos de causas: ilustraciones duotono propias (sin IA), un color de base
-// forest + un acento cálido por icono, para lucir "diseñadas" en vez de
-// líneas genéricas.
+// Iconos de causas: ilustraciones duotono propias (sin IA), trabajadas con
+// gradientes, texturas y varias capas de detalle — legibles a primera vista
+// y con acabado de icono premium, no un pictograma plano.
 const CAUSE_ICONS: React.ReactNode[] = [
-  // Restauración ecológica: brote naciendo de un montículo de tierra
-  <svg key="c0" viewBox="0 0 48 48" className="h-8 w-8">
-    <ellipse cx="24" cy="38" rx="15" ry="4.5" className="fill-forest-800" />
-    <path d="M24 34V20" stroke="currentColor" className="stroke-forest-700" strokeWidth="2.5" strokeLinecap="round" />
-    <path d="M24 26c-1-5-6-7-10-6 1 5 5 8 10 6z" className="fill-forest-700" />
-    <path d="M24 21c1-5 6-8 10.5-7-1 5.5-5.5 8.5-10.5 7z" className="fill-gold-500" />
+  // Restauración ecológica: árbol frondoso con raíces y follaje en gradiente
+  <svg key="c0" viewBox="0 0 64 64" className="h-11 w-11">
+    <defs>
+      <linearGradient id="rg0" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-forest-700)]" />
+        <stop offset="100%" className="[stop-color:var(--color-forest-900)]" />
+      </linearGradient>
+      <linearGradient id="rg0b" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-gold-400)]" />
+        <stop offset="100%" className="[stop-color:var(--color-gold-500)]" />
+      </linearGradient>
+    </defs>
+    <ellipse cx="32" cy="57" rx="16" ry="3" className="fill-forest-900/20" />
+    <path d="M30 58V38m0 0c-4-1-8 1-10 4m10-4c-3-3-4-7-2-11m2 11c3-4 8-5 12-3" stroke="currentColor" className="stroke-forest-700" strokeWidth="2.4" strokeLinecap="round" fill="none" />
+    <path d="M18 38c-2 2-3 5-2 8" stroke="currentColor" className="stroke-forest-700/70" strokeWidth="1.6" strokeLinecap="round" fill="none" />
+    <circle cx="30" cy="24" r="17" fill="url(#rg0)" />
+    <circle cx="16" cy="31" r="11.5" fill="url(#rg0)" />
+    <circle cx="45" cy="30" r="12.5" fill="url(#rg0)" />
+    <circle cx="24" cy="14" r="9" className="fill-forest-700" />
+    <circle cx="41" cy="16" r="8" fill="url(#rg0b)" />
+    <path d="M20 22c2-2 5-2 7 0M37 19c2-1.5 4.5-1.5 6 .3" stroke="currentColor" className="stroke-forest-950/30" strokeWidth="1.1" strokeLinecap="round" fill="none" />
   </svg>,
-  // Biodiversidad y fauna: colibrí en vuelo
-  <svg key="c1" viewBox="0 0 48 48" className="h-8 w-8">
-    <path d="M10 27c3-6 9-9 14-8 2-4.5 6.5-7 11-6.5-2 3.5-2 6-.5 8-3 .5-5 2-6 4.5 3 .5 6 2.5 7.5 5.5-6 2-12-.5-15-4-3 3.5-7.5 4.5-11 2 1.5-2 1-6-.5-8.5-1.5 1-1.5 3.5.5 7-2.5-1-4.5-3.5-5-8z" className="fill-forest-800" />
-    <circle cx="31" cy="21" r="1.6" className="fill-cream-50" />
-    <path d="M35 20.5l4-1.8-2.2 3.8z" className="fill-gold-500" />
+  // Biodiversidad y fauna: colibrí en vuelo sobre una flor
+  <svg key="c1" viewBox="0 0 64 64" className="h-11 w-11">
+    <defs>
+      <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-forest-700)]" />
+        <stop offset="100%" className="[stop-color:var(--color-forest-900)]" />
+      </linearGradient>
+    </defs>
+    {/* flor */}
+    <g>
+      <ellipse cx="16" cy="41" rx="3.4" ry="5.6" transform="rotate(0 16 48)" className="fill-terra-300" />
+      <ellipse cx="16" cy="41" rx="3.4" ry="5.6" transform="rotate(72 16 48)" className="fill-terra-300" />
+      <ellipse cx="16" cy="41" rx="3.4" ry="5.6" transform="rotate(144 16 48)" className="fill-terra-300" />
+      <ellipse cx="16" cy="41" rx="3.4" ry="5.6" transform="rotate(216 16 48)" className="fill-terra-300" />
+      <ellipse cx="16" cy="41" rx="3.4" ry="5.6" transform="rotate(288 16 48)" className="fill-terra-300" />
+      <circle cx="16" cy="48" r="3.2" className="fill-gold-500" />
+      <rect x="14.6" y="50" width="2.8" height="10" rx="1.4" className="fill-forest-700" />
+      <path d="M14.6 56c-3-.5-5-2.5-5.5-5.5 3 0 5.2 2 5.5 5.5z" className="fill-forest-700" />
+    </g>
+    {/* colibrí */}
+    <path d="M16 33c0-7 7-12 16-11.5 8 .4 13 5 12 10.5-.8 5-7 8-15 7.5-8-.4-13-3-13-6.5z" fill="url(#bg1)" />
+    <circle cx="43" cy="26" r="6.5" fill="url(#bg1)" />
+    <path d="M48 24.5l11-4.5-8.5 9z" className="fill-gold-500" />
+    <circle cx="45.5" cy="24" r="1.7" className="fill-cream-50" />
+    <circle cx="46" cy="23.6" r="0.8" className="fill-forest-950" />
+    <path d="M27 24c-5-9-15-11-20-6 5 2 10 6 12 12 3-3.5 5.5-5 8-6z" className="fill-gold-500" />
+    <path d="M15 34l-11-6 12.5 3z" className="fill-forest-700" />
+    <path d="M15 37l-12 2 12.5 2z" className="fill-forest-800" />
+    <path d="M16 40l-9 8 11-4.5z" className="fill-forest-700" />
   </svg>,
-  // Carbono y clima: hoja dentro de una nube
-  <svg key="c2" viewBox="0 0 48 48" className="h-8 w-8">
-    <path d="M14 33a7 7 0 01-1.5-13.8A9.5 9.5 0 0131 17a8 8 0 013 15.6 6 6 0 01-1.3.4H14z" className="fill-forest-800" />
-    <path d="M24 20c3 1 4.5 4 3.5 7.5-3-.2-6-2-6.5-5.5A8 8 0 0124 20z" className="fill-gold-500" />
+  // Carbono y clima: nube con degradado y hoja de venas marcadas
+  <svg key="c2" viewBox="0 0 64 64" className="h-11 w-11">
+    <defs>
+      <linearGradient id="cg2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-forest-700)]" />
+        <stop offset="100%" className="[stop-color:var(--color-forest-900)]" />
+      </linearGradient>
+      <linearGradient id="cg2b" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-gold-400)]" />
+        <stop offset="100%" className="[stop-color:var(--color-gold-500)]" />
+      </linearGradient>
+    </defs>
+    <ellipse cx="32" cy="48" rx="17" ry="2.6" className="fill-forest-900/15" />
+    <path d="M17 42a10.5 10.5 0 01-2-20.8A13.5 13.5 0 0142.5 17a11.5 11.5 0 014 22.5 8 8 0 01-1.8.5H17z" fill="url(#cg2)" />
+    <circle cx="24" cy="24" r="2" className="fill-cream-50/70" />
+    <path d="M32 24c5 2 7 7.5 5.5 13.5-5-.3-9.5-3.5-10.5-9A13 13 0 0132 24z" fill="url(#cg2b)" />
+    <path d="M32 26c0 4 .5 8 2 11.5M28 31c1.5 1.5 3 2.5 5 3" stroke="currentColor" className="stroke-forest-950/30" strokeWidth="1" strokeLinecap="round" fill="none" />
   </svg>,
-  // Agroforestería y suelos: terrazas con brote
-  <svg key="c3" viewBox="0 0 48 48" className="h-8 w-8">
-    <rect x="8" y="30" width="32" height="6" rx="3" className="fill-forest-900" />
-    <rect x="11" y="22" width="26" height="6" rx="3" className="fill-forest-800" />
-    <rect x="14" y="14" width="20" height="6" rx="3" className="fill-forest-700" />
-    <path d="M24 14c-1-4 1-7 4-8.5.6 4-1 7.5-4 8.5z" className="fill-gold-500" />
+  // Agroforestería y suelos: árbol y cultivo conviviendo sobre capas de tierra
+  <svg key="c3" viewBox="0 0 64 64" className="h-11 w-11">
+    <defs>
+      <linearGradient id="ag3" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-forest-700)]" />
+        <stop offset="100%" className="[stop-color:var(--color-forest-900)]" />
+      </linearGradient>
+    </defs>
+    <rect x="7" y="46" width="50" height="7" rx="3.5" className="fill-forest-900" />
+    <rect x="10" y="38" width="44" height="7" rx="3.5" className="fill-forest-800" />
+    <path d="M10 42h44M10 49h44" stroke="currentColor" className="stroke-cream-50/10" strokeWidth="1" />
+    <rect x="30" y="27" width="5" height="14" rx="2" className="fill-forest-700" />
+    <circle cx="32.5" cy="21" r="12.5" fill="url(#ag3)" />
+    <circle cx="24" cy="26" r="8" className="fill-forest-700" />
+    <circle cx="40" cy="25" r="7.5" fill="url(#ag3)" />
+    <circle cx="37" cy="14" r="5.5" className="fill-gold-500" />
+    <path d="M14 38c0-4 2-6 5-7 .3 4-1.6 6.5-5 7z" className="fill-gold-500" />
+    <path d="M44 38c0-4 2-6 5-7 .3 4-1.6 6.5-5 7z" className="fill-terra-300" />
   </svg>,
-  // Cacao sostenible: mazorca con semillas visibles
-  <svg key="c4" viewBox="0 0 48 48" className="h-8 w-8">
-    <path d="M24 6c6 0 10 7 10 16s-4 20-10 20-10-11-10-20S18 6 24 6z" className="fill-terra-300" />
-    <path d="M24 6v42M17 16c3 1.5 4.5 3 4.5 3M31 16c-3 1.5-4.5 3-4.5 3M15.5 26c3.5 1 6 2 6 2M32.5 26c-3.5 1-6 2-6 2" stroke="currentColor" className="stroke-forest-900/70" strokeWidth="1.3" strokeLinecap="round" fill="none" />
-    <ellipse cx="24" cy="20" rx="2.6" ry="3.4" className="fill-cream-50" />
-    <ellipse cx="24" cy="29" rx="2.6" ry="3.4" className="fill-cream-50" />
+  // Cacao sostenible: mazorca abierta con semillas y textura de nervaduras
+  <svg key="c4" viewBox="0 0 64 64" className="h-11 w-11">
+    <defs>
+      <linearGradient id="ca4" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-gold-400)]" />
+        <stop offset="100%" className="[stop-color:var(--color-terra-300)]" />
+      </linearGradient>
+    </defs>
+    <ellipse cx="32" cy="58" rx="10" ry="2.4" className="fill-forest-900/15" />
+    <path d="M32 6c8.5 0 14.5 10 14.5 22.5S40.5 55 32 55s-14.5-14-14.5-26.5S23.5 6 32 6z" fill="url(#ca4)" />
+    <path d="M32 6v49" stroke="currentColor" className="stroke-forest-900/50" strokeWidth="1.5" />
+    <path d="M22 16c4 2 6 4 6 4M42 16c-4 2-6 4-6 4M19 27c4.5 1.4 7.5 3 7.5 3M45 27c-4.5 1.4-7.5 3-7.5 3M20 39c4.3 1.2 7 2.6 7 2.6M44 39c-4.3 1.2-7 2.6-7 2.6" stroke="currentColor" className="stroke-forest-900/60" strokeWidth="1.4" strokeLinecap="round" fill="none" />
+    <ellipse cx="32" cy="22" rx="4.4" ry="5.6" className="fill-cream-50" />
+    <ellipse cx="32" cy="34" rx="4.6" ry="5.8" className="fill-cream-50" />
+    <ellipse cx="32" cy="46" rx="4.2" ry="5.2" className="fill-cream-50" />
+    <ellipse cx="30.5" cy="20.5" rx="1.6" ry="2.2" className="fill-gold-400/70" />
+    <ellipse cx="30.5" cy="32.5" rx="1.7" ry="2.3" className="fill-gold-400/70" />
   </svg>,
-  // Café sostenible: taza humeante con grano
-  <svg key="c5" viewBox="0 0 48 48" className="h-8 w-8">
-    <path d="M8 20h24v9a12 12 0 01-12 12 12 12 0 01-12-12v-9z" className="fill-forest-900" />
-    <path d="M32 22h3a5 5 0 010 10h-3" stroke="currentColor" className="stroke-forest-900" strokeWidth="3" fill="none" strokeLinecap="round" />
-    <path d="M15 15c-2-2-2-4 0-6M22 15c-2-2-2-4 0-6" stroke="currentColor" className="stroke-forest-700" strokeWidth="2" strokeLinecap="round" fill="none" />
-    <ellipse cx="20" cy="27" rx="4.5" ry="6" className="fill-gold-500" transform="rotate(-18 20 27)" />
-    <path d="M20 21.5c0 3 0 8 0 11" stroke="currentColor" className="stroke-forest-900/60" strokeWidth="1.2" strokeLinecap="round" transform="rotate(-18 20 27)" />
+  // Café sostenible: taza con plato, vapor y cereza de café partida
+  <svg key="c5" viewBox="0 0 64 64" className="h-11 w-11">
+    <defs>
+      <linearGradient id="co5" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" className="[stop-color:var(--color-forest-700)]" />
+        <stop offset="100%" className="[stop-color:var(--color-forest-900)]" />
+      </linearGradient>
+    </defs>
+    <ellipse cx="26" cy="52" rx="20" ry="3.4" className="fill-forest-900/15" />
+    <path d="M10 26h32v11a16 16 0 01-16 16 16 16 0 01-16-16V26z" fill="url(#co5)" />
+    <ellipse cx="26" cy="26" rx="16" ry="3.2" className="fill-forest-700" />
+    <ellipse cx="26" cy="26" rx="12" ry="2" className="fill-forest-950/40" />
+    <path d="M42 30h4.5a7 7 0 010 14H42" stroke="currentColor" className="stroke-forest-900" strokeWidth="3.6" fill="none" strokeLinecap="round" />
+    <path d="M17 18c-2.5-2.5-2.5-5.2 0-7.8M26 18c-2.5-2.5-2.5-5.2 0-7.8M35 18c-2.5-2.5-2.5-5.2 0-7.8" stroke="currentColor" className="stroke-forest-700/80" strokeWidth="2" strokeLinecap="round" fill="none" />
+    <ellipse cx="49" cy="46" rx="7" ry="9" className="fill-terra-300" transform="rotate(-18 49 46)" />
+    <path d="M49 38.5c0 4.5 0 12 0 17" stroke="currentColor" className="stroke-forest-900/50" strokeWidth="1.4" strokeLinecap="round" transform="rotate(-18 49 46)" />
+    <ellipse cx="46" cy="43" rx="1.6" ry="2.2" className="fill-gold-400/70" transform="rotate(-18 49 46)" />
   </svg>,
 ];
 
