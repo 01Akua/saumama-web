@@ -194,7 +194,7 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
                 {d.closingCta1}
               </Link>
               <a
-                href={`/${lang}/#donar`}
+                href={`/${lang}/#contacto`}
                 className="cursor-pointer rounded-full border border-cream-100/40 px-7 py-3 font-semibold transition-all duration-500 hover:border-cream-50 hover:text-cream-100"
               >
                 {d.closingCta2}

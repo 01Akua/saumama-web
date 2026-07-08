@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { CountUp } from "@/components/CountUp";
-import { DonationWidget } from "@/components/DonationWidget";
+import { ContactSection } from "@/components/ContactSection";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
@@ -115,7 +115,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
               </span>
             </Link>
             <a
-              href="#donar"
+              href="#contacto"
               className="cursor-pointer rounded-full bg-gold-500 px-7 py-3 font-semibold text-forest-950 transition-all duration-500 hover:bg-gold-400 active:scale-[0.98]"
             >
               {dict.nav.donate}
@@ -250,32 +250,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
-      {/* ── Donación ───────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-forest-950">
-        <div className="aurora-orb h-96 w-96" style={{ top: "-6rem", right: "-8rem", "--orb-color": "rgba(246,242,234,0.14)" } as React.CSSProperties} />
-        <div className="aurora-orb h-80 w-80" style={{ bottom: "-8rem", left: "-6rem", animationDelay: "-9s", "--orb-color": "rgba(58,106,78,0.38)" } as React.CSSProperties} />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 py-24 sm:px-6 lg:grid-cols-2 lg:py-32">
-          <Reveal>
-            <p className="text-sm font-semibold tracking-[0.3em] text-cream-100 uppercase">
-              {dict.donation.kicker}
-            </p>
-            <h2 className="mt-4 font-display text-3xl leading-tight font-semibold text-cream-50 sm:text-5xl">
-              {dict.donation.sectionTitle}
-            </h2>
-            <div className="draw-on-reveal mt-5 h-0.5 w-16 bg-cream-50" />
-            <p className="mt-6 max-w-md leading-relaxed text-cream-100/80">
-              {dict.donation.sectionText}
-            </p>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="relative rounded-[2.1rem] p-px">
-              <div className="beam-clip" />
-              <div className="relative">
-                <DonationWidget dict={dict} />
-              </div>
-            </div>
-          </Reveal>
-        </div>
+      {/* ── Contacto (reemplaza donación mientras no hay pasarela) ─── */}
+      <section id="contacto" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-24 sm:px-6">
+        <Reveal>
+          <ContactSection dict={dict} />
+        </Reveal>
       </section>
 
       {/* ── Causas (diferenciadas de Proyectos — feedback cliente) ── */}
@@ -391,7 +370,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {dict.businessLines.items.map((line, i) => {
               const acc = [
                 { n: "text-gold-400", tag: "border-gold-500/40 text-gold-400", hover: "hover:border-gold-500/50", bar: "bg-gold-500" },
-                { n: "text-terra-500", tag: "border-terra-500/50 text-terra-500", hover: "hover:border-terra-500/60", bar: "bg-terra-500" },
+                { n: "text-stone-300", tag: "border-stone-300/50 text-stone-300", hover: "hover:border-stone-300/60", bar: "bg-stone-300" },
                 { n: "text-cream-100", tag: "border-cream-100/40 text-cream-100", hover: "hover:border-cream-100/50", bar: "bg-cream-100" },
               ][i];
               return (
@@ -530,7 +509,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           <Reveal delay={150}>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <a
-                href="#donar"
+                href="#contacto"
                 className="group flex shrink-0 cursor-pointer items-center gap-3 rounded-full bg-cream-50 py-3 pr-2.5 pl-7 font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
               >
                 {dict.cta.button}

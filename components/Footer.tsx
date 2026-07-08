@@ -10,7 +10,7 @@ export function Footer({ lang, dict }: { lang: Locale; dict: Dictionary }) {
     { href: `/${lang}/nosotros/`, label: dict.nav.about },
     { href: `/${lang}/proyectos/`, label: dict.nav.projects },
     { href: `/${lang}/blog/`, label: dict.nav.blog },
-    { href: `/${lang}/#donar`, label: dict.nav.donate },
+    { href: `/${lang}/#contacto`, label: dict.nav.donate },
   ];
 
   return (

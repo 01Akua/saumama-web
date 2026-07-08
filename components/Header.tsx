@@ -72,7 +72,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             </Link>
             {/* CTA botón-en-botón */}
             <a
-              href={`/${lang}/#donar`}
+              href={`/${lang}/#contacto`}
               className="group flex cursor-pointer items-center gap-2 rounded-full bg-gold-500 py-1.5 pr-1.5 pl-5 text-sm font-semibold text-forest-950 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-gold-400 active:scale-[0.98]"
             >
               {dict.nav.donate}
@@ -126,7 +126,7 @@ export function Header({ lang, dict }: { lang: Locale; dict: Dictionary }) {
             </Link>
           ))}
           <a
-            href={`/${lang}/#donar`}
+            href={`/${lang}/#contacto`}
             onClick={() => setOpen(false)}
             className={`mt-6 inline-flex w-max cursor-pointer items-center gap-3 rounded-full bg-gold-500 px-7 py-3.5 font-semibold text-forest-950 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
               open ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"

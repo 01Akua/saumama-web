@@ -10,7 +10,7 @@ const es = {
     about: "Nosotros",
     projects: "Proyectos y servicios",
     blog: "Blog",
-    donate: "Dona ahora",
+    donate: "Contáctanos",
   },
   hero: {
     kicker: "Invertir en la naturaleza",
@@ -206,6 +206,25 @@ const es = {
       newDonation: "Hacer otra donación",
     },
   },
+  contact: {
+    kicker: "Ponte en contacto",
+    title: "Déjanos tus datos",
+    text: "¿Quieres conocer más sobre nuestros proyectos, explorar una alianza o sumarte al trabajo en territorio? Escríbenos y el equipo te responderá.",
+    name: "Nombre completo",
+    namePlaceholder: "Tu nombre",
+    email: "Correo electrónico",
+    emailPlaceholder: "tucorreo@ejemplo.com",
+    message: "Mensaje",
+    messagePlaceholder: "Cuéntanos en qué estás interesado…",
+    submit: "Enviar mensaje",
+    success: "¡Gracias! Recibimos tu mensaje y te responderemos pronto.",
+    demoNote: "Prototipo — el envío real se conecta con el correo de la fundación en la versión final.",
+    bullets: [
+      { title: "Alianzas", text: "Empresas e instituciones que buscan proyectos de alto impacto" },
+      { title: "Proyectos", text: "Comunidades y territorios con iniciativas por estructurar" },
+      { title: "Talento", text: "Profesionales que quieren aportar a la misión" },
+    ],
+  },
   blog: {
     kicker: "Blog y actualidad",
     title: "Historias desde el territorio",
@@ -299,8 +318,8 @@ const es = {
   cta: {
     title: "Sé parte del movimiento",
     text: "Saumama es movimiento, no discurso. Comparte tu talento, amplifica nuestra voz o súmate a iniciativas que generan impacto duradero.",
-    button: "Colabora con Saumama",
-    contact: "Contactar a la fundación",
+    button: "Ponte en contacto",
+    contact: "Escríbenos un correo",
   },
   aboutPage: {
     kicker: "Nosotros",
@@ -424,7 +443,7 @@ const en: Dictionary = {
     about: "About us",
     projects: "Projects & services",
     blog: "Blog",
-    donate: "Donate now",
+    donate: "Contact us",
   },
   hero: {
     kicker: "Investing in nature",
@@ -620,6 +639,25 @@ const en: Dictionary = {
       newDonation: "Make another donation",
     },
   },
+  contact: {
+    kicker: "Get in touch",
+    title: "Leave us your details",
+    text: "Want to learn more about our projects, explore a partnership or join the work on the ground? Write to us and the team will get back to you.",
+    name: "Full name",
+    namePlaceholder: "Your name",
+    email: "Email address",
+    emailPlaceholder: "you@example.com",
+    message: "Message",
+    messagePlaceholder: "Tell us what you are interested in…",
+    submit: "Send message",
+    success: "Thank you! We received your message and will reply soon.",
+    demoNote: "Prototype — real delivery connects to the foundation's email in the final version.",
+    bullets: [
+      { title: "Partnerships", text: "Companies and institutions looking for high-impact projects" },
+      { title: "Projects", text: "Communities and territories with initiatives to structure" },
+      { title: "Talent", text: "Professionals who want to contribute to the mission" },
+    ],
+  },
   blog: {
     kicker: "Blog & updates",
     title: "Stories from the territory",
@@ -713,8 +751,8 @@ const en: Dictionary = {
   cta: {
     title: "Be part of the movement",
     text: "Saumama is movement, not rhetoric. Share your talent, amplify our voice or join initiatives that create lasting impact.",
-    button: "Partner with Saumama",
-    contact: "Contact the foundation",
+    button: "Get in touch",
+    contact: "Send us an email",
   },
   aboutPage: {
     kicker: "About us",

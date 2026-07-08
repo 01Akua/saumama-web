@@ -144,17 +144,10 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    id: "donaciones", label: "Donaciones", page: "Inicio · Widget",
-    icon: "M12 21c-4-2.5-8-5.5-8-10a4 4 0 017-2.6A4 4 0 0118 11c0 4.5-4 7.5-6 10z",
+    id: "contacto", label: "Contacto", page: "Inicio · Formulario",
+    icon: "M3 8l9 6 9-6M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1z",
     groups: [
-      { title: "Sección y widget", path: "donation.kicker" },
-      { title: "", path: "donation.sectionTitle" },
-      { title: "", path: "donation.sectionText" },
-      { title: "", path: "donation.text" },
-      { title: "", path: "donation.bullets" },
-      { title: "", path: "donation.button" },
-      { title: "", path: "donation.redirect" },
-      { title: "Flujo de pago (simulación)", path: "donation.flow" },
+      { title: "Sección de contacto", path: "contact" },
     ],
   },
   {

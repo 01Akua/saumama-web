@@ -17,6 +17,7 @@
   --color-cream-100: #f1ece3; /* crema hueso (marca) */
   --color-cream-200: #ddd3c2;
   --color-stone-400: #b7a797; /* gris piedra (marca) */
+  --color-stone-300: #cfc3b6; /* gris piedra claro — contraste sobre verde */
 
   --font-display: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-montserrat), system-ui, sans-serif;
