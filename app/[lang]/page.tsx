@@ -19,20 +19,50 @@ const ArrowIcon = ({ className = "h-4 w-4" }: { className?: string }) => (
   </svg>
 );
 
-// Iconos específicos por causa (feedback: iconografía con significado)
+// Iconos de causas: ilustraciones duotono propias (sin IA), un color de base
+// forest + un acento cálido por icono, para lucir "diseñadas" en vez de
+// líneas genéricas.
 const CAUSE_ICONS: React.ReactNode[] = [
-  // Restauración: árbol renaciendo
-  <path key="c0" d="M12 22v-8m0 0c-3.5-.5-6-3-6-6.5 0-1 .2-2 .6-2.9C8.5 6 10 7.5 12 7.5S15.5 6 17.4 4.6c.4.9.6 1.9.6 2.9 0 3.5-2.5 6-6 6.5zM7 22h10" strokeLinecap="round" strokeLinejoin="round" />,
-  // Biodiversidad: colibrí
-  <path key="c1" d="M4 8c3-4 8-4 10 0l6-2-4 5c1 4-2 8-7 8-2 0-3.5-.8-4.5-2L3 19l2.5-4C4 13 3.5 10 4 8zm9 3h.01" strokeLinecap="round" strokeLinejoin="round" />,
-  // Carbono: nube CO2
-  <path key="c2" d="M7 18a4 4 0 01-.9-7.9 5.5 5.5 0 0110.7-1.2A4.5 4.5 0 0116.5 18H7zm3-6.5c-.8 0-1.5.7-1.5 1.7s.7 1.8 1.5 1.8m3.5-3.5c-.8 0-1.5.7-1.5 1.7s.7 1.8 1.5 1.8 1.5-.8 1.5-1.8-.7-1.7-1.5-1.7z" strokeLinecap="round" strokeLinejoin="round" />,
-  // Agroforestería: surcos con brotes
-  <path key="c3" d="M3 20h18M6 20v-4m0 0c-1.5-.5-2.5-2-2.2-3.6C5.4 12.5 6.6 13 6 16zm0 0c1.5-.5 2.5-2 2.2-3.6C6.6 12.5 5.4 13 6 16zm6 4v-6m0 0c-2-.7-3.2-2.7-2.8-4.8C11.2 9.5 12.8 10.2 12 14zm0 0c2-.7 3.2-2.7 2.8-4.8C12.8 9.5 11.2 10.2 12 14zm6 6v-4m0 0c-1.5-.5-2.5-2-2.2-3.6C17.4 12.5 18.6 13 18 16zm0 0c1.5-.5 2.5-2 2.2-3.6C18.6 12.5 17.4 13 18 16z" strokeLinecap="round" strokeLinejoin="round" />,
-  // Cacao: mazorca
-  <path key="c4" d="M12 3c3.5 0 5.5 3.5 5.5 8s-2 10-5.5 10-5.5-5.5-5.5-10S8.5 3 12 3zm0 0c0 2-1 3-3 3m3 1v11" strokeLinecap="round" strokeLinejoin="round" />,
-  // Café: grano
-  <path key="c5" d="M12 4c4 0 7 3.6 7 8s-3 8-7 8-7-3.6-7-8 3-8 7-8zm0 0c2 3 2 5-.5 8s-2.5 5-.5 8" strokeLinecap="round" strokeLinejoin="round" />,
+  // Restauración ecológica: brote naciendo de un montículo de tierra
+  <svg key="c0" viewBox="0 0 48 48" className="h-8 w-8">
+    <ellipse cx="24" cy="38" rx="15" ry="4.5" className="fill-forest-800" />
+    <path d="M24 34V20" stroke="currentColor" className="stroke-forest-700" strokeWidth="2.5" strokeLinecap="round" />
+    <path d="M24 26c-1-5-6-7-10-6 1 5 5 8 10 6z" className="fill-forest-700" />
+    <path d="M24 21c1-5 6-8 10.5-7-1 5.5-5.5 8.5-10.5 7z" className="fill-gold-500" />
+  </svg>,
+  // Biodiversidad y fauna: colibrí en vuelo
+  <svg key="c1" viewBox="0 0 48 48" className="h-8 w-8">
+    <path d="M10 27c3-6 9-9 14-8 2-4.5 6.5-7 11-6.5-2 3.5-2 6-.5 8-3 .5-5 2-6 4.5 3 .5 6 2.5 7.5 5.5-6 2-12-.5-15-4-3 3.5-7.5 4.5-11 2 1.5-2 1-6-.5-8.5-1.5 1-1.5 3.5.5 7-2.5-1-4.5-3.5-5-8z" className="fill-forest-800" />
+    <circle cx="31" cy="21" r="1.6" className="fill-cream-50" />
+    <path d="M35 20.5l4-1.8-2.2 3.8z" className="fill-gold-500" />
+  </svg>,
+  // Carbono y clima: hoja dentro de una nube
+  <svg key="c2" viewBox="0 0 48 48" className="h-8 w-8">
+    <path d="M14 33a7 7 0 01-1.5-13.8A9.5 9.5 0 0131 17a8 8 0 013 15.6 6 6 0 01-1.3.4H14z" className="fill-forest-800" />
+    <path d="M24 20c3 1 4.5 4 3.5 7.5-3-.2-6-2-6.5-5.5A8 8 0 0124 20z" className="fill-gold-500" />
+  </svg>,
+  // Agroforestería y suelos: terrazas con brote
+  <svg key="c3" viewBox="0 0 48 48" className="h-8 w-8">
+    <rect x="8" y="30" width="32" height="6" rx="3" className="fill-forest-900" />
+    <rect x="11" y="22" width="26" height="6" rx="3" className="fill-forest-800" />
+    <rect x="14" y="14" width="20" height="6" rx="3" className="fill-forest-700" />
+    <path d="M24 14c-1-4 1-7 4-8.5.6 4-1 7.5-4 8.5z" className="fill-gold-500" />
+  </svg>,
+  // Cacao sostenible: mazorca con semillas visibles
+  <svg key="c4" viewBox="0 0 48 48" className="h-8 w-8">
+    <path d="M24 6c6 0 10 7 10 16s-4 20-10 20-10-11-10-20S18 6 24 6z" className="fill-terra-300" />
+    <path d="M24 6v42M17 16c3 1.5 4.5 3 4.5 3M31 16c-3 1.5-4.5 3-4.5 3M15.5 26c3.5 1 6 2 6 2M32.5 26c-3.5 1-6 2-6 2" stroke="currentColor" className="stroke-forest-900/70" strokeWidth="1.3" strokeLinecap="round" fill="none" />
+    <ellipse cx="24" cy="20" rx="2.6" ry="3.4" className="fill-cream-50" />
+    <ellipse cx="24" cy="29" rx="2.6" ry="3.4" className="fill-cream-50" />
+  </svg>,
+  // Café sostenible: taza humeante con grano
+  <svg key="c5" viewBox="0 0 48 48" className="h-8 w-8">
+    <path d="M8 20h24v9a12 12 0 01-12 12 12 12 0 01-12-12v-9z" className="fill-forest-900" />
+    <path d="M32 22h3a5 5 0 010 10h-3" stroke="currentColor" className="stroke-forest-900" strokeWidth="3" fill="none" strokeLinecap="round" />
+    <path d="M15 15c-2-2-2-4 0-6M22 15c-2-2-2-4 0-6" stroke="currentColor" className="stroke-forest-700" strokeWidth="2" strokeLinecap="round" fill="none" />
+    <ellipse cx="20" cy="27" rx="4.5" ry="6" className="fill-gold-500" transform="rotate(-18 20 27)" />
+    <path d="M20 21.5c0 3 0 8 0 11" stroke="currentColor" className="stroke-forest-900/60" strokeWidth="1.2" strokeLinecap="round" transform="rotate(-18 20 27)" />
+  </svg>,
 ];
 
 const WHAT_ICONS = [
@@ -273,10 +303,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {dict.causes.items.map((c, i) => (
               <Reveal key={c.title} delay={(i % 3) * 120} className="h-full">
                 <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-950/50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/30">
-                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-cream-50 text-forest-900 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
-                      {CAUSE_ICONS[i]}
-                    </svg>
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cream-50 to-cream-100 text-forest-900 shadow-sm transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
+                    {CAUSE_ICONS[i]}
                   </span>
                   <h3 className="mt-4 font-display text-xl font-semibold">{c.title}</h3>
                   <p className="mt-2 text-base leading-relaxed text-cream-100/80">{c.text}</p>
