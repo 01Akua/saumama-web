@@ -106,9 +106,9 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             </p>
             <div className="draw-on-reveal mx-auto mt-5 h-0.5 w-12 bg-gold-500" />
           </Reveal>
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {d.team.map((m, i) => (
-              <Reveal key={m.name} delay={(i % 4) * 100} className="h-full">
+              <Reveal key={m.name} delay={(i % 3) * 100} className="h-full">
                 <SpotlightCard className="h-full rounded-2xl border border-cream-200 bg-cream-50 p-6 text-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-gold-500/40 hover:shadow-lg hover:shadow-forest-900/5">
                   <span className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-gold-500/40 bg-forest-800 font-display text-2xl font-semibold text-gold-400">
                     {m.name.split(" ").map((x) => x[0]).slice(0, 2).join("")}

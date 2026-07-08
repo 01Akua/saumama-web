@@ -273,8 +273,8 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {dict.causes.items.map((c, i) => (
               <Reveal key={c.title} delay={(i % 3) * 120} className="h-full">
                 <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-950/50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/30">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cream-50 text-forest-900 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="h-6 w-6">
+                  <span className="flex h-14 w-14 items-center justify-center rounded-full bg-cream-50 text-forest-900 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6">
                       {CAUSE_ICONS[i]}
                     </svg>
                   </span>
@@ -370,7 +370,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {dict.businessLines.items.map((line, i) => {
               const acc = [
                 { n: "text-gold-400", tag: "border-gold-500/40 text-gold-400", hover: "hover:border-gold-500/50", bar: "bg-gold-500" },
-                { n: "text-stone-300", tag: "border-stone-300/50 text-stone-300", hover: "hover:border-stone-300/60", bar: "bg-stone-300" },
+                { n: "text-terra-300", tag: "border-terra-300/50 text-terra-300", hover: "hover:border-terra-300/60", bar: "bg-terra-300" },
                 { n: "text-cream-100", tag: "border-cream-100/40 text-cream-100", hover: "hover:border-cream-100/50", bar: "bg-cream-100" },
               ][i];
               return (
