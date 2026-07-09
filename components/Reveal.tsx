@@ -28,7 +28,11 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      // threshold bajo: dispara con el primer píxel visible, no con un % del
+      // bloque completo (un bloque alto tardaba de más en juntar ese %).
+      // rootMargin positivo: se revela un poco antes de entrar al viewport,
+      // para que el texto ya esté listo cuando el usuario lo alcanza.
+      { threshold: 0, rootMargin: "0px 0px 120px 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
