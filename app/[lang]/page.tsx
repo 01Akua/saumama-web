@@ -388,7 +388,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
             {dict.causes.items.map((c, i) => (
               <Reveal key={c.title} delay={(i % 3) * 120} className="h-full">
                 <div className="group h-full rounded-2xl border border-cream-100/10 bg-forest-950/50 p-6 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-1 hover:border-cream-100/30">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-cream-50 to-cream-100 text-forest-900 shadow-sm transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105">
+                  <span className="flex h-16 w-16 items-center justify-center transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:scale-105 [&_svg]:h-full [&_svg]:w-full [&_svg]:drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)]">
                     {CAUSE_ICONS[i]}
                   </span>
                   <h3 className="mt-4 font-display text-xl font-semibold">{c.title}</h3>
